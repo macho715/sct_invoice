@@ -18,7 +18,7 @@ Excel 공식을 Python pandas 벡터화 연산으로 변환하여 고성능 처�
 import pandas as pd
 from pathlib import Path
 
-from pipe1.agi_columns import (
+from .agi_columns import (
     DERIVED_COLUMNS,
     FINAL_HANDLING_COLUMN,
     MINUS_COLUMN,

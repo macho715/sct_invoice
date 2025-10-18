@@ -5,7 +5,7 @@ from pathlib import Path
 import openpyxl
 import pandas as pd
 
-from pipe1.agi_columns import (
+from .agi_columns import (
     DERIVED_COLUMNS,
     FINAL_HANDLING_COLUMN,
     MINUS_COLUMN,
