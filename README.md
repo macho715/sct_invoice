@@ -330,6 +330,14 @@ pip install -r requirements.txt
 python parsers/dsv_pdf_parser.py input/document.pdf -o output/result.json
 ```
 
+### Quick Reference Guides
+For detailed step-by-step instructions, see:
+- [5-Minute Quick Start](./QUICK_START_GUIDE.md) - Fastest way to get started
+- [Complete Pipeline Guide](./pipe2/PIPELINE_USER_GUIDE.md) - Full pipeline walkthrough
+- [Data Sync Guide](./pipe1/DATA_SYNCHRONIZER_GUIDE.md) - Data synchronization details
+- [Post-AGI Column Guide](./pipe1/POST_AGI_COLUMN_GUIDE.md) - AGI column processing
+- [Anomaly Detection Guide](./hitachi/anomaly_detector/ANOMALY_DETECTION_GUIDE.md) - Anomaly detection system
+
 ---
 
 ## 📁 Project Structure
@@ -364,27 +372,28 @@ HVDC-INVOICE/
 │   └── requirements_hybrid.txt      # Dependencies
 ├── hitachi/                         # Hitachi warehouse sync system (v2.9)
 │   ├── data_synchronizer_v29.py     # Main sync engine (397 lines)
-│   ├── core/                        # Core modules
-│   │   ├── case_matcher.py
-│   │   ├── data_synchronizer.py
-│   │   └── parallel_processor.py
-│   ├── formatters/                  # Excel formatting
-│   │   ├── excel_formatter.py
-│   │   ├── header_detector.py
-│   │   └── header_matcher.py
-│   ├── validators/                  # Data validation
-│   │   ├── change_tracker.py
-│   │   ├── hvdc_validator.py
-│   │   └── update_tracker.py
-│   ├── utils/                       # Utility scripts
-│   │   ├── check_date_colors.py
-│   │   ├── debug_v29.py
-│   │   └── verify_sync_v2_9.py
+│   ├── pipeline.md                  # Pipeline workflow documentation
+│   ├── patchcolor.md                # Color patch documentation
+│   ├── anomaly_detector/            # Anomaly detection system
+│   │   ├── anomaly_detector.py
+│   │   ├── anomaly_visualizer.py
+│   │   ├── ANOMALY_DETECTION_GUIDE.md
+│   │   └── VISUALIZATION_GUIDE.md
 │   ├── docs/                        # Documentation
 │   │   ├── V29_IMPLEMENTATION_GUIDE.md
-│   │   ├── SYSTEM_ARCHITECTURE.md
-│   │   └── DATE_UPDATE_COLOR_FIX_REPORT.md
-│   └── README.md                    # System documentation
+│   │   ├── SYSTEM_WORKFLOW_VERIFICATION.md
+│   │   └── system_workflow_diagram.mmd
+│   └── README.md
+├── pipe1/                           # Pipeline Stage 1 - Data Sync & Post-AGI
+│   ├── data_synchronizer_v29.py     # Master-Warehouse sync
+│   ├── post_agi_column_processor.py # AGI column calculation
+│   ├── DATA_SYNCHRONIZER_GUIDE.md   # Sync system guide
+│   ├── POST_AGI_COLUMN_GUIDE.md     # Post-AGI processing guide
+│   └── README.md                    # Stage 1 documentation
+├── pipe2/                           # Pipeline Stage 2 - Report & Anomaly
+│   ├── PIPELINE_USER_GUIDE.md       # Complete pipeline guide
+│   ├── PIPELINE_EXECUTION_REPORT_20251018.md
+│   └── README.md                    # Stage 2 documentation
 ├── ML/                              # Machine learning optimization (v1.0)
 │   ├── unified_ml_pipeline.py       # Main ML pipeline
 │   ├── logi_costguard_ml_v2/        # Cost guard ML system
@@ -432,6 +441,7 @@ HVDC-INVOICE/
 ├── .gitignore                       # Git ignore rules
 ├── DEPLOYMENT_GUIDE.md              # Deployment guide
 ├── RULES_MIGRATION_GUIDE.md         # Rules migration guide
+├── QUICK_START_GUIDE.md             # 5-minute quick start
 └── README.md                        # This file
 ```
 
@@ -701,6 +711,8 @@ python data_synchronizer_v29.py \
 - [PDF Processing System](./PDF/README.md) - v1.0.0 Ontology Integration
 
 ### Quick Start Guides
+- [5-Minute Quick Start](./QUICK_START_GUIDE.md) - Fastest way to get started
+- [Complete Pipeline Guide](./pipe2/PIPELINE_USER_GUIDE.md) - Full pipeline walkthrough (pipe1 → pipe2)
 - [Quick Start Guide](./HVDC_Invoice_Audit/QUICK_START.md) - 10-minute setup
 - [WSL2 Setup](./HVDC_Invoice_Audit/README_WSL2_SETUP.md) - Windows WSL2 configuration
 - [Redis Installation](./HVDC_Invoice_Audit/REDIS_INSTALLATION_GUIDE.md) - Redis setup guide
@@ -714,6 +726,14 @@ python data_synchronizer_v29.py \
 - [Hitachi V29 Implementation Guide](./hitachi/docs/V29_IMPLEMENTATION_GUIDE.md) - Detailed implementation
 - [System Architecture](./hitachi/docs/SYSTEM_ARCHITECTURE.md) - Technical architecture
 - [Date Update Color Fix Report](./hitachi/docs/DATE_UPDATE_COLOR_FIX_REPORT.md) - Bug fix documentation
+
+### Pipeline Processing Guides (v3.7)
+- [Data Synchronizer Guide](./pipe1/DATA_SYNCHRONIZER_GUIDE.md) - Master-Warehouse synchronization
+- [Post-AGI Column Guide](./pipe1/POST_AGI_COLUMN_GUIDE.md) - AGI column processing details
+- [Anomaly Detection Guide](./hitachi/anomaly_detector/ANOMALY_DETECTION_GUIDE.md) - Anomaly detection system
+- [Pipeline Execution Report](./pipe2/PIPELINE_EXECUTION_REPORT_20251018.md) - Actual execution results
+- [pipe1 Module](./pipe1/README.md) - Stage 1 documentation
+- [pipe2 Module](./pipe2/README.md) - Stage 2 documentation
 
 ### System Analysis & Visualization
 - [HVDC System Detailed Analysis - Part 1](./hitachi/docs/HVDC_SYSTEM_DETAILED_ANALYSIS.md) - Executive Summary & Architecture
