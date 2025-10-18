@@ -126,8 +126,12 @@ print(f'색상 적용된 행: {colored_rows}')
 
 **실행**:
 ```bash
-python calculate_agi_columns.py "HVDC WAREHOUSE_HITACHI(HE).xlsx"
+python post_agi_column_processor.py
 ```
+
+> ℹ️ `post_agi_column_processor.py`는 기본값으로 `HVDC WAREHOUSE_HITACHI(HE).synced.xlsx`
+> 파일을 입력으로 읽어들이므로, Step 3.2에서 생성된 `.synced` 파일이 동일한 폴더에
+> 존재해야 합니다.
 
 **검증**:
 ```bash
@@ -288,7 +292,7 @@ if files:
          │
          │ AGI 컬럼 계산 ⭐
          ↓
-  └─ calculate_agi_columns.py 실행
+  └─ post_agi_column_processor.py 실행
   └─ HVDC WAREHOUSE_HITACHI(HE).xlsx (13개 컬럼 추가됨)
          │
          │ 복사
