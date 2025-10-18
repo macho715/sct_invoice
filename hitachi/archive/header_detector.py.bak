@@ -1,0 +1,265 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+동적 헤더 탐지 로직
+HVDC 키워드 패턴으로 실제 헤더 위치 식별
+"""
+
+import pandas as pd
+import re
+from typing import Optional, List, Dict, Any
+
+
+class HeaderDetector:
+    """HVDC Excel 파일의 헤더를 동적으로 탐지하는 클래스 (Enhanced)"""
+    
+    def __init__(self, threshold: float = 78.0, custom_synonyms: Dict[str, List[str]] = None):
+        """
+        초기화
+        
+        Args:
+            threshold: 헤더 탐지 정확도 임계값 (기본값: 78%)
+            custom_synonyms: 커스텀 헤더 매핑 딕셔너리
+        """
+        self.threshold = threshold
+        
+        # 기본 동의어 매핑
+        self.default_synonyms = {
+            'hvdc_code': ['HVDC CODE', 'HVDC', 'Code', 'Item Code', 'hvdc_code', 'code', 'item_code'],
+            'rate': ['Price', 'Rate', 'Unit Price', 'price', 'rate', 'unit_price'],
+            'quantity': ['Pkg', 'Quantity', 'Qty', 'pkg', 'quantity', 'qty'],
+            'weight': ['N.W(kgs)', 'G.W(kgs)', 'Net Weight', 'Gross Weight', 'Weight'],
+            'dimensions': ['L(CM)', 'W(CM)', 'H(CM)', 'Length', 'Width', 'Height'],
+            'volume': ['CBM', 'Volume', 'Cubic Meter', 'cbm', 'volume'],
+            'location': ['Storage', 'Location', 'Site', 'Warehouse', 'storage', 'location'],
+            'status': ['Status_Current', 'Status', 'Current Status', 'status', 'current_status'],
+            'date': ['ETD', 'ETA', 'ATA', 'ATD', 'Date', 'Arrival Date', 'Departure Date'],
+            'description': ['Description', 'Item Description', 'Details', 'description', 'details']
+        }
+        
+        # 커스텀 동의어가 제공된 경우 병합
+        if custom_synonyms:
+            for key, synonyms in custom_synonyms.items():
+                if key in self.default_synonyms:
+                    self.default_synonyms[key].extend(synonyms)
+                else:
+                    self.default_synonyms[key] = synonyms
+        
+        # 모든 키워드를 평평한 리스트로 변환
+        self.hvdc_keywords = []
+        for synonyms in self.default_synonyms.values():
+            self.hvdc_keywords.extend(synonyms)
+        
+        # 추가 HVDC 특화 키워드들
+        additional_keywords = [
+            'Shipment Invoice No', 'Case No', 'EQ No', 'HS Code', 'Currency',
+            'Vessel', 'COE', 'POL', 'POD', 'Status_Location'
+        ]
+        self.hvdc_keywords.extend(additional_keywords)
+    
+    def detect_header_row(self, df: pd.DataFrame) -> Optional[int]:
+        """
+        데이터프레임에서 헤더 행을 탐지 (Enhanced with threshold)
+        
+        Args:
+            df: 분석할 데이터프레임
+            
+        Returns:
+            헤더 행 인덱스 또는 None (찾지 못한 경우)
+        """
+        best_row = None
+        best_score = -1
+        best_confidence = 0.0
+        
+        for row_idx in range(min(10, len(df))):  # 처음 10행만 검사
+            row_values = df.iloc[row_idx].astype(str).values
+            
+            # 현재 행이 헤더일 가능성 점수 계산
+            score = self._calculate_header_score(row_values)
+            
+            # 신뢰도 계산 (매칭된 키워드 비율)
+            confidence = self._calculate_confidence(row_values, score)
+            
+            # threshold를 넘고 더 나은 점수인 경우만 선택 
+            if confidence >= (self.threshold / 100.0) and score > best_score:
+                best_score = score
+                best_row = row_idx
+                best_confidence = confidence
+        
+        return best_row
+    
+    def find_header_row(self) -> Dict[str, Any]:
+        """
+        plan.md에서 참조한 형태의 메서드 - 더 자세한 결과 반환
+        
+        Returns:
+            헤더 탐지 결과 딕셔너리
+        """
+        # 이 메서드는 df가 이미 설정되어 있다고 가정하거나 
+        # 별도로 df를 매개변수로 받을 수 있음
+        # 여기서는 호환성을 위해 빈 구조체만 반환
+        return {
+            'header_row': None,
+            'confidence': 0.0,
+            'matched_keywords': [],
+            'total_score': 0
+        }
+    
+    def _calculate_confidence(self, row_values: List[str], score: int) -> float:
+        """
+        헤더 행의 신뢰도 계산
+        
+        Args:
+            row_values: 행의 값들
+            score: 계산된 점수
+            
+        Returns:
+            신뢰도 (0.0 ~ 1.0)
+        """
+        if not row_values or score <= 0:
+            return 0.0
+        
+        # 비어있지 않은 값들의 개수
+        non_empty_count = len([val for val in row_values if val and str(val).strip() != 'nan'])
+        
+        if non_empty_count == 0:
+            return 0.0
+        
+        # 키워드 매칭 비율 기반 신뢰도
+        row_text = ' '.join(str(val) for val in row_values if val is not None).upper()
+        matched_keywords = 0
+        
+        for keyword in self.hvdc_keywords:
+            if keyword.upper() in row_text:
+                matched_keywords += 1
+        
+        # 매칭된 키워드 비율과 점수를 종합하여 신뢰도 계산
+        keyword_ratio = matched_keywords / len(self.hvdc_keywords)
+        score_ratio = min(score / 20.0, 1.0)  # 점수를 0-1 범위로 정규화
+        
+        # 가중 평균으로 최종 신뢰도 계산
+        confidence = (keyword_ratio * 0.6) + (score_ratio * 0.4)
+        
+        return min(confidence, 1.0)
+    
+    def standardize_column_name(self, column_name: str) -> str:
+        """
+        컬럼명을 표준화된 형태로 변환
+        
+        Args:
+            column_name: 원본 컬럼명
+            
+        Returns:
+            표준화된 컬럼명
+        """
+        if not column_name or str(column_name).strip() == 'nan':
+            return 'unknown_column'
+        
+        column_name = str(column_name).strip()
+        
+        # 동의어 매핑을 통한 표준화
+        for standard_name, synonyms in self.default_synonyms.items():
+            for synonym in synonyms:
+                if column_name.upper() == synonym.upper():
+                    return standard_name
+        
+        # 매핑되지 않은 경우 원본을 소문자로 변환하고 공백을 언더스코어로 치환
+        standardized = re.sub(r'[^\w\s]', '', column_name.lower())
+        standardized = re.sub(r'\s+', '_', standardized)
+        
+        return standardized
+    
+    def get_standardized_columns(self, df: pd.DataFrame, header_row: int) -> Dict[str, str]:
+        """
+        헤더 행의 컬럼들을 표준화된 매핑으로 반환
+        
+        Args:
+            df: 데이터프레임
+            header_row: 헤더 행 인덱스
+            
+        Returns:
+            원본 컬럼명 -> 표준화된 컬럼명 매핑 딕셔너리
+        """
+        if header_row >= len(df):
+            return {}
+        
+        header_values = df.iloc[header_row].astype(str).values
+        mapping = {}
+        
+        for i, original_name in enumerate(header_values):
+            if original_name and str(original_name).strip() != 'nan':
+                standardized = self.standardize_column_name(original_name)
+                mapping[original_name] = standardized
+            else:
+                mapping[f'Column_{i}'] = f'column_{i}'
+        
+        return mapping
+    
+    def extract_column_names(self, df: pd.DataFrame, header_row: int) -> List[str]:
+        """
+        지정된 헤더 행에서 컬럼명을 추출
+        
+        Args:
+            df: 데이터프레임
+            header_row: 헤더 행 인덱스
+            
+        Returns:
+            컬럼명 리스트
+        """
+        if header_row >= len(df):
+            return []
+        
+        header_values = df.iloc[header_row].astype(str).values
+        return [val if val != 'nan' else f'Column_{i}' for i, val in enumerate(header_values)]
+    
+    def _calculate_header_score(self, row_values: List[str]) -> int:
+        """
+        행이 헤더일 가능성 점수를 계산
+        
+        Args:
+            row_values: 행의 값들
+            
+        Returns:
+            헤더 점수 (높을수록 헤더일 가능성 높음)
+        """
+        score = 0
+        row_text = ' '.join(str(val) for val in row_values if val is not None).upper()
+        
+        # 제목 행으로 보이는 패턴 감점  
+        if any(title_word in row_text for title_word in ['PROJECT', 'MASTER FILE', 'WAREHOUSE DATA']):
+            return -1
+        
+        # 실제 데이터 행 패턴 감점 - 더 정교한 로직
+        non_null_values = [val for val in row_values if val is not None and str(val) != 'nan']
+        if len(non_null_values) >= 3:  # 충분한 데이터가 있는 경우에만 체크
+            # 첫 번째 값이 숫자이고 나머지가 HVDC 코드 패턴이면 데이터 행
+            if (str(non_null_values[0]).isdigit() and 
+                len(non_null_values) > 1 and 
+                'HVDC-ADOPT' in str(non_null_values[1])):
+                return -1
+        
+        # 핵심 헤더 키워드들 (가중치 매우 높음)
+        core_keywords = ['HVDC CODE', 'No.', 'no.']
+        for keyword in core_keywords:
+            if keyword in row_text:
+                score += 5
+        
+        # 중요한 헤더 키워드들 (가중치 높음)
+        important_keywords = ['Description', 'Storage', 'CBM', 'Site', 'Pkg', 'EQ No']
+        for keyword in important_keywords:
+            if keyword.upper() in row_text:
+                score += 3
+        
+        # 부가적인 헤더 키워드들 (가중치 보통)
+        additional_keywords = ['HS Code', 'Currency', 'Price', 'Vessel', 'Status', 'Invoice']
+        for keyword in additional_keywords:
+            if keyword.upper() in row_text:
+                score += 2
+        
+        # 특별한 패턴들
+        if 'SHIPMENT INVOICE NO' in row_text:
+            score += 4
+        if 'STATUS_CURRENT' in row_text:
+            score += 3
+        
+        return score

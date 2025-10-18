@@ -1,0 +1,96 @@
+{
+  "cols": {
+    "date": [
+      "InvoiceDate",
+      "Date"
+    ],
+    "desc": [
+      "Description",
+      "Item Desc",
+      "품명"
+    ],
+    "vendor": [
+      "Vendor",
+      "Supplier"
+    ],
+    "category": [
+      "Category",
+      "SvcType"
+    ],
+    "origin": [
+      "Origin",
+      "POL",
+      "From",
+      "PortFrom"
+    ],
+    "dest": [
+      "Destination",
+      "POD",
+      "To",
+      "PortTo"
+    ],
+    "uom": [
+      "UoM",
+      "Unit"
+    ],
+    "qty": [
+      "Qty",
+      "Quantity"
+    ],
+    "rate": [
+      "Rate",
+      "UnitPrice",
+      "Unit Rate"
+    ],
+    "amount": [
+      "Amount",
+      "LineTotal",
+      "Total"
+    ],
+    "currency": [
+      "Currency",
+      "CUR"
+    ],
+    "weight": [
+      "WeightKG",
+      "Weight"
+    ],
+    "volume": [
+      "CBM",
+      "VolumeCBM",
+      "Volume"
+    ],
+    "rate_source": [
+      "RateSource",
+      "RATE_SOURCE"
+    ],
+    "evidence_aed": [
+      "EvidenceAED",
+      "EvdAED",
+      "PortFeeAED"
+    ],
+    "vat_aed": [
+      "VAT",
+      "VAT_AED",
+      "TaxAED"
+    ],
+    "cost_center": [
+      "CostCenter",
+      "CC"
+    ]
+  },
+  "fx": {
+    "USD": 1.0,
+    "AED": 0.27229407760381213
+  },
+  "guard": {
+    "tolerance": 3.0,
+    "auto_fail": 15.0,
+    "bands": {
+      "pass": 2.0,
+      "warn": 5.0,
+      "high": 10.0
+    }
+  },
+  "lane_similarity_threshold": 0.6
+}

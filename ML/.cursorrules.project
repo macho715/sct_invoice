@@ -1,0 +1,194 @@
+# ML Pipeline Project Rules
+# Extends: ../.cursorrules
+
+## Project Configuration
+project_name: ML_Pipeline_Enhanced
+version: 2.0.0
+domain: machine_learning_logistics_optimization
+
+## File Naming Overrides
+file_naming:
+  pattern: "[component]_[function].py"
+  examples:
+    - unified_ml_pipeline.py
+    - training_data_generator.py
+    - weight_optimizer.py
+    - ab_testing_framework.py
+  output_pattern: "[result_type]_[timestamp].[ext]"
+
+## ML-Specific Rules
+
+### Test Timeout Configuration
+test_timeout:
+  unit: 200ms
+  integration: 2s
+  ml_training: 10s      # 모델 학습 제외
+  e2e: 30s
+  allow_slow_markers: true  # @pytest.mark.slow
+
+### Model Validation
+model_validation:
+  mandatory: true
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - confidence_score
+  min_confidence: 0.85
+  cross_validation_folds: 5
+
+### Training Data Requirements
+training_data:
+  min_samples: 1000
+  validation_split: 0.2
+  test_split: 0.1
+  data_quality_checks:
+    - missing_values_check
+    - outlier_detection
+    - feature_distribution
+    - class_balance
+
+### A/B Testing
+ab_testing:
+  enabled: true
+  framework: custom
+  metrics_tracking:
+    - conversion_rate
+    - prediction_accuracy
+    - response_time
+    - user_satisfaction
+  min_sample_size: 500
+  significance_level: 0.05
+
+### Feature Engineering
+feature_engineering:
+  automated: true
+  techniques:
+    - normalization
+    - standardization
+    - one_hot_encoding
+    - feature_interaction
+  feature_selection: mutual_information
+
+### Model Persistence
+model_persistence:
+  format: joblib
+  versioning: semantic
+  storage_path: output/models/
+  metadata_tracking: true
+
+### Experiment Tracking
+experiment_tracking:
+  enabled: true
+  log_hyperparameters: true
+  log_metrics: true
+  log_artifacts: true
+  output_dir: output/experiments/
+
+### Pipeline Components
+pipeline_components:
+  data_loader:
+    cache_enabled: true
+    validation: strict
+  preprocessor:
+    handle_missing: median
+    handle_outliers: clip
+  model:
+    algorithm: ensemble
+    hyperparameter_tuning: grid_search
+  evaluator:
+    metrics: comprehensive
+    visualization: true
+
+### Integration with MACHO-GPT
+macho_integration:
+  cost_guard_ml: enabled
+  predictive_analytics: enabled
+  confidence_reporting: mandatory
+  auto_retraining_triggers:
+    - accuracy_drop > 0.05
+    - data_drift_detected
+    - monthly_schedule
+
+### Error Handling
+error_handling:
+  graceful_degradation: true
+  fallback_model: last_stable
+  logging_level: DEBUG
+  alert_on_failure: true
+
+### Performance Optimization
+performance:
+  vectorized_processing: enabled
+  parallel_training: true
+  max_workers: min(16, cpu_count)
+  batch_processing: true
+  batch_size: 1000
+
+### Output Management
+output:
+  results_dir: output/
+  subdirs:
+    - CSV
+    - JSON
+    - Reports
+    - Excel
+    - Models
+  retention_policy: 90_days
+  cleanup_old_files: true
+
+## Test Requirements
+test_requirements:
+  unit_tests: mandatory
+  integration_tests: mandatory
+  e2e_tests: recommended
+  training_pipeline_test: mandatory
+  prediction_pipeline_test: mandatory
+  ab_testing_framework_test: mandatory
+  error_recovery_test: mandatory
+
+## Dependencies
+dependencies:
+  core:
+    - pandas>=2.0.0
+    - numpy>=1.24.0
+    - scikit-learn>=1.3.0
+    - joblib>=1.3.0
+  optional:
+    - matplotlib>=3.7.0
+    - seaborn>=0.12.0
+    - xgboost>=1.7.0
+    - lightgbm>=4.0.0
+
+## Commit Message Examples
+commit_examples:
+  - "[FEAT] ml: Add ensemble model with hyperparameter tuning"
+  - "[PERF] ml: Optimize training pipeline with vectorized processing"
+  - "[TEST] ml: Add integration test for A/B testing framework"
+  - "[FIX] ml: Correct feature scaling in preprocessing pipeline"
+  - "[STRUCT] ml: Extract model evaluation into separate module"
+
+## Coverage Requirements Override
+coverage:
+  minimum_total: 85%  # Higher for ML critical code
+  minimum_new_code: 95%
+  exclude_patterns:
+    - tests/*
+    - experiments/*
+    - output/*
+
+## Documentation Requirements
+documentation:
+  model_cards: mandatory
+  experiment_logs: mandatory
+  hyperparameter_documentation: mandatory
+  performance_benchmarks: mandatory
+
+## Quality Gates
+quality_gates:
+  model_accuracy_min: 0.80
+  prediction_confidence_min: 0.85
+  training_time_max: 300s  # 5 minutes
+  inference_time_max: 100ms
+

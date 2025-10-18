@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Excel and Data Files (민감 정보)
+*.xlsx
+*.xlsm
+*.xls
+*.csv
+*.pdf
+!**/Rate/*.json
+!**/Rate/*.md
+
+# Cursor/IDE
+.cursor/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Output directories
+out/
+output/
+outputs/
+Results/
+uploads/
+temp/
+
+# Cache
+*.cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup
+.backup/
+
+# Data directories (민감 정보)
+**/Data/
+**/SCNT*/
+**/Supporting Documents/

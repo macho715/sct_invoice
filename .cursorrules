@@ -1,0 +1,337 @@
+# HVDC Project - 통합 Cursor Rules v1.0
+# Samsung C&T Logistics | ADNOC·DSV Partnership
+
+## 🎯 CORE DEVELOPMENT PRINCIPLES
+
+### TDD Cycle (Kent Beck)
+- **Red → Green → Refactor** 순환 준수
+- **plan.md 중심**: `go` 명령 시 다음 미체크 테스트 자동 실행
+- **Structural vs Behavioral** 커밋 완전 분리
+- **최소 구현**: 테스트 통과를 위한 최소 코드만 작성
+
+### Code Quality Standards
+- **중복 제거**: 모든 중복 코드 제거 우선
+- **명확한 의도**: 함수명/변수명으로 의도 명확히 표현
+- **단일 책임**: 함수는 하나의 책임만 담당
+- **가장 단순한 솔루션**: 복잡한 해결책보다 단순한 것 우선
+
+## 📝 COMMIT DISCIPLINE
+
+### 커밋 메시지 표준 (통합)
+```
+[TYPE] scope: description
+
+TYPE = STRUCT | FEAT | FIX | PERF | MODE | CMD | TEST | DOCS
+```
+
+**타입 정의**:
+- `STRUCT`: 구조적 변경 (rename, extract, move, refactor)
+- `FEAT`: 새 기능 추가
+- `FIX`: 버그 수정
+- `PERF`: 성능 최적화
+- `MODE`: MACHO-GPT containment mode 변경
+- `CMD`: 명령어 시스템 변경
+- `TEST`: 테스트 추가/수정
+- `DOCS`: 문서 업데이트
+
+### 커밋 조건
+```yaml
+commit_requirements:
+  test_status: "ALL_PASSING"
+  linter_warnings: "ZERO"
+  logical_unit: "SINGLE_FEATURE_OR_REFACTOR"
+  confidence_threshold: "≥0.90"
+```
+
+## 🧪 TEST STRATEGY
+
+### Test SLA (계층화)
+```yaml
+test_sla:
+  unit: 200ms              # Kent Beck 기준
+  integration: 2s          # MACHO 기준
+  e2e: 5min               # v3.7 PR 파이프라인
+  logistics_safety: 3s     # MACHO 안전 검증
+  ml_training: 10s         # ML 모델 학습 제외
+```
+
+### Coverage Requirements
+```yaml
+coverage_requirements:
+  minimum_total: 80%
+  minimum_new_code: 90%
+  tools:
+    python: pytest-cov
+    rust: cargo-tarpaulin
+  exclude_patterns:
+    - tests/*
+    - *_test.py
+    - __pycache__
+    - venv/*
+```
+
+### Test Naming Convention
+- **의미 있는 이름**: `should_[expected_behavior]`
+- **도메인 특화**: 물류/ML 컨텍스트 포함
+- **실패 메시지**: 명확한 실패 이유 설명
+
+## 🎯 CONFIDENCE THRESHOLDS
+
+### 도메인별 신뢰도 기준
+```yaml
+confidence_threshold:
+  safety_critical: 0.97    # FANR/압력계산/안전검증
+  compliance_critical: 0.95 # MOIAT/감사/규정준수
+  business_critical: 0.95   # KPI/예측/비즈니스로직
+  general: 0.90            # 일반 물류/일반기능
+```
+
+## 🔒 SECURITY & COMPLIANCE
+
+### Security Tools
+```yaml
+security_tools:
+  python:
+    - bandit              # 보안 취약점 스캔
+    - safety              # 의존성 보안 체크
+    - semgrep             # SAST 정적 분석
+  rust:
+    - cargo-audit         # 보안 감사
+    - cargo-deny          # 라이선스 체크
+  pii_scanner:
+    - custom_regex        # NDA/PII 패턴 검출
+    - presidio            # MS Presidio (선택)
+```
+
+### Compliance Requirements
+- **FANR**: UAE Federal Authority for Nuclear Regulation
+- **MOIAT**: UAE Ministry of Industry and Advanced Technology
+- **IMO**: International Maritime Organization
+- **GDPR**: General Data Protection Regulation
+- **SOX**: Sarbanes-Oxley Act
+
+## 🌿 GIT STRATEGY
+
+### Branch Strategy
+```yaml
+git_strategy:
+  protected_branches: [main, master, production]
+  branch_naming: "[feature|fix|refactor|test]/[ticket-id]-description"
+  pr_requirements:
+    - all_tests_pass
+    - no_linter_warnings
+    - min_approvals: 2
+    - codeowners_approval: true
+  force_push: blocked_on_protected
+```
+
+### Code Review Requirements
+- **핵심 경로**: 2인 승인 필수
+- **안전 관련**: 보안팀 리뷰 필수
+- **규정 준수**: 컴플라이언스팀 검토 필수
+
+## 📁 FILE ORGANIZATION
+
+### Python Project Structure
+```
+project/
+├── src/                  # 소스 코드
+├── tests/               # 테스트 코드
+├── docs/                # 문서
+├── scripts/             # 유틸리티 스크립트
+├── .cursorrules         # 전역 규칙
+├── .cursorrules.project # 프로젝트별 오버라이드
+└── requirements.txt     # 의존성
+```
+
+### Naming Conventions
+```yaml
+file_naming:
+  python: "[module]_[function].py"
+  test: "test_[module]_[function].py"
+  config: "config_[environment].yaml"
+  script: "script_[purpose].py"
+```
+
+## 🚀 MACHO-GPT Integration
+
+### Containment Modes
+```yaml
+containment_modes:
+  - PRIME: "표준 운영 모드"
+  - ORACLE: "데이터 검증 모드"
+  - ZERO: "안전 모드 (수동 제어)"
+  - LATTICE: "컨테이너 최적화 모드"
+  - RHYTHM: "KPI 모니터링 모드"
+  - COST_GUARD: "비용 관리 모드"
+```
+
+### Auto-Trigger Matrix
+```yaml
+auto_triggers:
+  market_volatility:
+    condition: "rate_change > 15%"
+    action: ["/web-search market-analysis", "/alert-stakeholders"]
+    priority: "CRITICAL"
+  operational_delay:
+    condition: "eta_delay > 48h or port_congestion > 7_days"
+    action: ["/weather-tie analysis", "/alternative-routing"]
+    priority: "HIGH"
+  compliance_risk:
+    condition: "cert_expiry < 30_days or regulation_change"
+    action: ["/compliance-check", "/notification"]
+    priority: "HIGH"
+```
+
+### Command Integration
+- 모든 함수는 `/cmd` 시스템 호출 가능
+- 신뢰도 점수 반환 필수
+- 실패시 적절한 mode 전환
+- 3개 이상 명령어 추천 포함
+
+## 🔧 LOGISTICS DOMAIN RULES
+
+### HVDC Sync Rules (Hitachi)
+```yaml
+hvdC_sync:
+  master_precedence: "always"  # Master 우선 원칙
+  header_normalization: "case_no"
+  performance_target: "30s"
+  color_coding:
+    date_change: "FFC000"      # 주황
+    new_row: "FFFF00"          # 노랑
+  batch_size: 1000
+  max_workers: 32
+```
+
+### Excel Processing Standards
+```yaml
+excel_processing:
+  new_files: "XlsxWriter"
+  edit_files: "openpyxl"
+  io_processing: "pandas"
+  safe_replace: "if_sheet_exists=replace"
+  number_format: "2-decimal"
+  language: "KR+EN"
+```
+
+## 🎨 RESPONSE FORMAT
+
+### Output Rules
+- **길이**: ≤4줄 (도구 호출/코드 제외)
+- **스타일**: 간결, 직접적, 불필요한 내용 제거
+- **이모지**: 명시적 요청시에만 사용
+- **코드**: 실행 가능한 형태로 제공
+
+### Command Recommendations
+모든 응답은 3개 이상 명령어 추천 포함:
+```
+🔧 **추천 명령어:**
+/cmd_1 [context-relevance-score: 95%] - [business justification]
+/cmd_2 [context-relevance-score: 87%] - [efficiency improvement]
+/cmd_3 [context-relevance-score: 78%] - [anticipated requirement]
+```
+
+## 🛡️ FAIL-SAFE MECHANISMS
+
+### Error Recovery
+- **ZERO 모드**: 신뢰도 < 임계값 시 자동 전환
+- **롤백**: 실패 시 이전 상태로 복구
+- **로그**: 모든 작업 로그 기록
+- **알림**: 중요한 실패 시 즉시 알림
+
+### Quality Gates
+```yaml
+quality_gates:
+  pre_commit:
+    - black --check
+    - pytest --quiet -m "not integration"
+    - pylint
+  ci_pipeline:
+    - all_tests_pass
+    - security_scan_pass
+    - coverage_threshold_met
+    - compliance_check_pass
+```
+
+## 📊 PERFORMANCE TARGETS
+
+### Response Time Targets
+- **일반 쿼리**: <2초
+- **복잡한 분석**: <10초
+- **ML 모델 추론**: <30초
+- **대용량 데이터 처리**: <5분
+
+### Success Rate Targets
+- **일반 작업**: ≥95%
+- **안전 관련**: ≥98%
+- **규정 준수**: ≥99%
+- **시스템 가용성**: ≥99.9%
+
+## 🔄 REFACTORING GUIDELINES
+
+### Tidy First Approach
+1. **구조적 변경 우선**: 행위 변경 전 구조 개선
+2. **한 번에 하나씩**: 여러 리팩토링 동시 금지
+3. **테스트 검증**: 모든 리팩토링 후 테스트 실행
+4. **명명 규칙**: 의미 있는 이름으로 변경
+
+### Refactoring Patterns
+- **Extract Method**: 큰 함수를 작은 함수로 분리
+- **Rename Symbol**: 의미 없는 이름을 의미 있는 이름으로
+- **Move Class**: 관련 없는 클래스 분리
+- **Introduce Constant**: 매직 넘버를 상수로 변경
+
+## 📚 DOCUMENTATION
+
+### Required Documentation
+- **README.md**: 프로젝트 개요 및 설정
+- **CHANGELOG.md**: 버전별 변경 사항
+- **API 문서**: 함수/클래스 문서화
+- **테스트 문서**: 테스트 전략 및 결과
+
+### Documentation Standards
+- **Docstring**: 모든 공개 함수에 필수
+- **타입 힌트**: Python 타입 힌트 필수
+- **예제 코드**: 복잡한 로직에 예제 포함
+- **다국어**: 한국어 + 영어 혼용
+
+## 🚨 EMERGENCY PROTOCOLS
+
+### Critical Failure Response
+1. **즉시 ZERO 모드 전환**
+2. **관련자 알림**
+3. **로그 수집 및 분석**
+4. **복구 계획 수립**
+5. **근본 원인 분석**
+
+### Escalation Matrix
+- **Level 1**: 개발팀 리더
+- **Level 2**: 기술 책임자
+- **Level 3**: 프로젝트 매니저
+- **Level 4**: 고객 대응팀
+
+---
+
+## 📋 COMPLIANCE CHECKLIST
+
+### Pre-commit Checklist
+- [ ] 모든 테스트 통과
+- [ ] 린터 경고 0건
+- [ ] 커밋 메시지 표준 준수
+- [ ] 신뢰도 임계값 충족
+- [ ] 보안 스캔 통과
+
+### Pre-merge Checklist
+- [ ] 코드 리뷰 승인 (2인)
+- [ ] 통합 테스트 통과
+- [ ] 성능 테스트 통과
+- [ ] 규정 준수 검증
+- [ ] 문서 업데이트 완료
+
+---
+
+**버전**: v1.0
+**최종 업데이트**: 2025-01-12
+**적용 범위**: HVDC Project 전체
+**다음 검토**: 2025-04-12

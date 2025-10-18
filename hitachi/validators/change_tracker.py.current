@@ -1,0 +1,261 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+변경사항 추적 모듈
+Excel 서식용 변경사항 추적 및 관리
+"""
+
+from dataclasses import dataclass
+from typing import Dict, List, Set, Any, Optional
+from datetime import datetime
+import logging
+
+
+@dataclass
+class ChangeRecord:
+    """변경사항 기록 데이터클래스"""
+
+    case_no: str
+    column_name: str
+    old_value: Any
+    new_value: Any
+    change_type: str
+    priority: str
+    timestamp: datetime
+    row_index: Optional[int] = None
+
+
+class ChangeTracker:
+    """변경사항 추적 클래스"""
+
+    def __init__(self):
+        """초기화"""
+        self.changes: List[ChangeRecord] = []
+        self.date_changes: Dict[str, List[ChangeRecord]] = {}
+        self.new_cases: Set[str] = set()
+        self.logger = logging.getLogger(__name__)
+
+    def add_change(
+        self,
+        case_no: str,
+        column_name: str,
+        old_value: Any,
+        new_value: Any,
+        change_type: str = "field_update",
+        priority: str = "medium_priority",
+        row_index: Optional[int] = None,
+    ) -> None:
+        """
+        변경사항 추가
+
+        Args:
+            case_no: 케이스 번호
+            column_name: 컬럼명
+            old_value: 이전 값
+            new_value: 새 값
+            change_type: 변경 타입
+            priority: 우선순위
+            row_index: 행 인덱스
+        """
+        change_record = ChangeRecord(
+            case_no=case_no,
+            column_name=column_name,
+            old_value=old_value,
+            new_value=new_value,
+            change_type=change_type,
+            priority=priority,
+            timestamp=datetime.now(),
+            row_index=row_index,
+        )
+
+        self.changes.append(change_record)
+
+        # 날짜 변경사항 별도 추적
+        if change_type == "date_update":
+            if case_no not in self.date_changes:
+                self.date_changes[case_no] = []
+            self.date_changes[case_no].append(change_record)
+
+        self.logger.debug(f"변경사항 추가: {case_no} - {column_name}")
+
+    def log_new_case(self, case_no: str, row_data: Dict[str, Any]) -> None:
+        """
+        신규 케이스 로깅
+
+        Args:
+            case_no: 케이스 번호
+            row_data: 행 데이터
+        """
+        self.new_cases.add(case_no)
+
+        # 신규 케이스의 모든 필드를 변경사항으로 기록
+        for column_name, value in row_data.items():
+            self.add_change(
+                case_no=case_no,
+                column_name=column_name,
+                old_value=None,
+                new_value=value,
+                change_type="new_record",
+                priority="high_priority",
+            )
+
+        self.logger.info(f"신규 케이스 추가: {case_no}")
+
+    def get_new_cases(self) -> Set[str]:
+        """신규 케이스 목록 반환"""
+        return self.new_cases.copy()
+
+    def get_changes_by_case(self, case_no: str) -> List[ChangeRecord]:
+        """
+        특정 케이스의 변경사항 반환
+
+        Args:
+            case_no: 케이스 번호
+
+        Returns:
+            변경사항 리스트
+        """
+        return [change for change in self.changes if change.case_no == case_no]
+
+    def get_changes_by_priority(self, priority: str) -> List[ChangeRecord]:
+        """
+        우선순위별 변경사항 반환
+
+        Args:
+            priority: 우선순위
+
+        Returns:
+            변경사항 리스트
+        """
+        return [change for change in self.changes if change.priority == priority]
+
+    def get_changes_by_type(self, change_type: str) -> List[ChangeRecord]:
+        """
+        변경 타입별 변경사항 반환
+
+        Args:
+            change_type: 변경 타입
+
+        Returns:
+            변경사항 리스트
+        """
+        return [change for change in self.changes if change.change_type == change_type]
+
+    def generate_summary(self) -> Dict[str, Any]:
+        """
+        변경사항 요약 통계 생성
+
+        Returns:
+            요약 통계 딕셔너리
+        """
+        total_changes = len(self.changes)
+        new_cases_count = len(self.new_cases)
+
+        # 우선순위별 통계
+        priority_stats = {}
+        for priority in ["high_priority", "medium_priority", "low_priority"]:
+            priority_stats[priority] = len(self.get_changes_by_priority(priority))
+
+        # 변경 타입별 통계
+        type_stats = {}
+        for change_type in ["date_update", "field_update", "new_record"]:
+            type_stats[change_type] = len(self.get_changes_by_type(change_type))
+
+        # 날짜 변경사항 통계
+        date_changes_count = len(self.date_changes)
+
+        # 케이스별 변경사항 수
+        case_changes = {}
+        for change in self.changes:
+            case_no = change.case_no
+            if case_no not in case_changes:
+                case_changes[case_no] = 0
+            case_changes[case_no] += 1
+
+        return {
+            "total_changes": total_changes,
+            "new_cases": new_cases_count,
+            "updated_cases": len(case_changes) - new_cases_count,
+            "date_changes": date_changes_count,
+            "priority_breakdown": priority_stats,
+            "type_breakdown": type_stats,
+            "cases_with_changes": len(case_changes),
+            "average_changes_per_case": total_changes / max(len(case_changes), 1),
+            "timestamp": datetime.now().isoformat(),
+        }
+
+    def get_high_priority_changes(self) -> List[ChangeRecord]:
+        """고우선순위 변경사항 반환"""
+        return self.get_changes_by_priority("high_priority")
+
+    def get_date_changes(self) -> Dict[str, List[ChangeRecord]]:
+        """날짜 변경사항 반환"""
+        return self.date_changes.copy()
+
+    def clear(self) -> None:
+        """모든 변경사항 초기화"""
+        self.changes.clear()
+        self.date_changes.clear()
+        self.new_cases.clear()
+        self.logger.info("변경사항 추적기 초기화 완료")
+
+    def export_to_dict(self) -> Dict[str, Any]:
+        """
+        변경사항을 딕셔너리로 내보내기
+
+        Returns:
+            변경사항 딕셔너리
+        """
+        return {
+            "changes": [
+                {
+                    "case_no": change.case_no,
+                    "column_name": change.column_name,
+                    "old_value": change.old_value,
+                    "new_value": change.new_value,
+                    "change_type": change.change_type,
+                    "priority": change.priority,
+                    "timestamp": change.timestamp.isoformat(),
+                    "row_index": change.row_index,
+                }
+                for change in self.changes
+            ],
+            "new_cases": list(self.new_cases),
+            "summary": self.generate_summary(),
+        }
+
+    def import_from_dict(self, data: Dict[str, Any]) -> None:
+        """
+        딕셔너리에서 변경사항 가져오기
+
+        Args:
+            data: 변경사항 딕셔너리
+        """
+        self.clear()
+
+        # 변경사항 복원
+        for change_data in data.get("changes", []):
+            change_record = ChangeRecord(
+                case_no=change_data["case_no"],
+                column_name=change_data["column_name"],
+                old_value=change_data["old_value"],
+                new_value=change_data["new_value"],
+                change_type=change_data["change_type"],
+                priority=change_data["priority"],
+                timestamp=datetime.fromisoformat(change_data["timestamp"]),
+                row_index=change_data.get("row_index"),
+            )
+            self.changes.append(change_record)
+
+            # 날짜 변경사항 별도 추적
+            if change_record.change_type == "date_update":
+                if change_record.case_no not in self.date_changes:
+                    self.date_changes[change_record.case_no] = []
+                self.date_changes[change_record.case_no].append(change_record)
+
+        # 신규 케이스 복원
+        self.new_cases = set(data.get("new_cases", []))
+
+        self.logger.info(
+            f"변경사항 복원 완료: {len(self.changes)}개 변경사항, {len(self.new_cases)}개 신규 케이스"
+        )

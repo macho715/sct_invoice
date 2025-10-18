@@ -1,0 +1,90 @@
+# HVDC Project Code Owners
+# This file defines individuals or teams responsible for code in the repository.
+# Code owners are automatically requested for review when someone opens a pull request.
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owners - default for everything
+* @logistics-team
+
+# === CRITICAL PATHS (Require 2+ approvals) ===
+
+# Core synchronization logic
+/hitachi/data_synchronizer.py @senior-dev-1 @senior-dev-2
+/hitachi/case_matcher.py @senior-dev-1 @logistics-team
+/hitachi/header_detector.py @senior-dev-2 @logistics-team
+
+# ML Pipeline core
+/ML/unified_ml_pipeline.py @ml-team-lead @senior-dev-1
+/ML/enhanced_unified_ml_pipeline.py @ml-team-lead @senior-dev-1
+/ML/weight_optimizer.py @ml-team-lead
+/ML/ab_testing_framework.py @ml-team-lead @senior-dev-2
+
+# MACHO-GPT Core Systems
+/HVDC_Invoice_Audit/01_DSV_SHPT/Core_Systems/ @logistics-team @compliance-team
+/HVDC_Invoice_Audit/00_Shared/ @logistics-team @senior-dev-1
+
+# === CONFIGURATION & RULES (Tech Lead approval required) ===
+/.cursorrules @tech-lead
+/.pre-commit-config.yaml @tech-lead
+/.github/workflows/ @tech-lead @devops-team
+/hitachi/.cursorrules.project @tech-lead @logistics-team
+/HVDC_Invoice_Audit/.cursorrules.project @tech-lead @logistics-team
+/ML/.cursorrules.project @tech-lead @ml-team-lead
+
+# === SECURITY & COMPLIANCE ===
+# Any security-related files
+**/security*.py @security-team @compliance-team
+**/compliance*.py @compliance-team @senior-dev-1
+
+# Configuration files that may contain sensitive data
+**/config*.yaml @security-team
+**/config*.json @security-team
+**/.env* @security-team
+
+# === DOCUMENTATION ===
+/docs/ @tech-writer @tech-lead
+/README.md @tech-lead
+/CHANGELOG.md @tech-lead
+/**/README*.md @logistics-team
+
+# === TESTING ===
+/tests/ @qa-team @logistics-team
+/**/test_*.py @qa-team
+/**/*_test.py @qa-team
+
+# === SCRIPTS & AUTOMATION ===
+/scripts/ @devops-team @senior-dev-1
+/**/automation*.py @devops-team
+
+# === DATA & EXCEL FILES ===
+/**/*.xlsx @data-team @logistics-team
+/**/*.csv @data-team
+
+# === PDF PROCESSING ===
+/PDF/ @document-processing-team @senior-dev-2
+
+# === RATE MANAGEMENT ===
+/Rate/ @finance-team @logistics-team
+
+# === HYBRID SYSTEM ===
+/hybrid_doc_system/ @architecture-team @senior-dev-1
+
+# === PROJECT-SPECIFIC RULES ===
+
+# Hitachi project
+/hitachi/*.py @logistics-team
+/hitachi/rewrite_v2_9/ @senior-dev-1 @senior-dev-2
+
+# Invoice Audit
+/HVDC_Invoice_Audit/01_DSV_SHPT/ @logistics-team @compliance-team
+/HVDC_Invoice_Audit/02_DSV_DOMESTIC/ @logistics-team
+
+# ML outputs and configs
+/ML/output/ @ml-team-lead
+/ML/docs/ @ml-team-lead @tech-writer
+/ML/logi_costguard_ml_v2/ @ml-team-lead @logistics-team
+
+# Note: Replace @team-name and @username with actual GitHub usernames/teams
+# Example: @logistics-team could be @john-doe @jane-smith
+#          or use GitHub team like @myorg/logistics-team
+

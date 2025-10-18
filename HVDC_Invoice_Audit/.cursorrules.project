@@ -1,0 +1,176 @@
+# MACHO-GPT Logistics System Rules
+# Extends: ../.cursorrules
+
+## Project Configuration
+project_name: MACHO_GPT_v3.6_APEX
+version: 3.6.0
+domain: ai_logistics_optimization
+partnership: Samsung_CT_ADNOC_DSV
+
+## File Naming Overrides
+file_naming:
+  pattern: "logi_[function]_[YYMMDD].py"
+  examples:
+    - logi_invoice_audit_250112.py
+    - logi_eta_predictor_250112.py
+    - logi_cost_analyzer_250112.py
+  templates:
+    pattern: "template_[type]_[version].json"
+  configs:
+    pattern: "config_[mode]_[env].yaml"
+  reports:
+    pattern: "report_[category]_[timestamp].md"
+
+## MACHO-GPT Specific Rules
+
+### Containment Modes
+containment_modes:
+  active:
+    - PRIME      # 표준 운영 모드
+    - ORACLE     # 데이터 검증 모드
+    - ZERO       # 안전 모드 (수동 제어)
+    - LATTICE    # 컨테이너 최적화 모드
+    - RHYTHM     # KPI 모니터링 모드
+    - COST_GUARD # 비용 관리 모드
+  planned:
+    - NEXUS      # AI-agent 협업 모드
+
+### Auto-Trigger System
+auto_triggers:
+  enabled: true
+  conditions:
+    market_volatility:
+      threshold: "rate_change > 15%"
+      actions:
+        - /web-search market-analysis
+        - /alert-stakeholders
+      priority: CRITICAL
+    operational_delay:
+      threshold: "eta_delay > 48h OR port_congestion > 7_days"
+      actions:
+        - /weather-tie analysis
+        - /alternative-routing
+      priority: HIGH
+    compliance_risk:
+      threshold: "cert_expiry < 30_days OR regulation_change"
+      actions:
+        - /compliance-check
+        - /notification
+      priority: HIGH
+
+### Confidence & Success Metrics
+metrics:
+  confidence_min: 0.97
+  success_rate_target: 0.98
+  response_time_max: 2s
+  fail_safe_rate_max: 0.015
+
+### Command System
+command_system:
+  total_commands: 85
+  categories: 13
+  integration: claude_native_tools
+  recommendations_min: 3
+  format: "/cmd_name [context-relevance-score] - [justification]"
+
+### Response Format
+response_format:
+  max_lines: 4  # 도구 호출/코드 제외
+  style: concise_direct
+  emoji_policy: explicit_request_only
+  code_format: executable_ready
+
+### Tool Integration Priority
+tool_priority:
+  1: google_drive_search  # 회사 문서/템플릿/규정
+  2: web_search           # 실시간 시장/규제 데이터
+  3: filesystem           # 파일 처리/OCR/분석
+  4: repl                 # 계산/데이터 처리
+  5: artifacts            # 리포트/대시보드 생성
+
+### Domain-Specific Operations
+operations:
+  invoice_audit:
+    ocr_threshold: 0.85
+    compliance_check: [FANR, MOIAT]
+    output_format: enhanced_excel
+  container_stowage:
+    pressure_limit: 4.0  # t/m²
+    optimization_level: advanced
+    safety_validation: mandatory
+  eta_prediction:
+    weather_integration: true
+    port_congestion_factor: true
+    confidence_min: 0.90
+  kpi_dashboard:
+    refresh_interval: 3600  # seconds
+    alert_threshold: 0.10
+    real_time: true
+
+### Compliance Integration
+compliance:
+  standards:
+    - FANR   # UAE Federal Authority for Nuclear Regulation
+    - MOIAT  # UAE Ministry of Industry and Advanced Technology
+    - IMO    # International Maritime Organization
+    - GDPR   # General Data Protection Regulation
+    - SOX    # Sarbanes-Oxley Act
+  automation_level: full
+  audit_trail: mandatory
+  pii_protection: enabled
+
+### Security
+security:
+  nda_screening: automated
+  pii_detection: enabled
+  multi_source_validation: mandatory
+  hallucination_ban: strict
+
+## Test Requirements
+test_requirements:
+  logistics_domain_tests: mandatory
+  compliance_validation_tests: mandatory
+  integration_tests: mandatory
+  confidence_threshold_tests: mandatory
+  auto_trigger_tests: recommended
+
+## Import Structure Priority
+import_priority:
+  1: standard_libraries  # pandas, numpy, datetime, json, yaml
+  2: macho_gpt_core      # LogiMaster, ContainerStow, WeatherTie
+  3: partner_apis        # samsung_ct, adnoc_dsv
+  4: mode_specific       # ocr_engine (LATTICE), kpi_monitor (RHYTHM)
+
+## Function Documentation Standard
+function_docs:
+  required_sections:
+    - description  # MACHO-GPT Function for [operation]
+    - args         # 파라미터 with 물류 컨텍스트
+    - returns      # dict with status/confidence/mode/triggers/next_cmds
+    - triggers     # Auto-trigger 조건 명시
+  confidence_reporting: mandatory
+  next_commands_suggestions: mandatory
+
+## Commit Message Examples
+commit_examples:
+  - "[MODE] macho: Implement NEXUS mode for AI-agent collaboration"
+  - "[CMD] macho: Add /emergency-response command for incident management"
+  - "[FEAT] macho: Add FANR compliance auto-verification in invoice OCR"
+  - "[PERF] macho: Optimize container stowage algorithm execution time"
+  - "[TEST] macho: Add integration test for weather-tie ETA adjustment"
+
+## Quality Assurance
+qa:
+  input_confidence_min: 0.90
+  success_rate_min: 0.95
+  fail_safe_max: 0.03
+  audit_pass_min: 0.95
+  multi_source_verification: mandatory
+
+## Performance Targets
+performance_targets:
+  general_query: "<2s"
+  complex_analysis: "<10s"
+  ml_inference: "<30s"
+  large_data_processing: "<5min"
+

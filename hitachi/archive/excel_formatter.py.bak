@@ -1,0 +1,354 @@
+"""
+Excel 파일 색깔 표시 및 서식 적용 시스템
+
+이 모듈은 HVDC 데이터 동기화 후 변경사항을 Excel 파일에서
+시각적으로 확인할 수 있도록 색깔과 서식을 적용하는 기능을 제공합니다.
+"""
+
+import pandas as pd
+from openpyxl import load_workbook
+from openpyxl.styles import PatternFill, Font, Border, Side
+from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.utils import get_column_letter
+from typing import Dict, List, Any, Optional, Set, Tuple
+import os
+import logging
+from datetime import datetime
+
+from .change_tracker import ChangeTracker
+
+
+class ExcelFormatter:
+    """Excel 파일에 변경사항을 색깔로 표시하는 포맷터"""
+    
+    def __init__(self, change_tracker: ChangeTracker):
+        self.change_tracker = change_tracker
+        self.logger = logging.getLogger(__name__)
+        
+        # 색상 정의 (openpyxl 형식)
+        self.colors = {
+            'new_case': {
+                'fill': PatternFill(start_color="ADD8E6", end_color="ADD8E6", fill_type="solid"),  # 연한 파란색
+                'font': Font(color="000080", bold=True)  # 진한 파란색, 볼드
+            },
+            'high_priority_date': {
+                'fill': PatternFill(start_color="FFE4B5", end_color="FFE4B5", fill_type="solid"),  # 연한 주황색
+                'font': Font(color="FF8C00", bold=True)  # 주황색, 볼드
+            },
+            'medium_priority_date': {
+                'fill': PatternFill(start_color="F0FFF0", end_color="F0FFF0", fill_type="solid"),  # 연한 초록색
+                'font': Font(color="32CD32", bold=True)  # 초록색, 볼드
+            },
+            'low_priority_date': {
+                'fill': PatternFill(start_color="F5F5F5", end_color="F5F5F5", fill_type="solid"),  # 연한 회색
+                'font': Font(color="808080")  # 회색
+            },
+            'case_no_changed': {
+                'fill': PatternFill(start_color="FFFF99", end_color="FFFF99", fill_type="solid"),  # 노란색
+                'font': Font(color="000000", bold=True)  # 검은색, 볼드
+            }
+        }
+        
+        # 테두리 스타일
+        self.border = Border(
+            left=Side(style='thin'),
+            right=Side(style='thin'),
+            top=Side(style='thin'),
+            bottom=Side(style='thin')
+        )
+    
+    def apply_formatting_to_excel(self, 
+                                 excel_file_path: str,
+                                 case_column: str = 'Case No.',
+                                 sheet_name: Optional[str] = None) -> str:
+        """
+        Excel 파일에 변경사항 색깔 표시 적용
+        
+        Args:
+            excel_file_path: Excel 파일 경로
+            case_column: Case No. 컬럼명
+            sheet_name: 대상 시트명 (None이면 첫 번째 시트)
+            
+        Returns:
+            색깔이 적용된 새 Excel 파일 경로
+        """
+        try:
+            # Excel 파일 로드
+            workbook = load_workbook(excel_file_path)
+            
+            if sheet_name:
+                if sheet_name not in workbook.sheetnames:
+                    self.logger.error(f"시트 '{sheet_name}'를 찾을 수 없습니다.")
+                    return excel_file_path
+                worksheet = workbook[sheet_name]
+            else:
+                worksheet = workbook.active
+            
+            self.logger.info(f"Excel 서식 적용 시작: {os.path.basename(excel_file_path)}")
+            
+            # 데이터프레임으로 읽어서 케이스 번호와 행 매핑
+            df = pd.read_excel(excel_file_path, sheet_name=sheet_name or 0)
+            case_to_row = self._create_case_to_row_mapping(df, case_column)
+            
+            # 변경사항별 색깔 적용
+            colored_cases = self._apply_case_colors(worksheet, case_to_row)
+            
+            # 특정 컬럼 변경사항 색깔 적용
+            self._apply_column_colors(worksheet, df, case_to_row)
+            
+            # 범례 추가
+            self._add_legend(worksheet, df.shape[0] + 5)
+            
+            # 새 파일명 생성 (색깔 적용됨을 표시)
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            base_name = os.path.splitext(excel_file_path)[0]
+            colored_file_path = f"{base_name}_colored_{timestamp}.xlsx"
+            
+            # 저장
+            workbook.save(colored_file_path)
+            workbook.close()
+            
+            self.logger.info(f"색깔 적용 완료: {os.path.basename(colored_file_path)}")
+            
+            # 결과 요약 출력
+            self._print_formatting_summary(colored_cases)
+            
+            return colored_file_path
+            
+        except Exception as e:
+            self.logger.error(f"Excel 서식 적용 오류: {str(e)}")
+            return excel_file_path
+    
+    def _create_case_to_row_mapping(self, df: pd.DataFrame, case_column: str) -> Dict[str, int]:
+        """케이스 번호와 Excel 행 번호 매핑 생성"""
+        case_to_row = {}
+        
+        for idx, case_no in enumerate(df[case_column]):
+            if pd.notna(case_no):
+                # Excel에서는 1부터 시작, 헤더 고려하여 +2
+                case_to_row[str(case_no).strip()] = idx + 2
+        
+        return case_to_row
+    
+    def _apply_case_colors(self, worksheet, case_to_row: Dict[str, int]) -> Dict[str, int]:
+        """케이스별 색깔 적용"""
+        colored_cases = {
+            'new_cases': 0,
+            'high_priority': 0,
+            'medium_priority': 0,
+            'low_priority': 0
+        }
+        
+        # 신규 케이스 - 파란색
+        new_cases = self.change_tracker.get_new_cases()
+        for case_no in new_cases:
+            if case_no in case_to_row:
+                row_num = case_to_row[case_no]
+                self._apply_row_style(worksheet, row_num, 'new_case')
+                colored_cases['new_cases'] += 1
+        
+        # 날짜 변경된 케이스 - 우선순위별 색상
+        for case_no, changes in self.change_tracker.date_changes.items():
+            if case_no in case_to_row and case_no not in new_cases:
+                row_num = case_to_row[case_no]
+                
+                # 가장 높은 우선순위 결정
+                priority = self._determine_case_priority(changes)
+                color_key = f'{priority}_date'
+                
+                self._apply_row_style(worksheet, row_num, color_key)
+                
+                if priority == 'high_priority':
+                    colored_cases['high_priority'] += 1
+                elif priority == 'medium_priority':
+                    colored_cases['medium_priority'] += 1
+                else:
+                    colored_cases['low_priority'] += 1
+        
+        return colored_cases
+    
+    def _apply_column_colors(self, worksheet, df: pd.DataFrame, case_to_row: Dict[str, int]):
+        """특정 컬럼의 변경사항에 대해 개별 셀 색깔 적용"""
+        for change in self.change_tracker.changes:
+            case_no = change.case_no
+            if case_no in case_to_row:
+                row_num = case_to_row[case_no]
+                
+                # 컬럼명으로 컬럼 인덱스 찾기
+                try:
+                    col_idx = df.columns.get_loc(change.column_name)
+                    col_letter = get_column_letter(col_idx + 1)
+                    
+                    cell = worksheet[f'{col_letter}{row_num}']
+                    
+                    # 변경 타입에 따른 추가 스타일 적용
+                    if change.change_type == 'date_update':
+                        # 테두리 강조
+                        cell.border = Border(
+                            left=Side(style='thick', color='FF8C00'),
+                            right=Side(style='thick', color='FF8C00'),
+                            top=Side(style='thick', color='FF8C00'),
+                            bottom=Side(style='thick', color='FF8C00')
+                        )
+                    
+                except (KeyError, ValueError):
+                    # 컬럼을 찾을 수 없는 경우 무시
+                    pass
+    
+    def _apply_row_style(self, worksheet, row_num: int, style_key: str):
+        """행 전체에 스타일 적용"""
+        if style_key not in self.colors:
+            return
+        
+        style = self.colors[style_key]
+        
+        # 현재 행의 모든 셀에 스타일 적용
+        for cell in worksheet[row_num]:
+            if cell.value is not None:  # 값이 있는 셀만
+                cell.fill = style['fill']
+                cell.font = style['font']
+                cell.border = self.border
+    
+    def _determine_case_priority(self, changes: List) -> str:
+        """케이스의 변경사항들 중 가장 높은 우선순위 결정"""
+        priorities = ['high_priority', 'medium_priority', 'low_priority']
+        
+        for priority in priorities:
+            if any(change.priority == priority for change in changes):
+                return priority
+        
+        return 'low_priority'
+    
+    def _add_legend(self, worksheet, start_row: int):
+        """범례 추가"""
+        legend_data = [
+            ("색상 범례", "설명"),
+            ("신규 케이스", "새로 추가된 케이스 (파란색)"),
+            ("고우선순위 날짜변경", "창고/현장별 중요 날짜 변경 (주황색)"),
+            ("중우선순위 날짜변경", "일반 날짜 변경 (초록색)"),
+            ("저우선순위 날짜변경", "기타 날짜 변경 (회색)")
+        ]
+        
+        # 범례 헤더
+        worksheet.cell(row=start_row, column=1, value="🎨 변경사항 색상 범례")
+        worksheet.cell(row=start_row, column=1).font = Font(bold=True, size=14)
+        
+        # 범례 항목들
+        for i, (category, description) in enumerate(legend_data):
+            row = start_row + i + 2
+            worksheet.cell(row=row, column=1, value=category)
+            worksheet.cell(row=row, column=2, value=description)
+            
+            # 해당 색상 적용
+            if i > 0:  # 헤더 제외
+                color_keys = ['new_case', 'high_priority_date', 'medium_priority_date', 'low_priority_date']
+                if i-1 < len(color_keys):
+                    style = self.colors[color_keys[i-1]]
+                    worksheet.cell(row=row, column=1).fill = style['fill']
+                    worksheet.cell(row=row, column=1).font = style['font']
+    
+    def _print_formatting_summary(self, colored_cases: Dict[str, int]):
+        """서식 적용 결과 요약 출력"""
+        total_colored = sum(colored_cases.values())
+        
+        print("\n" + "="*60)
+        print("🎨 Excel 색깔 표시 완료")
+        print("="*60)
+        print(f"📊 색깔 적용된 케이스: {total_colored:,}개")
+        print(f"  🔵 신규 케이스: {colored_cases['new_cases']:,}개")
+        print(f"  🟠 고우선순위 날짜변경: {colored_cases['high_priority']:,}개")
+        print(f"  🟢 중우선순위 날짜변경: {colored_cases['medium_priority']:,}개")
+        print(f"  ⚪ 저우선순위 날짜변경: {colored_cases['low_priority']:,}개")
+        print("="*60)
+    
+    def create_change_summary_sheet(self, 
+                                  excel_file_path: str,
+                                  output_path: Optional[str] = None) -> str:
+        """
+        변경사항 요약 시트를 별도로 생성
+        
+        Args:
+            excel_file_path: 원본 Excel 파일 경로
+            output_path: 출력 파일 경로 (None이면 자동 생성)
+            
+        Returns:
+            생성된 요약 파일 경로
+        """
+        try:
+            if not output_path:
+                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                base_name = os.path.splitext(excel_file_path)[0]
+                output_path = f"{base_name}_change_summary_{timestamp}.xlsx"
+            
+            # 변경사항 데이터 준비
+            changes_data = []
+            for change in self.change_tracker.changes:
+                changes_data.append({
+                    'Case No.': change.case_no,
+                    'Column': change.column_name,
+                    'Before': change.old_value,
+                    'After': change.new_value,
+                    'Change Type': change.change_type,
+                    'Priority': change.priority,
+                    'Timestamp': change.timestamp
+                })
+            
+            # 데이터프레임 생성
+            changes_df = pd.DataFrame(changes_data)
+            
+            # 요약 통계
+            summary_stats = self.change_tracker.generate_summary()
+            
+            # Excel 파일로 저장
+            with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
+                # 변경사항 상세 시트
+                changes_df.to_excel(writer, sheet_name='변경사항 상세', index=False)
+                
+                # 요약 통계 시트
+                summary_df = pd.DataFrame([summary_stats])
+                summary_df.to_excel(writer, sheet_name='요약 통계', index=False)
+                
+                # 새 케이스 목록 시트
+                new_cases_df = pd.DataFrame({
+                    'New Cases': list(self.change_tracker.get_new_cases())
+                })
+                new_cases_df.to_excel(writer, sheet_name='신규 케이스', index=False)
+            
+            self.logger.info(f"변경사항 요약 파일 생성: {os.path.basename(output_path)}")
+            return output_path
+            
+        except Exception as e:
+            self.logger.error(f"요약 시트 생성 오류: {str(e)}")
+            return ""
+
+
+def apply_hvdc_formatting(excel_file_path: str, 
+                         change_tracker: ChangeTracker,
+                         case_column: str = 'Case No.',
+                         create_summary: bool = True) -> Tuple[str, str]:
+    """
+    HVDC Excel 파일에 변경사항 색깔 표시 적용 (편의 함수)
+    
+    Args:
+        excel_file_path: Excel 파일 경로
+        change_tracker: 변경사항 추적기
+        case_column: Case No. 컬럼명
+        create_summary: 요약 시트 생성 여부
+        
+    Returns:
+        (색깔_적용된_파일_경로, 요약_파일_경로)
+    """
+    formatter = ExcelFormatter(change_tracker)
+    
+    # 색깔 적용
+    colored_file = formatter.apply_formatting_to_excel(
+        excel_file_path=excel_file_path,
+        case_column=case_column
+    )
+    
+    # 요약 시트 생성
+    summary_file = ""
+    if create_summary:
+        summary_file = formatter.create_change_summary_sheet(excel_file_path)
+    
+    return colored_file, summary_file
