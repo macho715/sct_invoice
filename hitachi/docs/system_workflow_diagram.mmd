@@ -1,0 +1,57 @@
+graph TB
+    A["[1] CASE LIST.xlsx<br/>📊 Master File<br/>6,069건 × 38컬럼<br/>• Case No. (고유키)<br/>• 15개 날짜 컬럼<br/>• 물리적 측정값"] --> B["[2] data_synchronizer_v29.py<br/>🔄 동기화 시스템<br/>• Master 우선 원칙<br/>• 날짜 우선순위<br/>• 색상 표시"]
+
+    B --> C["[3] HVDC WAREHOUSE_HITACHI(HE).xlsx<br/>🏢 동기화된 Warehouse<br/>5,552건 × 57컬럼<br/>• Master 38컬럼 + 19컬럼<br/>• 상태 정보 추가<br/>• SQM 계산값"]
+
+    C --> D["[4] hvdc_excel_reporter_final_sqm_rev (1).py<br/>📈 SQM 리포트 생성<br/>• 입고/출고/재고 계산<br/>• Flow Code 분석<br/>• 12개 시트 생성"]
+
+    D --> E["[5] HVDC_입고로직_종합리포트_*.xlsx<br/>📋 최종 리포트<br/>❌ 현재 없음<br/>• 요약 대시보드<br/>• 월별/창고별/현장별<br/>• 통합_원본데이터_Fixed"]
+
+    E --> F["[6] anomaly_detector.py<br/>🔍 이상치 탐지<br/>• 3-Layer 탐지<br/>• 933건 탐지<br/>• JSON/Excel 출력"]
+
+    F --> G["[7] 이상치 통합<br/>🎨 최종 통합<br/>❌ 현재 누락<br/>• 색상 표시<br/>• 최종 리포트 완성"]
+
+    %% 스타일링
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    style B fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style C fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style E fill:#ffebee,stroke:#c62828,stroke-width:3px,stroke-dasharray: 5 5
+    style F fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    style G fill:#ffebee,stroke:#c62828,stroke-width:3px,stroke-dasharray: 5 5
+
+    %% 데이터 흐름 표시
+    A -.->|"6,069건<br/>Master 우선"| B
+    B -.->|"5,552건<br/>색상 표시"| C
+    C -.->|"SQM 계산<br/>12개 시트"| D
+    D -.->|"최종 리포트<br/>❌ 미생성"| E
+    E -.->|"통합_원본데이터_Fixed<br/>이상치 탐지"| F
+    F -.->|"933건 색상 표시<br/>❌ 미통합"| G
+    A["[1] CASE LIST.xlsx<br/>📊 Master File<br/>6,069건 × 38컬럼<br/>• Case No. (고유키)<br/>• 15개 날짜 컬럼<br/>• 물리적 측정값"] --> B["[2] data_synchronizer_v29.py<br/>🔄 동기화 시스템<br/>• Master 우선 원칙<br/>• 날짜 우선순위<br/>• 색상 표시"]
+
+    B --> C["[3] HVDC WAREHOUSE_HITACHI(HE).xlsx<br/>🏢 동기화된 Warehouse<br/>5,552건 × 57컬럼<br/>• Master 38컬럼 + 19컬럼<br/>• 상태 정보 추가<br/>• SQM 계산값"]
+
+    C --> D["[4] hvdc_excel_reporter_final_sqm_rev (1).py<br/>📈 SQM 리포트 생성<br/>• 입고/출고/재고 계산<br/>• Flow Code 분석<br/>• 12개 시트 생성"]
+
+    D --> E["[5] HVDC_입고로직_종합리포트_*.xlsx<br/>📋 최종 리포트<br/>❌ 현재 없음<br/>• 요약 대시보드<br/>• 월별/창고별/현장별<br/>• 통합_원본데이터_Fixed"]
+
+    E --> F["[6] anomaly_detector.py<br/>🔍 이상치 탐지<br/>• 3-Layer 탐지<br/>• 933건 탐지<br/>• JSON/Excel 출력"]
+
+    F --> G["[7] 이상치 통합<br/>🎨 최종 통합<br/>❌ 현재 누락<br/>• 색상 표시<br/>• 최종 리포트 완성"]
+
+    %% 스타일링
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    style B fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style C fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style E fill:#ffebee,stroke:#c62828,stroke-width:3px,stroke-dasharray: 5 5
+    style F fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    style G fill:#ffebee,stroke:#c62828,stroke-width:3px,stroke-dasharray: 5 5
+
+    %% 데이터 흐름 표시
+    A -.->|"6,069건<br/>Master 우선"| B
+    B -.->|"5,552건<br/>색상 표시"| C
+    C -.->|"SQM 계산<br/>12개 시트"| D
+    D -.->|"최종 리포트<br/>❌ 미생성"| E
+    E -.->|"통합_원본데이터_Fixed<br/>이상치 탐지"| F
+    F -.->|"933건 색상 표시<br/>❌ 미통합"| G

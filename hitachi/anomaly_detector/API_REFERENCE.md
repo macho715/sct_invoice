@@ -17,20 +17,20 @@ class DetectorConfig:
     column_map: Dict[str, str] = None
     warehouse_columns: List[str] = None
     site_columns: List[str] = None
-    
+
     # 통계 탐지 파라미터
     iqr_k: float = 1.5
     mad_k: float = 3.5
-    
+
     # ML 탐지 파라미터
     use_pyod_first: bool = True
     contamination: float = 0.02
     random_state: int = 42
-    
+
     # 배치/워커
     batch_size: int = 1000
     max_workers: int = 8
-    
+
     # 알림
     alert_window_sec: int = 30
     min_risk_to_alert: float = 0.8
@@ -56,9 +56,9 @@ class DetectorConfig:
 class HybridAnomalyDetector:
     def __init__(self, cfg: DetectorConfig):
         """탐지기 초기화"""
-        
-    def run(self, df_raw: pd.DataFrame, 
-            export_excel: Optional[str] = None, 
+
+    def run(self, df_raw: pd.DataFrame,
+            export_excel: Optional[str] = None,
             export_json: Optional[str] = None) -> Dict:
         """전체 파이프라인 실행"""
 ```
@@ -110,10 +110,10 @@ class HybridAnomalyDetector:
 class RuleDetector:
     def __init__(self, cfg: DetectorConfig):
         """규칙 탐지기 초기화"""
-        
+
     def time_reversal(self, row: pd.Series) -> Optional[AnomalyRecord]:
         """시간 역전 탐지"""
-        
+
     def location_skip(self, row: pd.Series) -> Optional[AnomalyRecord]:
         """위치 스킵 탐지"""
 ```
@@ -143,7 +143,7 @@ class RuleDetector:
 class StatDetector:
     def __init__(self, iqr_k: float = 1.5, mad_k: float = 3.5):
         """통계 탐지기 초기화"""
-        
+
     def iqr_outliers(self, dwell_list: List[Tuple[str, str, int]]) -> List[AnomalyRecord]:
         """IQR 기반 이상치 탐지"""
 ```
@@ -172,11 +172,11 @@ IQR 방법으로 체류 시간 이상치를 탐지합니다.
 
 ```python
 class MLDetector:
-    def __init__(self, contamination: float = 0.02, 
-                 random_state: int = 42, 
+    def __init__(self, contamination: float = 0.02,
+                 random_state: int = 42,
                  use_pyod_first: bool = True):
         """ML 탐지기 초기화"""
-        
+
     def fit_predict(self, X: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray]:
         """ML 모델 학습 및 예측"""
 ```
@@ -207,7 +207,7 @@ class MLDetector:
 class HeaderNormalizer:
     def __init__(self, column_map: Dict[str, str]):
         """정규화기 초기화"""
-        
+
     def normalize(self, df: pd.DataFrame) -> pd.DataFrame:
         """헤더 정규화"""
 ```
@@ -236,7 +236,7 @@ class DataQualityValidator:
 class ECDFCalibrator:
     def fit(self, raw_scores: np.ndarray) -> "ECDFCalibrator":
         """캘리브레이션 학습"""
-        
+
     def transform(self, raw_scores: np.ndarray) -> np.ndarray:
         """점수 변환 (0-1 위험도)"""
 ```
@@ -249,7 +249,7 @@ class ECDFCalibrator:
 class AlertManager:
     def __init__(self, window_sec: int = 30, min_risk: float = 0.8):
         """알림 관리자 초기화"""
-        
+
     def on_anomaly(self, risk: float) -> bool:
         """이상치 발생 시 알림 여부 판단"""
 ```
@@ -434,6 +434,6 @@ with ThreadPoolExecutor(max_workers=4) as executor:
 
 ---
 
-**API 버전**: v2.0.0  
-**최종 업데이트**: 2025-10-18  
+**API 버전**: v2.0.0
+**최종 업데이트**: 2025-10-18
 **호환성**: Python 3.8+

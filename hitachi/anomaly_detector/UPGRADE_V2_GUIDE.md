@@ -49,7 +49,7 @@ use_pyod_first: bool = True     # PyOD 우선 사용
 # Master 우선 매핑
 column_map = {
     "Case No.": "CASE_NO",
-    "CASE NO": "CASE_NO", 
+    "CASE NO": "CASE_NO",
     "case_no": "CASE_NO",
     # ... 기타 매핑
 }
@@ -165,6 +165,6 @@ config.column_map["Custom_Header"] = "STANDARD_NAME"
 
 ---
 
-**업그레이드 완료일**: 2025-10-18  
-**버전**: v2.0.0  
+**업그레이드 완료일**: 2025-10-18
+**버전**: v2.0.0
 **상태**: Production Ready ✅
