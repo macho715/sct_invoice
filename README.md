@@ -708,6 +708,14 @@ python data_synchronizer_v29.py \
 - [System Architecture](./hitachi/docs/SYSTEM_ARCHITECTURE.md) - Technical architecture
 - [Date Update Color Fix Report](./hitachi/docs/DATE_UPDATE_COLOR_FIX_REPORT.md) - Bug fix documentation
 
+### System Analysis & Visualization
+- [HVDC System Detailed Analysis - Part 1](./hitachi/docs/HVDC_SYSTEM_DETAILED_ANALYSIS.md) - Executive Summary & Architecture
+- [HVDC System Detailed Analysis - Part 2](./hitachi/docs/HVDC_SYSTEM_DETAILED_ANALYSIS_PART2.md) - Core Logic & Algorithms (2,792 lines)
+- [HVDC System Detailed Analysis - Part 3](./hitachi/docs/HVDC_SYSTEM_DETAILED_ANALYSIS_PART3.md) - Excel Reports & Testing
+- [System Graph Guidelines](./SYSTEM%20GRAPH.MD) - Professional visualization standards (Mermaid/Structurizr/D2/Graphviz)
+- [Mermaid Architecture Diagram](./diagrams/hvdc-system-architecture.mmd) - Interactive system relationships
+- [Enhanced System Visualizations](./docs/visualizations/) - PNG graphs and charts
+
 ---
 
 ## 🤝 Contributing
@@ -786,6 +794,20 @@ This project contains proprietary information and is intended solely for interna
 ---
 
 ## 🔄 Update Log
+
+### v3.6-VISUALIZATION (2025-10-18)
+- **Enhanced System Visualization**: Professional-grade system relationship graphs
+- **Mermaid Architecture**: v11 architecture-beta diagram with ELK layout
+- **Enhanced NetworkX**: Directed graph with hierarchical shell layout, group coloring
+- **HVDC System Analysis**: 3-part detailed documentation (70+ KB, 2,000+ lines)
+- **Features**: 
+  - 📊 SYSTEM_RELATIONSHIPS_V2.png (530 KB) - Directed graph with arrows
+  - 📈 FILES_PER_SUBSYSTEM_V2.png (233 KB) - Group-based visualization
+  - 📋 Mermaid source in diagrams/ folder
+  - 📖 HVDC_SYSTEM_DETAILED_ANALYSIS (Part 1-3) - Comprehensive code analysis
+  - 🎨 Group coloring: Core (red), Storage (cyan), Support (green), Docs (yellow)
+- **Analysis**: 7 subsystems, 1,314 files analyzed
+- **Based on**: SYSTEM GRAPH.MD professional visualization standards
 
 ### v4.2-ANOMALY-DETECTION (2025-10-16)
 - **HVDC Invoice Audit System**: Anomaly detection, risk scoring, PDF integration
