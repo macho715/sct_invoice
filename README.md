@@ -27,43 +27,50 @@
 ### Enhanced System Relationship Diagram
 
 ```mermaid
-%%{init: { "theme":"neutral", "layout":"elk", "securityLevel":"strict" }}%%
-architecture-beta
-group public(cloud)[Public Interface] {
-  service ui(users)[Web UI]
-  service api(gateway)[API Gateway]
-}
-group core(server)[Core Systems] {
-  service invoice(database)[HVDC Invoice Audit]
-  service hitachi(database)[Hitachi Sync]
-  service ml(cloud)[ML Optimization]
-}
-group storage(database)[Storage & Processing] {
-  service pdf(database)[PDF Processing]
-  service hybrid(cloud)[Hybrid Doc System]
-}
-group support(server)[Support] {
-  service scripts(cloud)[Scripts]
-  service tests(cloud)[Tests]
-  service docs(users)[Documentation]
-}
-
-ui:B --> T:api
-api:R --> L:invoice
-invoice:R --> L:hitachi
-invoice:R --> L:ml
-invoice:R --> L:pdf
-hitachi:B --> T:scripts
-ml:B --> T:scripts
-pdf:B --> T:scripts
-hybrid:B --> T:scripts
-docs:L --> R:invoice
-docs:L --> R:hitachi
-docs:L --> R:ml
-docs:L --> R:pdf
-tests:L --> R:invoice
-tests:L --> R:hitachi
-scripts:B --> T:docs
+graph TB
+    subgraph Public["🌐 Public Interface"]
+        UI[Web UI]
+        API[API Gateway]
+    end
+    
+    subgraph Core["⚙️ Core Systems"]
+        INV[HVDC Invoice Audit]
+        HIT[Hitachi Sync]
+        ML[ML Optimization]
+    end
+    
+    subgraph Storage["💾 Storage & Processing"]
+        PDF[PDF Processing]
+        HYB[Hybrid Doc System]
+    end
+    
+    subgraph Support["🔧 Support"]
+        SCR[Scripts]
+        TST[Tests]
+        DOC[Documentation]
+    end
+    
+    UI --> API
+    API --> INV
+    INV --> HIT
+    INV --> ML
+    INV --> PDF
+    HIT --> SCR
+    ML --> SCR
+    PDF --> SCR
+    HYB --> SCR
+    DOC --> INV
+    DOC --> HIT
+    DOC --> ML
+    DOC --> PDF
+    TST --> INV
+    TST --> HIT
+    SCR --> DOC
+    
+    style Public fill:#e1f5ff
+    style Core fill:#ffe1e1
+    style Storage fill:#e1ffe1
+    style Support fill:#fff4e1
 ```
 
 ### Legacy System Diagram
@@ -800,7 +807,7 @@ This project contains proprietary information and is intended solely for interna
 - **Mermaid Architecture**: v11 architecture-beta diagram with ELK layout
 - **Enhanced NetworkX**: Directed graph with hierarchical shell layout, group coloring
 - **HVDC System Analysis**: 3-part detailed documentation (70+ KB, 2,000+ lines)
-- **Features**: 
+- **Features**:
   - 📊 SYSTEM_RELATIONSHIPS_V2.png (530 KB) - Directed graph with arrows
   - 📈 FILES_PER_SUBSYSTEM_V2.png (233 KB) - Group-based visualization
   - 📋 Mermaid source in diagrams/ folder
