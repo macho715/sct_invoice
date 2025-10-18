@@ -1,0 +1,4 @@
+*               @org/eng-core @org/sec
+/src/**         @org/eng-core
+/tests/**       @org/eng-core
+/.github/**     @org/devops @org/sec
