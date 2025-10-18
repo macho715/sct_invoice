@@ -32,24 +32,24 @@ graph TB
         UI[Web UI]
         API[API Gateway]
     end
-    
+
     subgraph Core["⚙️ Core Systems"]
         INV[HVDC Invoice Audit]
         HIT[Hitachi Sync]
         ML[ML Optimization]
     end
-    
+
     subgraph Storage["💾 Storage & Processing"]
         PDF[PDF Processing]
         HYB[Hybrid Doc System]
     end
-    
+
     subgraph Support["🔧 Support"]
         SCR[Scripts]
         TST[Tests]
         DOC[Documentation]
     end
-    
+
     UI --> API
     API --> INV
     INV --> HIT
@@ -66,7 +66,7 @@ graph TB
     TST --> INV
     TST --> HIT
     SCR --> DOC
-    
+
     style Public fill:#e1f5ff
     style Core fill:#ffe1e1
     style Storage fill:#e1ffe1
