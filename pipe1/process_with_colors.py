@@ -1,52 +1,60 @@
 """모든 처리를 한 번에 - 색상 보존하면서 AGI 계산 및 복사"""
 
-import pandas as pd
-import openpyxl
 from pathlib import Path
-import shutil
+
+import openpyxl
+import pandas as pd
+
+from pipe1.agi_columns import (
+    DERIVED_COLUMNS,
+    FINAL_HANDLING_COLUMN,
+    MINUS_COLUMN,
+    SITE_COLUMNS,
+    SITE_HANDLING_COLUMN,
+    SQM_COLUMN,
+    STACK_STATUS_COLUMN,
+    STATUS_CURRENT_COLUMN,
+    STATUS_LOCATION_COLUMN,
+    STATUS_LOCATION_DATE_COLUMN,
+    STATUS_SITE_COLUMN,
+    STATUS_STORAGE_COLUMN,
+    STATUS_WAREHOUSE_COLUMN,
+    TOTAL_HANDLING_COLUMN,
+    WH_HANDLING_COLUMN,
+    WAREHOUSE_COLUMNS,
+)
 
 
 # 1. pandas로 AGI 컬럼 계산
 print("=== AGI 컬럼 계산 중 ===")
 df = pd.read_excel("HVDC WAREHOUSE_HITACHI(HE).synced.xlsx")
 
-warehouse_cols = [
-    "DHL Warehouse",
-    "DSV Indoor",
-    "DSV Al Markaz",
-    "Hauler Indoor",
-    "DSV Outdoor",
-    "DSV MZP",
-    "HAULER",
-    "JDN MZD",
-    "MOSB",
-    "AAA  Storage",
-]
-site_cols = ["MIR", "SHU", "AGI", "DAS"]
-wh_cols = [c for c in warehouse_cols if c in df.columns]
-st_cols = [c for c in site_cols if c in df.columns]
+warehouse_cols = [c for c in WAREHOUSE_COLUMNS if c in df.columns]
+site_cols = [c for c in SITE_COLUMNS if c in df.columns]
+wh_cols = warehouse_cols
+st_cols = site_cols
 
-df["Status_WAREHOUSE"] = df[wh_cols].apply(
+df[STATUS_WAREHOUSE_COLUMN] = df[wh_cols].apply(
     lambda row: 1 if row.count() > 0 else "", axis=1
 )
-df["Status_SITE"] = df[st_cols].apply(lambda row: 1 if row.count() > 0 else "", axis=1)
-df["Status_Current"] = df.apply(
+df[STATUS_SITE_COLUMN] = df[st_cols].apply(lambda row: 1 if row.count() > 0 else "", axis=1)
+df[STATUS_CURRENT_COLUMN] = df.apply(
     lambda row: (
         "site"
-        if row["Status_SITE"] == 1
-        else ("warehouse" if row["Status_WAREHOUSE"] == 1 else "Pre Arrival")
+        if row[STATUS_SITE_COLUMN] == 1
+        else ("warehouse" if row[STATUS_WAREHOUSE_COLUMN] == 1 else "Pre Arrival")
     ),
     axis=1,
 )
 
 
 def get_latest_location(row):
-    if row["Status_Current"] == "site":
+    if row[STATUS_CURRENT_COLUMN] == "site":
         dates = row[st_cols]
         valid_dates = dates[pd.to_datetime(dates, errors="coerce").notna()]
         if len(valid_dates) > 0:
             return valid_dates.idxmax()
-    elif row["Status_Current"] == "warehouse":
+    elif row[STATUS_CURRENT_COLUMN] == "warehouse":
         dates = row[wh_cols]
         valid_dates = dates[pd.to_datetime(dates, errors="coerce").notna()]
         if len(valid_dates) > 0:
@@ -54,16 +62,16 @@ def get_latest_location(row):
     return "Pre Arrival"
 
 
-df["Status_Location"] = df.apply(get_latest_location, axis=1)
+df[STATUS_LOCATION_COLUMN] = df.apply(get_latest_location, axis=1)
 
 
 def get_latest_date(row):
-    if row["Status_Current"] == "site":
+    if row[STATUS_CURRENT_COLUMN] == "site":
         dates = row[st_cols]
         valid_dates = dates[pd.to_datetime(dates, errors="coerce").notna()]
         if len(valid_dates) > 0:
             return valid_dates.max()
-    elif row["Status_Current"] == "warehouse":
+    elif row[STATUS_CURRENT_COLUMN] == "warehouse":
         dates = row[wh_cols]
         valid_dates = dates[pd.to_datetime(dates, errors="coerce").notna()]
         if len(valid_dates) > 0:
@@ -71,7 +79,7 @@ def get_latest_date(row):
     return ""
 
 
-df["Status_Location_Date"] = df.apply(get_latest_date, axis=1)
+df[STATUS_LOCATION_DATE_COLUMN] = df.apply(get_latest_date, axis=1)
 
 warehouse_names = [
     "DSV Indoor",
@@ -89,7 +97,7 @@ site_names = ["mir", "shu", "agi", "das"]
 
 
 def classify_storage(row):
-    loc = row["Status_Location"]
+    loc = row[STATUS_LOCATION_COLUMN]
     if loc == "Pre Arrival":
         return "Pre Arrival"
     elif loc in warehouse_names:
@@ -99,25 +107,25 @@ def classify_storage(row):
     return ""
 
 
-df["Status_Storage"] = df.apply(classify_storage, axis=1)
-df["wh handling"] = df[wh_cols].apply(
+df[STATUS_STORAGE_COLUMN] = df.apply(classify_storage, axis=1)
+df[WH_HANDLING_COLUMN] = df[wh_cols].apply(
     lambda row: sum(pd.to_numeric(row, errors="coerce").notna()), axis=1
 )
-df["site handling"] = df[st_cols].apply(
+df[SITE_HANDLING_COLUMN] = df[st_cols].apply(
     lambda row: sum(pd.to_numeric(row, errors="coerce").notna()), axis=1
 )
-df["total handling"] = df["wh handling"] + df["site handling"]
-df["minus"] = df["site handling"] - df["wh handling"]
-df["final handling"] = df["total handling"] + df["minus"]
+df[TOTAL_HANDLING_COLUMN] = df[WH_HANDLING_COLUMN] + df[SITE_HANDLING_COLUMN]
+df[MINUS_COLUMN] = df[SITE_HANDLING_COLUMN] - df[WH_HANDLING_COLUMN]
+df[FINAL_HANDLING_COLUMN] = df[TOTAL_HANDLING_COLUMN] + df[MINUS_COLUMN]
 
 if "규격" in df.columns and "수량" in df.columns:
-    df["SQM"] = (df["규격"] * df["수량"]) / 10000
+    df[SQM_COLUMN] = (df["규격"] * df["수량"]) / 10000
 else:
-    df["SQM"] = ""
+    df[SQM_COLUMN] = ""
 
-df["Stack_Status"] = ""
+df[STACK_STATUS_COLUMN] = ""
 
-print(f"✅ AGI 컬럼 13개 계산 완료")
+print(f"✅ AGI 컬럼 {len(DERIVED_COLUMNS)}개 계산 완료")
 
 # 2. openpyxl로 색상 보존하면서 저장
 print("\n=== 색상 보존 처리 중 ===")

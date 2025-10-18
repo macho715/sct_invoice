@@ -16,9 +16,26 @@ Excel 공식을 Python pandas 벡터화 연산으로 변환하여 고성능 처�
 """
 
 import pandas as pd
-import shutil
 from pathlib import Path
-from typing import List, Dict, Any
+
+from pipe1.agi_columns import (
+    DERIVED_COLUMNS,
+    FINAL_HANDLING_COLUMN,
+    MINUS_COLUMN,
+    SITE_COLUMNS,
+    SITE_HANDLING_COLUMN,
+    SQM_COLUMN,
+    STACK_STATUS_COLUMN,
+    STATUS_CURRENT_COLUMN,
+    STATUS_LOCATION_COLUMN,
+    STATUS_LOCATION_DATE_COLUMN,
+    STATUS_SITE_COLUMN,
+    STATUS_STORAGE_COLUMN,
+    STATUS_WAREHOUSE_COLUMN,
+    TOTAL_HANDLING_COLUMN,
+    WH_HANDLING_COLUMN,
+    WAREHOUSE_COLUMNS,
+)
 
 
 def process_post_agi_columns(
@@ -49,89 +66,83 @@ def process_post_agi_columns(
     print(f"원본 데이터 로드 완료: {len(df)}행, {len(df.columns)}컬럼")
 
     # 컬럼 정의
-    warehouse_cols = [
-        "DHL Warehouse",
-        "DSV Indoor",
-        "DSV Al Markaz",
-        "Hauler Indoor",
-        "DSV Outdoor",
-        "DSV MZP",
-        "HAULER",
-        "JDN MZD",
-        "MOSB",
-        "AAA  Storage",
-    ]
-    site_cols = ["MIR", "SHU", "AGI", "DAS"]
-
     # 실제 존재하는 컬럼만 필터링
-    wh_cols = [c for c in warehouse_cols if c in df.columns]
-    st_cols = [c for c in site_cols if c in df.columns]
+    wh_cols = [c for c in WAREHOUSE_COLUMNS if c in df.columns]
+    st_cols = [c for c in SITE_COLUMNS if c in df.columns]
 
     print(f"Warehouse 컬럼: {len(wh_cols)}개 - {wh_cols}")
     print(f"Site 컬럼: {len(st_cols)}개 - {st_cols}")
 
     # 1. Status_WAREHOUSE: 창고 데이터 존재 여부
     # Excel: =IF(COUNT($AF2:$AN2)>0, 1, "")
-    df["Status_WAREHOUSE"] = (
+    df[STATUS_WAREHOUSE_COLUMN] = (
         (df[wh_cols].notna().sum(axis=1) > 0).astype(int).replace(0, "")
     )
 
     # 2. Status_SITE: 현장 데이터 존재 여부
     # Excel: =IF(COUNT($AO2:$AR2)>0, 1, "")
-    df["Status_SITE"] = (df[st_cols].notna().sum(axis=1) > 0).astype(int).replace(0, "")
+    df[STATUS_SITE_COLUMN] = (
+        (df[st_cols].notna().sum(axis=1) > 0).astype(int).replace(0, "")
+    )
 
     # 3. Status_Current: 현재 상태 판별
     # Excel: =IF($AT2=1, "site", IF($AS2=1, "warehouse", "Pre Arrival"))
-    df["Status_Current"] = df.apply(
+    df[STATUS_CURRENT_COLUMN] = df.apply(
         lambda row: (
             "site"
-            if row["Status_SITE"] == 1
-            else ("warehouse" if row["Status_WAREHOUSE"] == 1 else "Pre Arrival")
+            if row[STATUS_SITE_COLUMN] == 1
+            else (
+                "warehouse"
+                if row[STATUS_WAREHOUSE_COLUMN] == 1
+                else "Pre Arrival"
+            )
         ),
         axis=1,
     )
 
     # 4. Status_Location: 최신 위치 (단순화 - 실제로는 복잡한 INDEX/MATCH 로직)
-    df["Status_Location"] = "Pre Arrival"
+    df[STATUS_LOCATION_COLUMN] = "Pre Arrival"
 
     # 5. Status_Location_Date: 최신 날짜 (단순화)
-    df["Status_Location_Date"] = ""
+    df[STATUS_LOCATION_DATE_COLUMN] = ""
 
     # 6. Status_Storage: 창고/현장 분류
-    df["Status_Storage"] = df["Status_Current"]
+    df[STATUS_STORAGE_COLUMN] = df[STATUS_CURRENT_COLUMN]
 
     # 7. wh handling: 창고 핸들링 횟수
     # Excel: =SUMPRODUCT(--ISNUMBER(AF2:AN2))
-    df["wh handling"] = df[wh_cols].notna().sum(axis=1)
+    df[WH_HANDLING_COLUMN] = df[wh_cols].notna().sum(axis=1)
 
     # 8. site  handling: 현장 핸들링 횟수 (공백 2개 - 원본 컬럼명 보존)
     # Excel: =SUMPRODUCT(--ISNUMBER(AO2:AR2))
-    df["site  handling"] = df[st_cols].notna().sum(axis=1)
+    df[SITE_HANDLING_COLUMN] = df[st_cols].notna().sum(axis=1)
 
     # 9. total handling: 총 핸들링
     # Excel: =AY2+AZ2
-    df["total handling"] = df["wh handling"] + df["site  handling"]
+    df[TOTAL_HANDLING_COLUMN] = df[WH_HANDLING_COLUMN] + df[SITE_HANDLING_COLUMN]
 
     # 10. minus: 현장-창고 차이
     # Excel: =AZ2-AY2
-    df["minus"] = df["site  handling"] - df["wh handling"]
+    df[MINUS_COLUMN] = df[SITE_HANDLING_COLUMN] - df[WH_HANDLING_COLUMN]
 
     # 11. final handling: 최종 핸들링
     # Excel: =BA2+BB2
-    df["final handling"] = df["total handling"] + df["minus"]
+    df[FINAL_HANDLING_COLUMN] = df[TOTAL_HANDLING_COLUMN] + df[MINUS_COLUMN]
 
     # 12. SQM: 면적 계산
     # Excel: =O2*P2/10000
     if "규격" in df.columns and "수량" in df.columns:
-        df["SQM"] = (df["규격"] * df["수량"]) / 10000
+        df[SQM_COLUMN] = (df["규격"] * df["수량"]) / 10000
     else:
-        df["SQM"] = ""
+        df[SQM_COLUMN] = ""
         print("⚠️ '규격' 또는 '수량' 컬럼이 없어 SQM 계산을 건너뜁니다.")
 
     # 13. Stack_Status: 적재 상태 (현재 빈 값)
-    df["Stack_Status"] = ""
+    df[STACK_STATUS_COLUMN] = ""
 
-    print(f"✅ Post-AGI 컬럼 13개 계산 완료 (행: {len(df)}, 컬럼: {len(df.columns)})")
+    print(
+        f"✅ Post-AGI 컬럼 {len(DERIVED_COLUMNS)}개 계산 완료 (행: {len(df)}, 컬럼: {len(df.columns)})"
+    )
 
     # 결과 저장
     output_file = "HVDC WAREHOUSE_HITACHI(HE).xlsx"
