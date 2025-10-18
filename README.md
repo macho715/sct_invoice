@@ -24,6 +24,50 @@
 
 전체 시스템은 4개의 독립적인 서브시스템으로 구성되며, 각각 독립 실행 가능하거나 필요시 통합 운영할 수 있습니다.
 
+### Enhanced System Relationship Diagram
+
+```mermaid
+%%{init: { "theme":"neutral", "layout":"elk", "securityLevel":"strict" }}%%
+architecture-beta
+group public(cloud)[Public Interface] {
+  service ui(users)[Web UI]
+  service api(gateway)[API Gateway]
+}
+group core(server)[Core Systems] {
+  service invoice(database)[HVDC Invoice Audit]
+  service hitachi(database)[Hitachi Sync]
+  service ml(cloud)[ML Optimization]
+}
+group storage(database)[Storage & Processing] {
+  service pdf(database)[PDF Processing]
+  service hybrid(cloud)[Hybrid Doc System]
+}
+group support(server)[Support] {
+  service scripts(cloud)[Scripts]
+  service tests(cloud)[Tests]
+  service docs(users)[Documentation]
+}
+
+ui:B --> T:api
+api:R --> L:invoice
+invoice:R --> L:hitachi
+invoice:R --> L:ml
+invoice:R --> L:pdf
+hitachi:B --> T:scripts
+ml:B --> T:scripts
+pdf:B --> T:scripts
+hybrid:B --> T:scripts
+docs:L --> R:invoice
+docs:L --> R:hitachi
+docs:L --> R:ml
+docs:L --> R:pdf
+tests:L --> R:invoice
+tests:L --> R:hitachi
+scripts:B --> T:docs
+```
+
+### Legacy System Diagram
+
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    HVDC Invoice Audit System                    │
@@ -46,6 +90,13 @@
         │  - 85% → 90-93% Accuracy │    │ - 95%+ Extraction    │
         └───────────────────────────┘    └─────────────────────┘
 ```
+
+### Visualizations
+
+프로젝트의 상세 시스템 관계도 및 파일 분포는 다음 위치에서 확인할 수 있습니다:
+- 📊 **Enhanced System Relationships**: [docs/visualizations/SYSTEM_RELATIONSHIPS_V2.png](docs/visualizations/SYSTEM_RELATIONSHIPS_V2.png)
+- 📈 **Files per Subsystem**: [docs/visualizations/FILES_PER_SUBSYSTEM_V2.png](docs/visualizations/FILES_PER_SUBSYSTEM_V2.png)
+- 📋 **Mermaid Source**: [diagrams/hvdc-system-architecture.mmd](diagrams/hvdc-system-architecture.mmd)
 
 ---
 
