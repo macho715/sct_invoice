@@ -17,10 +17,23 @@ Excel 공식을 Python pandas 벡터화 연산으로 변환하여 고성능 처�
 
 from __future__ import annotations
 
+from copy import copy
 from pathlib import Path
 from typing import Iterable, Tuple
 
 import pandas as pd  # type: ignore[import-untyped]
+import yaml
+
+try:  # pragma: no cover - optional dependency guard
+    from openpyxl import load_workbook
+except ImportError:  # pragma: no cover - import error handled at runtime
+    load_workbook = None  # type: ignore[assignment]
+
+PIPELINE_ROOT = Path(__file__).resolve().parents[2]
+STAGE2_CONFIG_PATH = PIPELINE_ROOT / "config" / "stage2_derived_config.yaml"
+
+DEFAULT_SYNCED_INPUT = "data/processed/synced/HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx"
+DEFAULT_DERIVED_OUTPUT = "data/processed/derived/HVDC_WAREHOUSE_HITACHI_HE_derived.xlsx"
 
 from .column_definitions import (
     DERIVED_COLUMNS,
@@ -43,6 +56,59 @@ from .column_definitions import (
 
 SITE_COLUMN_LOOKUP = {col.lower() for col in SITE_COLUMNS}
 WAREHOUSE_COLUMN_LOOKUP = {col.lower() for col in WAREHOUSE_COLUMNS}
+
+
+def _load_stage2_config() -> dict:
+    """Stage2 설정 파일을 로드합니다. / Load stage 2 configuration."""
+
+    if not STAGE2_CONFIG_PATH.exists():
+        return {}
+
+    with STAGE2_CONFIG_PATH.open("r", encoding="utf-8") as handle:
+        return yaml.safe_load(handle) or {}
+
+
+def _resolve_path(path_value: str | Path) -> Path:
+    """상대 경로를 절대 경로로 변환합니다. / Resolve relative path to absolute."""
+
+    path = Path(path_value)
+    if not path.is_absolute():
+        path = PIPELINE_ROOT / path
+    return path
+
+
+def _ensure_output_directory(target_path: Path) -> None:
+    """출력 디렉터리를 생성합니다. / Ensure output directory exists."""
+
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+
+
+def _preserve_cell_colors(source_path: Path, target_path: Path) -> None:
+    """색상을 보존합니다. / Preserve cell colors from source to target."""
+
+    if load_workbook is None:
+        print("WARNING: openpyxl이 설치되지 않아 색상 보존을 수행하지 못했습니다.")
+        return
+
+    if not source_path.exists() or not target_path.exists():
+        return
+
+    source_wb = load_workbook(source_path)
+    target_wb = load_workbook(target_path)
+    source_ws = source_wb.active
+    target_ws = target_wb.active
+
+    max_row = min(source_ws.max_row, target_ws.max_row)
+    max_col = min(source_ws.max_column, target_ws.max_column)
+
+    for row_idx in range(1, max_row + 1):
+        for col_idx in range(1, max_col + 1):
+            source_cell = source_ws.cell(row=row_idx, column=col_idx)
+            target_cell = target_ws.cell(row=row_idx, column=col_idx)
+            if source_cell.fill is not None:
+                target_cell.fill = copy(source_cell.fill)
+
+    target_wb.save(target_path)
 
 
 def _latest_location_and_date(
@@ -206,18 +272,40 @@ def calculate_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def process_derived_columns(
-    input_file: str = "HVDC WAREHOUSE_HITACHI(HE).synced.xlsx",
+    input_file: str | Path | None = None,
+    output_file: str | Path | None = None,
+    preserve_colors: bool | None = None,
 ) -> bool:
     """파생 컬럼을 계산합니다. / Process derived columns."""
+
+    config = _load_stage2_config()
+
+    input_path_value = input_file or config.get("input", {}).get(
+        "synced_file", DEFAULT_SYNCED_INPUT
+    )
+    output_path_value = output_file or config.get("output", {}).get(
+        "derived_file", DEFAULT_DERIVED_OUTPUT
+    )
+    preserve_colors_value = (
+        preserve_colors
+        if preserve_colors is not None
+        else bool(config.get("output", {}).get("preserve_colors", False))
+    )
+
+    input_path = _resolve_path(input_path_value)
+    output_path = _resolve_path(output_path_value)
+
     print("=== 파생 컬럼 처리 시작 ===")
-    print(f"입력 파일: {input_file}")
+    print(f"입력 파일: {input_path}")
+    print(f"출력 파일: {output_path}")
+    print(f"색상 보존: {'활성화' if preserve_colors_value else '비활성화'}")
 
-    # 파일 존재 확인
-    if not Path(input_file).exists():
-        raise FileNotFoundError(f"입력 파일을 찾을 수 없습니다: {input_file}")
+    if not input_path.exists():
+        raise FileNotFoundError(f"입력 파일을 찾을 수 없습니다: {input_path}")
 
-    # 데이터 로드
-    df = pd.read_excel(input_file)
+    _ensure_output_directory(output_path)
+
+    df = pd.read_excel(input_path)
     print(f"원본 데이터 로드 완료: {len(df)}행, {len(df.columns)}컬럼")
 
     df = calculate_derived_columns(df)
@@ -233,10 +321,12 @@ def process_derived_columns(
         % (len(DERIVED_COLUMNS), len(df), len(df.columns))
     )
 
-    # 결과 저장
-    output_file = "HVDC WAREHOUSE_HITACHI(HE).xlsx"
-    df.to_excel(output_file, index=False)
-    print(f"SUCCESS: 파일 저장 완료: {output_file}")
+    df.to_excel(output_path, index=False)
+    print(f"SUCCESS: 파일 저장 완료: {output_path}")
+
+    if preserve_colors_value:
+        _preserve_cell_colors(input_path, output_path)
+        print("INFO: 입력 파일의 색상을 보존했습니다.")
 
     return True
 
@@ -244,12 +334,17 @@ def process_derived_columns(
 def main() -> int:
     """메인 실행을 수행합니다. / Execute script entry point."""
     try:
+        config = _load_stage2_config()
+        default_output_path = _resolve_path(
+            config.get("output", {}).get("derived_file", DEFAULT_DERIVED_OUTPUT)
+        )
+
         success = process_derived_columns()
         if success:
             print("\n" + "=" * 60)
             print("SUCCESS: 파생 컬럼 처리 완료!")
-            print("FILE: 결과 파일: HVDC WAREHOUSE_HITACHI(HE).xlsx")
-            print("INFO: 색상은 Step 1에서 이미 적용되었습니다.")
+            print(f"FILE: 결과 파일: {default_output_path}")
+            print("INFO: 색상은 설정에 따라 자동으로 보존됩니다.")
             print("=" * 60)
         else:
             print("ERROR: 처리 실패")
@@ -262,6 +357,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    exit(main())
-
     exit(main())

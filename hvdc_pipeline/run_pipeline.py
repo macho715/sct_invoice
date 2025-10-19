@@ -10,7 +10,7 @@ import argparse
 import sys
 import time
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 import yaml
 
@@ -65,30 +65,57 @@ def run_stage(stage_num: int, config: dict) -> bool:
 
         elif stage_num == 2:
             print("[Stage 2] Derived Columns Generation...")
-            # 설정에서 입력 파일 경로 가져오기
             stage2_config_path = (
                 Path(__file__).parent / "config" / "stage2_derived_config.yaml"
             )
             if stage2_config_path.exists():
                 with open(stage2_config_path, "r", encoding="utf-8") as f:
                     stage2_config = yaml.safe_load(f)
-                input_file = stage2_config.get("input", {}).get(
-                    "synced_file",
-                    "data/processed/synced/HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx",
-                )
             else:
-                input_file = (
-                    "data/processed/synced/HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx"
-                )
+                stage2_config = {}
 
-            success = process_derived_columns(input_file)
+            input_file = stage2_config.get("input", {}).get(
+                "synced_file",
+                "data/processed/synced/HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx",
+            )
+            derived_file = stage2_config.get("output", {}).get(
+                "derived_file",
+                "data/processed/derived/HVDC_WAREHOUSE_HITACHI_HE_derived.xlsx",
+            )
+            preserve_colors = stage2_config.get("output", {}).get(
+                "preserve_colors",
+                False,
+            )
+
+            success = process_derived_columns(
+                input_file=input_file,
+                output_file=derived_file,
+                preserve_colors=preserve_colors,
+            )
             if not success:
                 return False
 
         elif stage_num == 3:
             print("[Stage 3] Report Generation...")
+            data_root_value = config.get("paths", {}).get("data_root", "data")
+            reports_root_value = config.get("paths", {}).get("reports_root")
+            pipeline_root = Path(__file__).parent
+            data_root_path = (
+                (pipeline_root / data_root_value)
+                if not Path(data_root_value).is_absolute()
+                else Path(data_root_value)
+            )
+            reports_dir = (
+                (pipeline_root / reports_root_value)
+                if reports_root_value and not Path(reports_root_value).is_absolute()
+                else (Path(reports_root_value) if reports_root_value else None)
+            )
+            if reports_dir is None:
+                reports_dir = data_root_path / "processed" / "reports"
+
             print("INFO: Stage 3 requires separate script execution.")
             print("      python scripts/stage3_report/report_generator.py")
+            print(f"INFO: 보고서 출력 경로: {reports_dir}")
 
         elif stage_num == 4:
             print("[Stage 4] Anomaly Detection...")

@@ -20,23 +20,52 @@ Samsung C&T · ADNOC · DSV Partnership
 Multi-Level Header: 창고 17열(누계 포함), 현장 9열
 """
 
-import pandas as pd
-import numpy as np
+import logging
+import os
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
-import logging
 from typing import Dict, List, Optional, Tuple
+
+import numpy as np
+import pandas as pd
+import yaml
 import warnings
 
 warnings.filterwarnings("ignore")
-import os
-import re
 
 # 로깅 설정
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
+
+PIPELINE_ROOT = Path(__file__).resolve().parents[2]
+PIPELINE_CONFIG_PATH = PIPELINE_ROOT / "config" / "pipeline_config.yaml"
+STAGE2_CONFIG_PATH = PIPELINE_ROOT / "config" / "stage2_derived_config.yaml"
+DEFAULT_STAGE2_OUTPUT = "data/processed/derived/HVDC_WAREHOUSE_HITACHI_HE_derived.xlsx"
+DEFAULT_REPORTS_DIR = "data/processed/reports"
+
+
+def _load_yaml_config(config_path: Path) -> Dict:
+    """YAML 설정을 로드합니다. / Load a YAML configuration file."""
+
+    if not config_path.exists():
+        return {}
+
+    with config_path.open("r", encoding="utf-8") as handle:
+        loaded = yaml.safe_load(handle) or {}
+    return loaded
+
+
+def _resolve_path(path_value: str | Path) -> Path:
+    """상대 경로를 절대 경로로 변환합니다. / Resolve a relative path to absolute."""
+
+    candidate = Path(path_value)
+    if not candidate.is_absolute():
+        candidate = PIPELINE_ROOT / candidate
+    return candidate
+
 
 # 수정 버전 정보
 CORRECTED_VERSION = "v3.0-corrected"  #  버전 업데이트
@@ -207,11 +236,46 @@ class CorrectedWarehouseIOCalculator:
         """초기화"""
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-        # 실제 데이터 경로 설정 (현재 디렉토리 기준)
-        self.data_path = Path(".")  # 현재 hitachi 디렉토리
-        self.hitachi_file = self.data_path / "HVDC WAREHOUSE_HITACHI(HE).xlsx"
-        self.simense_file = self.data_path / "HVDC WAREHOUSE_SIMENSE(SIM).xlsx"
-        self.invoice_file = self.data_path / "HVDC WAREHOUSE_INVOICE.xlsx"
+        pipeline_config = _load_yaml_config(PIPELINE_CONFIG_PATH)
+        stage2_config = _load_yaml_config(STAGE2_CONFIG_PATH)
+
+        paths_config = pipeline_config.get("paths", {})
+        data_root = _resolve_path(paths_config.get("data_root", "data"))
+        reports_root_value = paths_config.get("reports_root")
+        reports_root = (
+            _resolve_path(reports_root_value)
+            if reports_root_value
+            else data_root / "processed" / "reports"
+        )
+
+        derived_output_value = stage2_config.get("output", {}).get(
+            "derived_file", DEFAULT_STAGE2_OUTPUT
+        )
+        derived_output_path = _resolve_path(derived_output_value)
+
+        self.stage2_output_dir = derived_output_path.parent
+        self.reports_output_dir = reports_root
+        self.data_path = self.stage2_output_dir
+
+        self.hitachi_file = derived_output_path
+
+        simense_candidates = [
+            self.stage2_output_dir / "HVDC_WAREHOUSE_SIMENSE_SIM_derived.xlsx",
+            self.stage2_output_dir / "HVDC WAREHOUSE_SIMENSE(SIM).xlsx",
+        ]
+        self.simense_file = next(
+            (candidate for candidate in simense_candidates if candidate.exists()),
+            simense_candidates[0],
+        )
+
+        invoice_candidates = [
+            data_root / "processed" / "invoices" / "HVDC_WAREHOUSE_INVOICE.xlsx",
+            self.stage2_output_dir / "HVDC WAREHOUSE_INVOICE.xlsx",
+        ]
+        self.invoice_file = next(
+            (candidate for candidate in invoice_candidates if candidate.exists()),
+            invoice_candidates[0],
+        )
 
         #  수정: 창고와 현장을 명확히 분리
         self.warehouse_columns = [
@@ -1525,6 +1589,8 @@ class HVDCExcelReporterFinal:
         """초기화"""
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.calculator = CorrectedWarehouseIOCalculator()
+        self.report_output_dir = self.calculator.reports_output_dir
+        self.report_output_dir.mkdir(parents=True, exist_ok=True)
 
         logger.info(" HVDC Excel Reporter Final 초기화 완료 (v3.0-corrected)")
 
@@ -2236,28 +2302,26 @@ class HVDCExcelReporterFinal:
             else:
                 print(f"    {col}: 컬럼 없음")
 
-        # output 폴더 자동 생성
-        output_dir = Path("output")
-        output_dir.mkdir(exist_ok=True)
-
-        #  FIX: 전체 데이터는 CSV로도 저장 (백업용)
         hitachi_original.to_csv(
-            "output/HITACHI_원본데이터_FULL_fixed.csv",
+            self.report_output_dir / "HITACHI_원본데이터_FULL_fixed.csv",
             index=False,
             encoding="utf-8-sig",
         )
         siemens_original.to_csv(
-            "output/SIEMENS_원본데이터_FULL_fixed.csv",
+            self.report_output_dir / "SIEMENS_원본데이터_FULL_fixed.csv",
             index=False,
             encoding="utf-8-sig",
         )
         combined_original.to_csv(
-            "output/통합_원본데이터_FULL_fixed.csv", index=False, encoding="utf-8-sig"
+            self.report_output_dir / "통합_원본데이터_FULL_fixed.csv",
+            index=False,
+            encoding="utf-8-sig",
         )
 
         # Excel 파일 생성 (수정 버전)
         excel_filename = (
-            f"HVDC_입고로직_종합리포트_{self.timestamp}_v3.0-corrected.xlsx"
+            self.report_output_dir
+            / f"HVDC_입고로직_종합리포트_{self.timestamp}_v3.0-corrected.xlsx"
         )
         with pd.ExcelWriter(excel_filename, engine="xlsxwriter") as writer:
             warehouse_monthly_with_headers.to_excel(
@@ -2300,7 +2364,10 @@ class HVDCExcelReporterFinal:
             print(f" [경고] 엑셀 파일 저장 후 열기 실패: {e}")
 
         logger.info(f" 최종 Excel 리포트 생성 완료: {excel_filename}")
-        logger.info(f" 원본 전체 데이터는 output/ 폴더의 CSV로도 저장됨")
+        logger.info(
+            " 원본 전체 데이터는 %s 경로의 CSV로도 저장됨",
+            self.report_output_dir,
+        )
 
         #  FIX: 수정사항 요약 출력
         print(f"\n v3.0-corrected 수정사항 요약:")
