@@ -34,6 +34,8 @@ paths:
   docs_root: "docs"
   logs_root: "logs"
   temp_root: "temp"
+  synced_dir: "data/processed/synced"
+  derived_dir: "data/processed/derived"
 
 logging:
   level: "INFO"

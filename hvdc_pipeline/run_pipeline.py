@@ -19,7 +19,10 @@ sys.path.append(str(Path(__file__).parent))
 
 # 각 Stage 임포트
 try:
-    from scripts.stage2_derived.derived_columns_processor import process_derived_columns
+    from scripts.stage2_derived.derived_columns_processor import (
+        process_derived_columns,
+        resolve_synced_input_path as resolve_stage2_synced_input_path,
+    )
 
     # 다른 모듈들은 필요시 개별적으로 임포트
 except ImportError as e:
@@ -28,9 +31,14 @@ except ImportError as e:
     sys.exit(1)
 
 
+PROJECT_ROOT = Path(__file__).parent
+PIPELINE_CONFIG_PATH = PROJECT_ROOT / "config" / "pipeline_config.yaml"
+STAGE2_CONFIG_PATH = PROJECT_ROOT / "config" / "stage2_derived_config.yaml"
+
+
 def load_config() -> dict:
     """파이프라인 설정을 로드합니다."""
-    config_path = Path(__file__).parent / "config" / "pipeline_config.yaml"
+    config_path = PIPELINE_CONFIG_PATH
     try:
         with open(config_path, "r", encoding="utf-8") as f:
             return yaml.safe_load(f)
@@ -60,28 +68,29 @@ def run_stage(stage_num: int, config: dict) -> bool:
     try:
         if stage_num == 1:
             print("[Stage 1] Data Synchronization...")
+            shared_synced_path = resolve_stage2_synced_input_path(
+                pipeline_config_path=PIPELINE_CONFIG_PATH,
+                stage2_config_path=STAGE2_CONFIG_PATH,
+                project_root=PROJECT_ROOT,
+            )
             print("INFO: Stage 1 requires separate script execution.")
             print("      python scripts/stage1_sync/data_synchronizer.py")
+            print(f"      Output Path: {shared_synced_path}")
 
         elif stage_num == 2:
             print("[Stage 2] Derived Columns Generation...")
-            # 설정에서 입력 파일 경로 가져오기
-            stage2_config_path = (
-                Path(__file__).parent / "config" / "stage2_derived_config.yaml"
+            shared_synced_path = resolve_stage2_synced_input_path(
+                pipeline_config_path=PIPELINE_CONFIG_PATH,
+                stage2_config_path=STAGE2_CONFIG_PATH,
+                project_root=PROJECT_ROOT,
             )
-            if stage2_config_path.exists():
-                with open(stage2_config_path, "r", encoding="utf-8") as f:
-                    stage2_config = yaml.safe_load(f)
-                input_file = stage2_config.get("input", {}).get(
-                    "synced_file",
-                    "data/processed/synced/HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx",
-                )
-            else:
-                input_file = (
-                    "data/processed/synced/HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx"
-                )
+            print(f"INFO: Stage 2 uses synced file: {shared_synced_path}")
 
-            success = process_derived_columns(input_file)
+            success = process_derived_columns(
+                pipeline_config_path=PIPELINE_CONFIG_PATH,
+                stage2_config_path=STAGE2_CONFIG_PATH,
+                project_root=PROJECT_ROOT,
+            )
             if not success:
                 return False
 

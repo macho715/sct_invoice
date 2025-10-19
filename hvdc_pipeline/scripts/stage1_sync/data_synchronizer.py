@@ -9,15 +9,17 @@ DataSynchronizer v2.9 (Hard-override Date + Colorize)
 
 from __future__ import annotations
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
 from datetime import datetime
-import pandas as pd
-import numpy as np
-import re
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
+import numpy as np
+import pandas as pd
+import re
+import yaml
 from openpyxl import load_workbook
-from openpyxl.utils import get_column_letter
 from openpyxl.styles import PatternFill
+from openpyxl.utils import get_column_letter
 
 # ===== Config =====
 ORANGE = "FFC000"  # changed date cell
@@ -40,10 +42,56 @@ DATE_KEYS = [
     "AGI",
 ]
 ALWAYS_OVERWRITE_NONDATE = True  # Master non-null overwrites
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PIPELINE_CONFIG_PATH = PROJECT_ROOT / "config" / "pipeline_config.yaml"
+DEFAULT_SYNCED_DIR = Path("data/processed/synced")
+SYNCED_SUFFIX = "_synced.xlsx"
 
 
 def _norm_header(h: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", str(h).strip().lower())
+
+
+def _load_pipeline_config(config_path: Optional[Path] = None) -> Dict[str, Any]:
+    """파이프라인 설정을 로드합니다. / Load the pipeline configuration."""
+
+    target_path = config_path or PIPELINE_CONFIG_PATH
+    if not target_path.exists():
+        return {}
+    with open(target_path, "r", encoding="utf-8") as handle:
+        return yaml.safe_load(handle) or {}
+
+
+def resolve_synced_output_path(
+    warehouse_xlsx: str | Path,
+    *,
+    config_path: Optional[Path] = None,
+    project_root: Optional[Path] = None,
+) -> Path:
+    """동기화 결과 경로를 계산합니다. / Resolve synchronized output path."""
+
+    root = project_root or PROJECT_ROOT
+    config = _load_pipeline_config(config_path=config_path)
+    synced_dir_value = (
+        config.get("paths", {}).get("synced_dir")
+        if isinstance(config, dict)
+        else None
+    )
+    synced_dir = Path(synced_dir_value) if synced_dir_value else DEFAULT_SYNCED_DIR
+    if not synced_dir.is_absolute():
+        synced_dir = root / synced_dir
+
+    if not synced_dir.exists():
+        print(f"INFO: 생성되지 않은 동기화 디렉터리를 생성합니다: {synced_dir}")
+        synced_dir.mkdir(parents=True, exist_ok=True)
+
+    warehouse_name = Path(warehouse_xlsx).stem
+    if warehouse_name.endswith("_synced"):
+        output_name = f"{warehouse_name}.xlsx"
+    else:
+        output_name = f"{warehouse_name}{SYNCED_SUFFIX}"
+
+    return synced_dir / output_name
 
 
 def _is_date_col(col_name: str) -> bool:
@@ -231,7 +279,10 @@ class DataSynchronizerV29:
         return wh, stats
 
     def synchronize(
-        self, master_xlsx: str, warehouse_xlsx: str, output_path: Optional[str] = None
+        self,
+        master_xlsx: str,
+        warehouse_xlsx: str,
+        output_path: Optional[str | Path] = None,
     ) -> SyncResult:
         try:
             # Load
@@ -253,12 +304,18 @@ class DataSynchronizerV29:
             updated_w_df, stats = self._apply_updates(m_df, w_df, m_case, w_case)
 
             # Save to output
-            out = output_path or str(
-                Path(warehouse_xlsx).with_name(
-                    Path(warehouse_xlsx).stem + ".synced.xlsx"
-                )
-            )
-            with pd.ExcelWriter(out, engine="openpyxl") as writer:
+            if output_path is None:
+                out_path = resolve_synced_output_path(warehouse_xlsx)
+            else:
+                out_path = Path(output_path)
+                if not out_path.parent.exists():
+                    print(
+                        "INFO: 지정한 출력 디렉터리가 없어 생성합니다: "
+                        f"{out_path.parent}"
+                    )
+                    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+            with pd.ExcelWriter(out_path, engine="openpyxl") as writer:
                 updated_w_df.to_excel(
                     writer, sheet_name=w_xl.sheet_names[0], index=False
                 )
@@ -370,13 +427,18 @@ class DataSynchronizerV29:
                 self.change_tracker, orange_hex=ORANGE, yellow_hex=YELLOW
             )
             fmt.apply_formatting_inplace(
-                out, sheet_name=w_xl.sheet_names[0], header_row=1
+                out_path, sheet_name=w_xl.sheet_names[0], header_row=1
             )
 
-            stats["output_file"] = out
-            return SyncResult(True, "Sync & colorize done.", out, stats)
+            stats["output_file"] = str(out_path)
+            return SyncResult(True, "Sync & colorize done.", str(out_path), stats)
         except Exception as e:
-            return SyncResult(False, f"Error: {e}", output_path or warehouse_xlsx, {})
+            error_output = (
+                str(output_path)
+                if output_path is not None
+                else str(warehouse_xlsx)
+            )
+            return SyncResult(False, f"Error: {e}", error_output, {})
 
 
 if __name__ == "__main__":
