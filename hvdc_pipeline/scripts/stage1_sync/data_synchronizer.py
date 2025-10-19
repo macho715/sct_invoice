@@ -206,20 +206,25 @@ class DataSynchronizerV29:
                     )
                     is_date = _is_date_col(wcol)
 
-                    if is_date:
-                        if pd.notna(mval) and not self._dates_equal(mval, wval):
+                if is_date:
+                    # 1. Master 값을 먼저 날짜 타입으로 변환 시도
+                    m_date = _to_date(mval)
+
+                    # 2. 변환된 날짜가 유효한 경우에만 업데이트 로직 수행 (NaT가 아닐 때)
+                    if pd.notna(m_date):
+                        # 3. 기존 날짜와 다를 경우, 변경 사항 기록 (셀 색상 변경 대상)
+                        if not self._dates_equal(m_date, wval):
                             stats["updates"] += 1
                             stats["date_updates"] += 1
-                            wh.at[wi, wcol] = mval
                             self.change_tracker.add_change(
                                 row_index=wi,
                                 column_name=wcol,
                                 old_value=wval,
-                                new_value=mval,
+                                new_value=m_date,
                                 change_type="date_update",
                             )
-                        elif pd.notna(mval):
-                            wh.at[wi, wcol] = mval
+                        # 4. 날짜가 같더라도 Master의 값으로 덮어쓰기 (포맷 통일 등)
+                        wh.at[wi, wcol] = m_date
                     else:
                         if ALWAYS_OVERWRITE_NONDATE and pd.notna(mval):
                             if (wval is None) or (str(mval) != str(wval)):
