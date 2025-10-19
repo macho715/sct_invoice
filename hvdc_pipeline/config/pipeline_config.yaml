@@ -12,7 +12,7 @@ stages:
     description: "원본 데이터 동기화 및 정제"
     enabled: true
     io:
-      master_file: "data/raw/CASE_LIST_master.xlsx"
+      master_file: "data/raw/Case List.xlsx"
       warehouse_file: "data/raw/HVDC WAREHOUSE_HITACHI(HE).xlsx"
       output_file: "data/processed/synced/HVDC WAREHOUSE_HITACHI(HE).synced.xlsx"
 

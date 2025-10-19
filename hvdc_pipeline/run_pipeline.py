@@ -22,12 +22,45 @@ logger = logging.getLogger("hvdc_pipeline.run_pipeline")
 
 # 프로젝트 루트 경로 추가
 PIPELINE_ROOT = Path(__file__).resolve().parent
-REPO_ROOT = PIPELINE_ROOT.parent
-sys.path.append(str(PIPELINE_ROOT))
-
-PROJECT_ROOT = Path(__file__).parent
+PROJECT_ROOT = PIPELINE_ROOT
 PIPELINE_CONFIG_PATH = PROJECT_ROOT / "config" / "pipeline_config.yaml"
 STAGE2_CONFIG_PATH = PROJECT_ROOT / "config" / "stage2_derived_config.yaml"
+sys.path.append(str(PIPELINE_ROOT))
+
+# �� Stage ����Ʈ
+try:  # pragma: no cover - optional dependency guard
+    from scripts.stage1_sync.data_synchronizer_v29 import DataSynchronizerV29
+except ImportError:  # pragma: no cover - runtime import guard
+    DataSynchronizerV29 = None  # type: ignore[assignment]
+
+try:  # pragma: no cover - optional dependency guard
+    from scripts.stage2_derived.derived_columns_processor import (
+        process_derived_columns,
+        resolve_synced_input_path as resolve_stage2_synced_input_path,
+    )
+except ImportError:  # pragma: no cover - runtime import guard
+    process_derived_columns = None  # type: ignore[assignment]
+    resolve_stage2_synced_input_path = None  # type: ignore[assignment]
+
+try:  # pragma: no cover - optional dependency guard
+    from scripts.stage3_report.report_generator import HVDCExcelReporterFinal
+except ImportError:  # pragma: no cover - runtime import guard
+    HVDCExcelReporterFinal = None  # type: ignore[assignment]
+
+try:  # pragma: no cover - optional dependency guard
+    from scripts.stage4_anomaly.anomaly_detector import (
+        DetectorConfig,
+        HybridAnomalyDetector,
+    )
+except ImportError:  # pragma: no cover - runtime import guard
+    DetectorConfig = None  # type: ignore[assignment]
+    HybridAnomalyDetector = None  # type: ignore[assignment]
+
+try:  # pragma: no cover - optional dependency guard
+    from scripts.stage4_anomaly.anomaly_visualizer import AnomalyVisualizer
+except ImportError:  # pragma: no cover - runtime import guard
+    AnomalyVisualizer = None  # type: ignore[assignment]
+
 
 # 각 Stage 임포트
 def resolve_repo_path(path_value: str | Path) -> Path:
@@ -36,7 +69,7 @@ def resolve_repo_path(path_value: str | Path) -> Path:
     path_obj = Path(path_value)
     if path_obj.is_absolute():
         return path_obj
-    return (REPO_ROOT / path_obj).resolve()
+    return (PIPELINE_ROOT / path_obj).resolve()
 
 
 def load_pipeline_config() -> Dict:
@@ -124,18 +157,10 @@ def run_stage(
     try:
         if stage_num == 1:
             print("[Stage 1] Data Synchronization...")
-            try:
-                from scripts.stage1_sync.data_synchronizer_v29 import (
-                    DataSynchronizerV29,
-                )
-            except ImportError as import_error:  # pragma: no cover - import guard
-                raise ImportError(
-                    "Stage 1 동기화 모듈을 불러오지 못했습니다."
-                ) from import_error
+            if DataSynchronizerV29 is None:
+                raise ImportError("Stage 1 ����ȭ ����� �ҷ����� ���߽��ϴ�.")
             stage1_cfg = (
-                pipeline_config.get("stages", {})
-                .get("stage1", {})
-                .get("io", {})
+                pipeline_config.get("stages", {}).get("stage1", {}).get("io", {})
             )
             if not stage1_cfg:
                 raise ValueError("Stage 1 IO 설정이 비어 있습니다.")
@@ -169,15 +194,8 @@ def run_stage(
 
         elif stage_num == 2:
             print("[Stage 2] Derived Columns Generation...")
-            try:
-                from scripts.stage2_derived.derived_columns_processor import (
-                    process_derived_columns,
-                    resolve_synced_input_path as resolve_stage2_synced_input_path,
-                )
-            except ImportError as import_error:  # pragma: no cover - import guard
-                raise ImportError(
-                    "Stage 2 파생 컬럼 모듈을 불러오지 못했습니다."
-                ) from import_error
+            if process_derived_columns is None or resolve_stage2_synced_input_path is None:
+                raise ImportError("Stage 2 �Ļ� �÷� ����� �ҷ����� ���߽��ϴ�.")
             shared_synced_path = resolve_stage2_synced_input_path(
                 pipeline_config_path=PIPELINE_CONFIG_PATH,
                 stage2_config_path=STAGE2_CONFIG_PATH,
@@ -195,18 +213,10 @@ def run_stage(
 
         elif stage_num == 3:
             print("[Stage 3] Report Generation...")
-            try:
-                from scripts.stage3_report.report_generator import (
-                    HVDCExcelReporterFinal,
-                )
-            except ImportError as import_error:  # pragma: no cover - import guard
-                raise ImportError(
-                    "Stage 3 보고서 생성 모듈을 불러오지 못했습니다."
-                ) from import_error
+            if HVDCExcelReporterFinal is None:
+                raise ImportError("Stage 3 ������ ���� ����� �ҷ����� ���߽��ϴ�.")
             stage3_cfg = (
-                pipeline_config.get("stages", {})
-                .get("stage3", {})
-                .get("io", {})
+                pipeline_config.get("stages", {}).get("stage3", {}).get("io", {})
             )
             if not stage3_cfg:
                 raise ValueError("Stage 3 IO 설정이 비어 있습니다.")
@@ -285,19 +295,10 @@ def run_stage(
 
         elif stage_num == 4:
             print("[Stage 4] Anomaly Detection...")
-            try:
-                from scripts.stage4_anomaly.anomaly_detector import (
-                    DetectorConfig,
-                    HybridAnomalyDetector,
-                )
-            except ImportError as import_error:  # pragma: no cover - import guard
-                raise ImportError(
-                    "Stage 4 이상치 탐지 모듈을 불러오지 못했습니다."
-                ) from import_error
+            if DetectorConfig is None or HybridAnomalyDetector is None:
+                raise ImportError("Stage 4 �̻�ġ Ž�� ����� �ҷ����� ���߽��ϴ�.")
             stage4_cfg = (
-                pipeline_config.get("stages", {})
-                .get("stage4", {})
-                .get("io", {})
+                pipeline_config.get("stages", {}).get("stage4", {}).get("io", {})
             )
             if not stage4_cfg:
                 raise ValueError("Stage 4 IO 설정이 비어 있습니다.")
@@ -359,50 +360,42 @@ def run_stage(
             visualize = (
                 True
                 if visualize_flag
-                else False
-                if visualize_off_flag
-                else visualize_default
+                else False if visualize_off_flag else visualize_default
             )
 
             if visualize:
-                try:
-                    from scripts.stage4_anomaly.anomaly_visualizer import (
-                        AnomalyVisualizer,
-                    )
-
-                    case_column = (
-                        getattr(args, "stage4_case_column", None)
-                        or vis_cfg.get("case_column")
-                        or "Case No."
-                    )
-                    backup_enabled = vis_cfg.get("backup_enabled", True)
-
-                    visualizer = AnomalyVisualizer(result.get("anomalies", []))
-                    viz_result = visualizer.apply_anomaly_colors(
-                        excel_file=str(input_path),
-                        sheet_name=sheet_name or "Case List",
-                        case_col=case_column,
-                        create_backup=backup_enabled,
-                    )
-
-                    if viz_result.get("success"):
-                        logger.info(
-                            "Stage 4 색상 표시 완료: %s", viz_result.get("message")
+                if AnomalyVisualizer is None:
+                    logger.error("AnomalyVisualizer ����� �ҷ����� ���߽��ϴ�. Stage 4 ���� ǥ�� ��Ȱ��ȭ���� Ȯ�����ּ���.")
+                else:
+                    try:
+                        case_column = (
+                            getattr(args, "stage4_case_column", None)
+                            or vis_cfg.get("case_column")
+                            or "Case No."
                         )
-                        backup_path = viz_result.get("backup_path")
-                        if backup_path:
-                            stage_outputs.append(Path(backup_path).resolve())
-                    else:
-                        logger.error(
-                            "Stage 4 색상 표시 실패: %s", viz_result.get("message")
-                        )
-                except ImportError as err:
-                    logger.error(
-                        "AnomalyVisualizer 모듈을 불러오지 못했습니다: %s", err
-                    )
-                except Exception as err:  # pylint: disable=broad-except
-                    logger.error("색상 표시 중 오류: %s", err)
+                        backup_enabled = vis_cfg.get("backup_enabled", True)
 
+                        visualizer = AnomalyVisualizer(result.get("anomalies", []))
+                        viz_result = visualizer.apply_anomaly_colors(
+                            excel_file=str(input_path),
+                            sheet_name=sheet_name or "Case List",
+                            case_col=case_column,
+                            create_backup=backup_enabled,
+                        )
+
+                        if viz_result.get("success"):
+                            logger.info(
+                                "Stage 4 ���� ǥ�� �Ϸ�: %s", viz_result.get("message")
+                            )
+                            backup_path = viz_result.get("backup_path")
+                            if backup_path:
+                                stage_outputs.append(Path(backup_path).resolve())
+                        else:
+                            logger.error(
+                                "Stage 4 ���� ǥ�� ����: %s", viz_result.get("message")
+                            )
+                    except Exception as err:  # pylint: disable=broad-except
+                        logger.error("���� ǥ�� �� ����: %s", err)
         else:
             print(f"ERROR: 알 수 없는 Stage 번호: {stage_num}")
             return False
