@@ -1,0 +1,41 @@
+# HVDC Pipeline 전체 설정
+# HVDC Pipeline Overall Configuration
+
+pipeline:
+  name: "HVDC_Pipeline_v2"
+  version: "2.0.0"
+  description: "HVDC 통합 파이프라인 - 데이터 동기화부터 이상치 탐지까지"
+
+stages:
+  stage1:
+    name: "Data Synchronization"
+    description: "원본 데이터 동기화 및 정제"
+    enabled: true
+
+  stage2:
+    name: "Derived Columns"
+    description: "13개 파생 컬럼 계산 및 추가"
+    enabled: true
+
+  stage3:
+    name: "Report Generation"
+    description: "종합 보고서 생성"
+    enabled: true
+
+  stage4:
+    name: "Anomaly Detection"
+    description: "이상치 탐지 및 분석"
+    enabled: true
+
+paths:
+  data_root: "data"
+  scripts_root: "scripts"
+  config_root: "config"
+  docs_root: "docs"
+  logs_root: "logs"
+  temp_root: "temp"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/pipeline.log"
