@@ -7,11 +7,11 @@ stage:
   description: "13개 파생 컬럼 계산 및 처리"
 
 input:
-  synced_file: "data/processed/synced/HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx"
+  synced_file: "data/processed/synced/HVDC WAREHOUSE_HITACHI(HE).synced.xlsx"
   backup_enabled: true
 
 output:
-  derived_file: "data/processed/derived/HVDC_WAREHOUSE_HITACHI_HE_derived.xlsx"
+  derived_file: "data/processed/derived/HVDC WAREHOUSE_HITACHI(HE).xlsx"
   preserve_colors: true
   backup_enabled: true
 

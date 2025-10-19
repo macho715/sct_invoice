@@ -11,6 +11,10 @@ stages:
     name: "Data Synchronization"
     description: "원본 데이터 동기화 및 정제"
     enabled: true
+    io:
+      master_file: "data/raw/CASE_LIST_master.xlsx"
+      warehouse_file: "data/raw/HVDC WAREHOUSE_HITACHI(HE).xlsx"
+      output_file: "data/processed/synced/HVDC WAREHOUSE_HITACHI(HE).synced.xlsx"
 
   stage2:
     name: "Derived Columns"
@@ -21,11 +25,26 @@ stages:
     name: "Report Generation"
     description: "종합 보고서 생성"
     enabled: true
+    io:
+      data_root: "data/processed/derived"
+      hitachi_file: "data/processed/derived/HVDC WAREHOUSE_HITACHI(HE).xlsx"
+      siemens_file: "data/processed/derived/HVDC WAREHOUSE_SIMENSE(SIM).xlsx"
+      invoice_file: "data/processed/derived/HVDC WAREHOUSE_INVOICE.xlsx"
+      report_directory: "data/processed/reports"
 
   stage4:
     name: "Anomaly Detection"
     description: "이상치 탐지 및 분석"
     enabled: true
+    io:
+      input_file: "data/processed/derived/HVDC WAREHOUSE_HITACHI(HE).xlsx"
+      sheet_name: ""
+      excel_output: "data/anomaly/HVDC_anomaly_report.xlsx"
+      json_output: "data/anomaly/HVDC_anomaly_report.json"
+      visualization:
+        enable_by_default: false
+        case_column: "Case No."
+        backup_enabled: true
 
 paths:
   data_root: "data"
