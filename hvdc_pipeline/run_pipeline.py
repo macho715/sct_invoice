@@ -7,36 +7,89 @@ HVDC Pipeline Integrated Execution Script
 """
 
 import argparse
+import logging
+import shutil
 import sys
 import time
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List
 
+import pandas as pd
 import yaml
 
+
+logger = logging.getLogger("hvdc_pipeline.run_pipeline")
+
 # 프로젝트 루트 경로 추가
-sys.path.append(str(Path(__file__).parent))
+PIPELINE_ROOT = Path(__file__).resolve().parent
+REPO_ROOT = PIPELINE_ROOT.parent
+sys.path.append(str(PIPELINE_ROOT))
 
 # 각 Stage 임포트
-try:
-    from scripts.stage2_derived.derived_columns_processor import process_derived_columns
+def resolve_repo_path(path_value: str | Path) -> Path:
+    """저장소 기준 절대 경로를 반환합니다. / Resolve repository-relative paths."""
 
-    # 다른 모듈들은 필요시 개별적으로 임포트
-except ImportError as e:
-    print(f"ERROR: 모듈 임포트 실패: {e}")
-    print("requirements.txt의 패키지들이 설치되었는지 확인하세요.")
-    sys.exit(1)
+    path_obj = Path(path_value)
+    if path_obj.is_absolute():
+        return path_obj
+    return (REPO_ROOT / path_obj).resolve()
 
 
-def load_config() -> dict:
-    """파이프라인 설정을 로드합니다."""
-    config_path = Path(__file__).parent / "config" / "pipeline_config.yaml"
+def load_pipeline_config() -> Dict:
+    """파이프라인 설정을 로드합니다. / Load pipeline configuration."""
+
+    config_path = PIPELINE_ROOT / "config" / "pipeline_config.yaml"
     try:
-        with open(config_path, "r", encoding="utf-8") as f:
-            return yaml.safe_load(f)
+        with open(config_path, "r", encoding="utf-8") as config_file:
+            return yaml.safe_load(config_file) or {}
     except FileNotFoundError:
-        print(f"WARNING: 설정 파일을 찾을 수 없습니다: {config_path}")
+        logger.warning("설정 파일을 찾을 수 없습니다: %s", config_path)
         return {}
+
+
+def load_stage2_config() -> Dict:
+    """Stage2 설정을 로드합니다. / Load Stage 2 specific configuration."""
+
+    config_path = PIPELINE_ROOT / "config" / "stage2_derived_config.yaml"
+    try:
+        with open(config_path, "r", encoding="utf-8") as config_file:
+            return yaml.safe_load(config_file) or {}
+    except FileNotFoundError:
+        logger.warning("Stage2 설정 파일을 찾을 수 없습니다: %s", config_path)
+        return {}
+
+
+def configure_logging(pipeline_config: Dict) -> None:
+    """로깅 설정을 초기화합니다. / Configure logging for the pipeline."""
+
+    logging_cfg = pipeline_config.get("logging", {})
+    level_name = str(logging_cfg.get("level", "INFO")).upper()
+    level = getattr(logging, level_name, logging.INFO)
+
+    basic_kwargs = {
+        "level": level,
+        "format": logging_cfg.get("format"),
+    }
+    filtered_kwargs = {k: v for k, v in basic_kwargs.items() if v is not None}
+
+    if not logging.getLogger().handlers:
+        logging.basicConfig(**filtered_kwargs)
+    else:
+        logging.getLogger().setLevel(level)
+        if logging_cfg.get("format"):
+            formatter = logging.Formatter(logging_cfg["format"])
+            for handler in logging.getLogger().handlers:
+                handler.setFormatter(formatter)
+
+    log_file = logging_cfg.get("file")
+    if log_file:
+        file_path = resolve_repo_path(log_file)
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+        file_handler = logging.FileHandler(file_path)
+        file_handler.setLevel(level)
+        if logging_cfg.get("format"):
+            file_handler.setFormatter(logging.Formatter(logging_cfg["format"]))
+        logging.getLogger().addHandler(file_handler)
 
 
 def print_banner():
@@ -53,91 +106,373 @@ def print_banner():
     print("=" * 80 + "\n")
 
 
-def run_stage(stage_num: int, config: dict) -> bool:
-    """특정 Stage를 실행합니다."""
+def run_stage(
+    stage_num: int,
+    pipeline_config: Dict,
+    stage2_config: Dict,
+    args: argparse.Namespace,
+) -> bool:
+    """특정 Stage를 실행합니다. / Execute a single pipeline stage."""
+
     stage_start_time = time.time()
+    stage_outputs: List[Path] = []
 
     try:
         if stage_num == 1:
             print("[Stage 1] Data Synchronization...")
-            print("INFO: Stage 1 requires separate script execution.")
-            print("      python scripts/stage1_sync/data_synchronizer.py")
+            try:
+                from scripts.stage1_sync.data_synchronizer_v29 import (
+                    DataSynchronizerV29,
+                )
+            except ImportError as import_error:  # pragma: no cover - import guard
+                raise ImportError(
+                    "Stage 1 동기화 모듈을 불러오지 못했습니다."
+                ) from import_error
+            stage1_cfg = (
+                pipeline_config.get("stages", {})
+                .get("stage1", {})
+                .get("io", {})
+            )
+            if not stage1_cfg:
+                raise ValueError("Stage 1 IO 설정이 비어 있습니다.")
+
+            master_path = resolve_repo_path(stage1_cfg["master_file"])
+            warehouse_path = resolve_repo_path(stage1_cfg["warehouse_file"])
+            output_path = resolve_repo_path(stage1_cfg["output_file"])
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+
+            if not master_path.exists():
+                raise FileNotFoundError(
+                    f"Stage 1 마스터 파일을 찾을 수 없습니다: {master_path}"
+                )
+            if not warehouse_path.exists():
+                raise FileNotFoundError(
+                    f"Stage 1 창고 파일을 찾을 수 없습니다: {warehouse_path}"
+                )
+
+            synchronizer = DataSynchronizerV29()
+            sync_result = synchronizer.synchronize(
+                str(master_path), str(warehouse_path), str(output_path)
+            )
+
+            if not sync_result.success:
+                print(f"[ERROR] Stage 1 failed: {sync_result.message}")
+                return False
+
+            stage_outputs.append(Path(sync_result.output_path).resolve())
+            logger.info("Stage 1 동기화 통계: %s", sync_result.stats)
 
         elif stage_num == 2:
             print("[Stage 2] Derived Columns Generation...")
-            # 설정에서 입력 파일 경로 가져오기
-            stage2_config_path = (
-                Path(__file__).parent / "config" / "stage2_derived_config.yaml"
-            )
-            if stage2_config_path.exists():
-                with open(stage2_config_path, "r", encoding="utf-8") as f:
-                    stage2_config = yaml.safe_load(f)
-                input_file = stage2_config.get("input", {}).get(
-                    "synced_file",
-                    "data/processed/synced/HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx",
+            try:
+                from scripts.stage2_derived.derived_columns_processor import (
+                    process_derived_columns,
                 )
-            else:
-                input_file = (
-                    "data/processed/synced/HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx"
+            except ImportError as import_error:  # pragma: no cover - import guard
+                raise ImportError(
+                    "Stage 2 파생 컬럼 모듈을 불러오지 못했습니다."
+                ) from import_error
+            stage2_input_cfg = stage2_config.get("input", {})
+            stage2_output_cfg = stage2_config.get("output", {})
+
+            input_file = stage2_input_cfg.get("synced_file")
+            if not input_file:
+                raise ValueError("Stage 2 입력 파일 설정이 누락되었습니다.")
+            input_path = resolve_repo_path(input_file)
+
+            if not input_path.exists():
+                raise FileNotFoundError(
+                    f"Stage 2 입력 파일을 찾을 수 없습니다: {input_path}"
                 )
 
-            success = process_derived_columns(input_file)
+            success = process_derived_columns(str(input_path))
             if not success:
                 return False
 
+            default_output = Path.cwd() / "HVDC WAREHOUSE_HITACHI(HE).xlsx"
+            if not default_output.exists():
+                raise FileNotFoundError(
+                    "Stage 2 결과 파일을 찾을 수 없습니다: "
+                    f"{default_output}"
+                )
+
+            target_file = stage2_output_cfg.get("derived_file")
+            target_path = (
+                resolve_repo_path(target_file)
+                if target_file
+                else default_output.resolve()
+            )
+            target_path.parent.mkdir(parents=True, exist_ok=True)
+
+            if default_output.resolve() != target_path.resolve():
+                if target_path.exists():
+                    target_path.unlink()
+                shutil.move(str(default_output), str(target_path))
+            stage_outputs.append(target_path.resolve())
+
         elif stage_num == 3:
             print("[Stage 3] Report Generation...")
-            print("INFO: Stage 3 requires separate script execution.")
-            print("      python scripts/stage3_report/report_generator.py")
+            try:
+                from scripts.stage3_report.report_generator import (
+                    HVDCExcelReporterFinal,
+                )
+            except ImportError as import_error:  # pragma: no cover - import guard
+                raise ImportError(
+                    "Stage 3 보고서 생성 모듈을 불러오지 못했습니다."
+                ) from import_error
+            stage3_cfg = (
+                pipeline_config.get("stages", {})
+                .get("stage3", {})
+                .get("io", {})
+            )
+            if not stage3_cfg:
+                raise ValueError("Stage 3 IO 설정이 비어 있습니다.")
+
+            reporter = HVDCExcelReporterFinal()
+            calculator = reporter.calculator
+
+            data_root = stage3_cfg.get("data_root")
+            if data_root:
+                calculator.data_path = resolve_repo_path(data_root)
+
+            hitachi_file = stage3_cfg.get("hitachi_file")
+            if hitachi_file:
+                hitachi_path = resolve_repo_path(hitachi_file)
+                if not hitachi_path.exists():
+                    raise FileNotFoundError(
+                        f"Stage 3 HITACHI 데이터가 존재하지 않습니다: {hitachi_path}"
+                    )
+                calculator.hitachi_file = hitachi_path
+                calculator.data_path = hitachi_path.parent
+
+            siemens_file = stage3_cfg.get("siemens_file")
+            if siemens_file:
+                siemens_path = resolve_repo_path(siemens_file)
+                if not siemens_path.exists():
+                    logger.warning(
+                        "Stage 3 SIMENSE 데이터가 존재하지 않습니다: %s", siemens_path
+                    )
+                calculator.simense_file = siemens_path
+
+            invoice_file = stage3_cfg.get("invoice_file")
+            if invoice_file:
+                invoice_path = resolve_repo_path(invoice_file)
+                if not invoice_path.exists():
+                    logger.warning(
+                        "Stage 3 인보이스 데이터가 존재하지 않습니다: %s", invoice_path
+                    )
+                calculator.invoice_file = invoice_path
+
+            excel_filename = reporter.generate_final_excel_report()
+            excel_source = Path.cwd() / excel_filename
+
+            report_dir_override = getattr(args, "stage3_report_dir", None)
+            if report_dir_override:
+                report_dir = Path(report_dir_override).expanduser().resolve()
+            else:
+                report_dir = resolve_repo_path(
+                    stage3_cfg.get("report_directory", "reports")
+                )
+            report_dir.mkdir(parents=True, exist_ok=True)
+
+            if not excel_source.exists():
+                raise FileNotFoundError(
+                    f"Stage 3 결과 파일을 찾을 수 없습니다: {excel_source}"
+                )
+
+            excel_target = report_dir / excel_source.name
+            if excel_source.resolve() != excel_target.resolve():
+                if excel_target.exists():
+                    excel_target.unlink()
+                shutil.move(str(excel_source), str(excel_target))
+                stage_outputs.append(excel_target.resolve())
+            else:
+                stage_outputs.append(excel_source.resolve())
+
+            csv_source_dir = Path.cwd() / "output"
+            if csv_source_dir.exists() and csv_source_dir.is_dir():
+                csv_target_dir = report_dir / "output"
+                if csv_source_dir.resolve() != csv_target_dir.resolve():
+                    if csv_target_dir.exists():
+                        shutil.rmtree(csv_target_dir)
+                    shutil.move(str(csv_source_dir), str(csv_target_dir))
+                    stage_outputs.append(csv_target_dir.resolve())
+                else:
+                    stage_outputs.append(csv_source_dir.resolve())
 
         elif stage_num == 4:
             print("[Stage 4] Anomaly Detection...")
-            print("INFO: Stage 4 requires separate script execution.")
-            print("      python scripts/stage4_anomaly/anomaly_detector.py")
+            try:
+                from scripts.stage4_anomaly.anomaly_detector import (
+                    DetectorConfig,
+                    HybridAnomalyDetector,
+                )
+            except ImportError as import_error:  # pragma: no cover - import guard
+                raise ImportError(
+                    "Stage 4 이상치 탐지 모듈을 불러오지 못했습니다."
+                ) from import_error
+            stage4_cfg = (
+                pipeline_config.get("stages", {})
+                .get("stage4", {})
+                .get("io", {})
+            )
+            if not stage4_cfg:
+                raise ValueError("Stage 4 IO 설정이 비어 있습니다.")
+
+            input_file = stage4_cfg.get("input_file")
+            if not input_file:
+                raise ValueError("Stage 4 입력 파일 설정이 누락되었습니다.")
+            input_path = resolve_repo_path(input_file)
+
+            sheet_name = (
+                getattr(args, "stage4_sheet_name", None)
+                or stage4_cfg.get("sheet_name")
+                or None
+            )
+
+            if not input_path.exists():
+                raise FileNotFoundError(
+                    f"Stage 4 입력 파일을 찾을 수 없습니다: {input_path}"
+                )
+
+            if input_path.suffix.lower() in {".xlsx", ".xlsm", ".xls"}:
+                df = pd.read_excel(input_path, sheet_name=sheet_name or None)
+            else:
+                df = pd.read_csv(input_path)
+
+            detector = HybridAnomalyDetector(DetectorConfig())
+
+            excel_override = getattr(args, "stage4_excel_out", None)
+            json_override = getattr(args, "stage4_json_out", None)
+
+            excel_output = excel_override or stage4_cfg.get("excel_output")
+            json_output = json_override or stage4_cfg.get("json_output")
+
+            excel_path = resolve_repo_path(excel_output) if excel_output else None
+            json_path = resolve_repo_path(json_output) if json_output else None
+
+            if excel_path:
+                excel_path.parent.mkdir(parents=True, exist_ok=True)
+            if json_path:
+                json_path.parent.mkdir(parents=True, exist_ok=True)
+
+            result = detector.run(
+                df,
+                export_excel=str(excel_path) if excel_path else None,
+                export_json=str(json_path) if json_path else None,
+            )
+            summary = result.get("summary", {})
+            logger.info("Stage 4 이상치 요약: %s", summary)
+
+            if excel_path and excel_path.exists():
+                stage_outputs.append(excel_path.resolve())
+            if json_path and json_path.exists():
+                stage_outputs.append(json_path.resolve())
+
+            vis_cfg = stage4_cfg.get("visualization", {})
+            visualize_flag = getattr(args, "stage4_visualize", False)
+            visualize_off_flag = getattr(args, "stage4_no_visualize", False)
+            visualize_default = vis_cfg.get("enable_by_default", False)
+            visualize = (
+                True
+                if visualize_flag
+                else False
+                if visualize_off_flag
+                else visualize_default
+            )
+
+            if visualize:
+                try:
+                    from scripts.stage4_anomaly.anomaly_visualizer import (
+                        AnomalyVisualizer,
+                    )
+
+                    case_column = (
+                        getattr(args, "stage4_case_column", None)
+                        or vis_cfg.get("case_column")
+                        or "Case No."
+                    )
+                    backup_enabled = vis_cfg.get("backup_enabled", True)
+
+                    visualizer = AnomalyVisualizer(result.get("anomalies", []))
+                    viz_result = visualizer.apply_anomaly_colors(
+                        excel_file=str(input_path),
+                        sheet_name=sheet_name or "Case List",
+                        case_col=case_column,
+                        create_backup=backup_enabled,
+                    )
+
+                    if viz_result.get("success"):
+                        logger.info(
+                            "Stage 4 색상 표시 완료: %s", viz_result.get("message")
+                        )
+                        backup_path = viz_result.get("backup_path")
+                        if backup_path:
+                            stage_outputs.append(Path(backup_path).resolve())
+                    else:
+                        logger.error(
+                            "Stage 4 색상 표시 실패: %s", viz_result.get("message")
+                        )
+                except ImportError as err:
+                    logger.error(
+                        "AnomalyVisualizer 모듈을 불러오지 못했습니다: %s", err
+                    )
+                except Exception as err:  # pylint: disable=broad-except
+                    logger.error("색상 표시 중 오류: %s", err)
 
         else:
             print(f"ERROR: 알 수 없는 Stage 번호: {stage_num}")
             return False
 
         stage_duration = time.time() - stage_start_time
-        print(f"[OK] Stage {stage_num} completed (Duration: {stage_duration:.2f}s)\n")
+        print(f"[OK] Stage {stage_num} completed (Duration: {stage_duration:.2f}s)")
+        if stage_outputs:
+            print("   Output files:")
+            for output in stage_outputs:
+                print(f"      - {output}")
+        print("")
         return True
 
-    except Exception as e:
-        print(f"[ERROR] Stage {stage_num} failed: {e}")
+    except Exception as exc:  # pylint: disable=broad-except
+        logger.error("Stage %s 실행 중 오류", stage_num, exc_info=exc)
+        print(f"[ERROR] Stage {stage_num} failed: {exc}")
         return False
 
 
-def run_all_stages(config: dict) -> bool:
-    """모든 Stage를 순차적으로 실행합니다."""
+def run_all_stages(
+    pipeline_config: Dict, stage2_config: Dict, args: argparse.Namespace
+) -> bool:
+    """모든 Stage를 순차적으로 실행합니다. / Run all stages sequentially."""
+
     print_banner()
 
     stages = [1, 2, 3, 4]
     total_start_time = time.time()
 
     for stage_num in stages:
-        if not run_stage(stage_num, config):
+        if not run_stage(stage_num, pipeline_config, stage2_config, args):
             print(f"[FAILED] Pipeline stopped at Stage {stage_num}")
             return False
 
     total_duration = time.time() - total_start_time
     print("[SUCCESS] All pipeline stages completed!")
     print(f"Total Duration: {total_duration:.2f}s")
-    print("Output Files:")
-    print("   - data/processed/synced/: Synchronized data")
-    print("   - data/processed/derived/: Data with derived columns")
-    print("   - data/processed/reports/: Final reports")
-    print("   - data/anomaly/: Anomaly analysis results")
 
     return True
 
 
-def run_specific_stages(stage_list: List[int], config: dict) -> bool:
-    """지정된 Stage들만 실행합니다."""
+def run_specific_stages(
+    stage_list: List[int],
+    pipeline_config: Dict,
+    stage2_config: Dict,
+    args: argparse.Namespace,
+) -> bool:
+    """지정된 Stage만 실행합니다. / Run only selected stages."""
+
     print(f"[INFO] Selected stages: {stage_list}")
 
     for stage_num in stage_list:
-        if not run_stage(stage_num, config):
+        if not run_stage(stage_num, pipeline_config, stage2_config, args):
             print(f"[FAILED] Pipeline stopped at Stage {stage_num}")
             return False
 
@@ -164,11 +499,48 @@ def main():
     parser.add_argument(
         "--stage", type=str, help="실행할 Stage 번호 (예: 1,2,3 또는 2)"
     )
+    parser.add_argument(
+        "--stage3-report-dir",
+        type=str,
+        help="Stage 3 보고서 출력 디렉터리 재정의 / Override Stage 3 report output",
+    )
+    parser.add_argument(
+        "--stage4-visualize",
+        action="store_true",
+        help="Stage 4 이상치 시각화를 강제 활성화 / Force enable Stage 4 visualization",
+    )
+    parser.add_argument(
+        "--stage4-no-visualize",
+        action="store_true",
+        help="Stage 4 이상치 시각화 비활성화 / Disable Stage 4 visualization",
+    )
+    parser.add_argument(
+        "--stage4-excel-out",
+        type=str,
+        help="Stage 4 Excel 출력 경로 재정의 / Override Stage 4 Excel output path",
+    )
+    parser.add_argument(
+        "--stage4-json-out",
+        type=str,
+        help="Stage 4 JSON 출력 경로 재정의 / Override Stage 4 JSON output path",
+    )
+    parser.add_argument(
+        "--stage4-sheet-name",
+        type=str,
+        help="Stage 4 Excel 시트명 지정 / Specify Stage 4 sheet name",
+    )
+    parser.add_argument(
+        "--stage4-case-column",
+        type=str,
+        help="Stage 4 Case 컬럼명 지정 / Specify Stage 4 case column",
+    )
 
     args = parser.parse_args()
 
-    # 설정 로드
-    config = load_config()
+    # 설정 로드 및 로깅 구성
+    pipeline_config = load_pipeline_config()
+    stage2_config = load_stage2_config()
+    configure_logging(pipeline_config)
 
     # 인자 검증
     if not args.all and not args.stage:
@@ -178,7 +550,7 @@ def main():
     # 실행
     try:
         if args.all:
-            success = run_all_stages(config)
+            success = run_all_stages(pipeline_config, stage2_config, args)
         else:
             # Stage 번호 파싱
             try:
@@ -189,7 +561,9 @@ def main():
                     print("ERROR: 유효한 Stage 번호를 입력하세요 (1-4)")
                     return 1
 
-                success = run_specific_stages(stages, config)
+                success = run_specific_stages(
+                    stages, pipeline_config, stage2_config, args
+                )
             except ValueError:
                 print("ERROR: Stage 번호 형식이 올바르지 않습니다 (예: 1,2,3)")
                 return 1
