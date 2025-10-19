@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 HVDC 파이프라인 통합 실행 스크립트
 HVDC Pipeline Integrated Execution Script
@@ -25,11 +26,12 @@ PIPELINE_ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = PIPELINE_ROOT
 PIPELINE_CONFIG_PATH = PROJECT_ROOT / "config" / "pipeline_config.yaml"
 STAGE2_CONFIG_PATH = PROJECT_ROOT / "config" / "stage2_derived_config.yaml"
+DEFAULT_STAGE3_SHEET = 0  # First sheet (HITACHI_입고로직_종합리포트_Fixed)
 sys.path.append(str(PIPELINE_ROOT))
 
 # �� Stage ����Ʈ
 try:  # pragma: no cover - optional dependency guard
-    from scripts.stage1_sync.data_synchronizer_v29 import DataSynchronizerV29
+    from scripts.stage1_sync.data_synchronizer import DataSynchronizerV29
 except ImportError:  # pragma: no cover - runtime import guard
     DataSynchronizerV29 = None  # type: ignore[assignment]
 
@@ -194,7 +196,10 @@ def run_stage(
 
         elif stage_num == 2:
             print("[Stage 2] Derived Columns Generation...")
-            if process_derived_columns is None or resolve_stage2_synced_input_path is None:
+            if (
+                process_derived_columns is None
+                or resolve_stage2_synced_input_path is None
+            ):
                 raise ImportError("Stage 2 �Ļ� �÷� ����� �ҷ����� ���߽��ϴ�.")
             shared_synced_path = resolve_stage2_synced_input_path(
                 pipeline_config_path=PIPELINE_CONFIG_PATH,
@@ -314,13 +319,19 @@ def run_stage(
                 or None
             )
 
+            # Normalize blank/whitespace to default
+            if isinstance(sheet_name, str) and not sheet_name.strip():
+                sheet_name = DEFAULT_STAGE3_SHEET
+            elif sheet_name is None:
+                sheet_name = DEFAULT_STAGE3_SHEET
+
             if not input_path.exists():
                 raise FileNotFoundError(
                     f"Stage 4 입력 파일을 찾을 수 없습니다: {input_path}"
                 )
 
             if input_path.suffix.lower() in {".xlsx", ".xlsm", ".xls"}:
-                df = pd.read_excel(input_path, sheet_name=sheet_name or None)
+                df = pd.read_excel(input_path, sheet_name=sheet_name)
             else:
                 df = pd.read_csv(input_path)
 
@@ -365,7 +376,9 @@ def run_stage(
 
             if visualize:
                 if AnomalyVisualizer is None:
-                    logger.error("AnomalyVisualizer ����� �ҷ����� ���߽��ϴ�. Stage 4 ���� ǥ�� ��Ȱ��ȭ���� Ȯ�����ּ���.")
+                    logger.error(
+                        "AnomalyVisualizer ����� �ҷ����� ���߽��ϴ�. Stage 4 ���� ǥ�� ��Ȱ��ȭ���� Ȯ�����ּ���."
+                    )
                 else:
                     try:
                         case_column = (

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 파생 컬럼 처리기 (Derived Columns Processor)
 
@@ -97,7 +98,11 @@ def resolve_synced_input_path(
             if isinstance(pipeline_config, dict)
             else None
         )
-        synced_dir = Path(synced_dir_value) if synced_dir_value else Path("data/processed/synced")
+        synced_dir = (
+            Path(synced_dir_value)
+            if synced_dir_value
+            else Path("data/processed/synced")
+        )
         if not synced_dir.is_absolute():
             synced_dir = root / synced_dir
         candidate = synced_dir / "HVDC_WAREHOUSE_HITACHI_HE_synced.xlsx"
@@ -106,10 +111,7 @@ def resolve_synced_input_path(
         path = root / path
 
     if not path.parent.exists():
-        print(
-            "INFO: Stage 2 입력 폴더가 존재하지 않아 생성합니다: "
-            f"{path.parent}"
-        )
+        print("INFO: Stage 2 입력 폴더가 존재하지 않아 생성합니다: " f"{path.parent}")
         path.parent.mkdir(parents=True, exist_ok=True)
 
     return path
@@ -129,15 +131,16 @@ def resolve_derived_output_path(
         if isinstance(config, dict)
         else None
     )
-    path = Path(candidate) if candidate else Path("data/processed/derived/derived_output.xlsx")
+    path = (
+        Path(candidate)
+        if candidate
+        else Path("data/processed/derived/derived_output.xlsx")
+    )
     if not path.is_absolute():
         path = root / path
 
     if not path.parent.exists():
-        print(
-            "INFO: Stage 2 결과 폴더가 존재하지 않아 생성합니다: "
-            f"{path.parent}"
-        )
+        print("INFO: Stage 2 결과 폴더가 존재하지 않아 생성합니다: " f"{path.parent}")
         path.parent.mkdir(parents=True, exist_ok=True)
 
     return path
@@ -330,9 +333,7 @@ def process_derived_columns(
 
     # 파일 존재 확인
     if not resolved_input_path.exists():
-        raise FileNotFoundError(
-            f"입력 파일을 찾을 수 없습니다: {resolved_input_path}"
-        )
+        raise FileNotFoundError(f"입력 파일을 찾을 수 없습니다: {resolved_input_path}")
 
     # 데이터 로드
     df = pd.read_excel(resolved_input_path)
@@ -367,9 +368,7 @@ def main() -> int:
         success = process_derived_columns()
         if success:
             stage2_config = load_stage2_config()
-            derived_path = resolve_derived_output_path(
-                stage2_config=stage2_config
-            )
+            derived_path = resolve_derived_output_path(stage2_config=stage2_config)
             print("\n" + "=" * 60)
             print("SUCCESS: 파생 컬럼 처리 완료!")
             print(f"FILE: 결과 파일: {derived_path}")

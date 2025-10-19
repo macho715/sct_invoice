@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 DataSynchronizer v2.9 (Hard-override Date + Colorize)
 - Master always takes precedence
@@ -9,17 +10,15 @@ DataSynchronizer v2.9 (Hard-override Date + Colorize)
 
 from __future__ import annotations
 from dataclasses import dataclass, field
-from datetime import datetime
-from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
-
-import numpy as np
+from datetime import datetime
 import pandas as pd
+import numpy as np
 import re
-import yaml
+from pathlib import Path
 from openpyxl import load_workbook
-from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
+from openpyxl.styles import PatternFill
 
 # ===== Config =====
 ORANGE = "FFC000"  # changed date cell
@@ -42,56 +41,10 @@ DATE_KEYS = [
     "AGI",
 ]
 ALWAYS_OVERWRITE_NONDATE = True  # Master non-null overwrites
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-PIPELINE_CONFIG_PATH = PROJECT_ROOT / "config" / "pipeline_config.yaml"
-DEFAULT_SYNCED_DIR = Path("data/processed/synced")
-SYNCED_SUFFIX = "_synced.xlsx"
 
 
 def _norm_header(h: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", str(h).strip().lower())
-
-
-def _load_pipeline_config(config_path: Optional[Path] = None) -> Dict[str, Any]:
-    """파이프라인 설정을 로드합니다. / Load the pipeline configuration."""
-
-    target_path = config_path or PIPELINE_CONFIG_PATH
-    if not target_path.exists():
-        return {}
-    with open(target_path, "r", encoding="utf-8") as handle:
-        return yaml.safe_load(handle) or {}
-
-
-def resolve_synced_output_path(
-    warehouse_xlsx: str | Path,
-    *,
-    config_path: Optional[Path] = None,
-    project_root: Optional[Path] = None,
-) -> Path:
-    """동기화 결과 경로를 계산합니다. / Resolve synchronized output path."""
-
-    root = project_root or PROJECT_ROOT
-    config = _load_pipeline_config(config_path=config_path)
-    synced_dir_value = (
-        config.get("paths", {}).get("synced_dir")
-        if isinstance(config, dict)
-        else None
-    )
-    synced_dir = Path(synced_dir_value) if synced_dir_value else DEFAULT_SYNCED_DIR
-    if not synced_dir.is_absolute():
-        synced_dir = root / synced_dir
-
-    if not synced_dir.exists():
-        print(f"INFO: 생성되지 않은 동기화 디렉터리를 생성합니다: {synced_dir}")
-        synced_dir.mkdir(parents=True, exist_ok=True)
-
-    warehouse_name = Path(warehouse_xlsx).stem
-    if warehouse_name.endswith("_synced"):
-        output_name = f"{warehouse_name}.xlsx"
-    else:
-        output_name = f"{warehouse_name}{SYNCED_SUFFIX}"
-
-    return synced_dir / output_name
 
 
 def _is_date_col(col_name: str) -> bool:
@@ -192,15 +145,19 @@ class DataSynchronizerV29:
                     return col
         return None
 
-    def _build_index(self, df: pd.DataFrame, case_col: str) -> Dict[str, int]:
-        idx = {}
-        for i, v in enumerate(
-            df[case_col].astype(str).fillna("").str.strip().str.upper().tolist()
-        ):
+    def _build_index(self, df: pd.DataFrame, case_col: str) -> Dict[str, List[int]]:
+        # ⚠️ 동일 Case No. 다수 행을 모두 업데이트하기 위해 multi-map 구성
+        idx: Dict[str, List[int]] = {}
+        import re
+
+        series = df[case_col].fillna("").astype(str).str.strip().str.upper()
+        # 정규식으로 특수문자 제거
+        series = series.apply(lambda x: re.sub(r"[^A-Z0-9]", "", x))
+
+        for i, v in enumerate(series.tolist()):
             if not v:
                 continue
-            if v not in idx:
-                idx[v] = i
+            idx.setdefault(v, []).append(i)
         return idx
 
     def _apply_updates(
@@ -208,6 +165,7 @@ class DataSynchronizerV29:
     ) -> Tuple[pd.DataFrame, Dict[str, Any]]:
         stats = dict(updates=0, date_updates=0, field_updates=0, appends=0)
         wh_index = self._build_index(wh, case_col_w)
+        dup_cases = {k: v for k, v in wh_index.items() if len(v) > 1}
 
         # map headers (case-insensitively) to enable cross-frame copy
         m_norm = {_norm_header(c): c for c in master.columns}
@@ -217,8 +175,10 @@ class DataSynchronizerV29:
         aligned = [(m_norm[k], w_norm[k]) for k in sorted(set(m_norm) & set(w_norm))]
 
         for mi, mrow in master.iterrows():
+            import re
+
             key = (
-                str(mrow[case_col_m]).strip().upper()
+                re.sub(r"[^A-Z0-9]", "", str(mrow[case_col_m]).strip().upper())
                 if pd.notna(mrow[case_col_m])
                 else ""
             )
@@ -237,17 +197,17 @@ class DataSynchronizerV29:
                 )
                 continue
 
-            wi = wh_index[key]
+            target_rows = wh_index[key]  # 리스트 반환
+            for wi in target_rows:  # 동일 Case No. 모든 행에 반영
+                for mcol, wcol in aligned:
+                    mval = mrow[mcol]
+                    wval = (
+                        wh.at[wi, wcol] if wi < len(wh) and wcol in wh.columns else None
+                    )
+                    is_date = _is_date_col(wcol)
 
-            for mcol, wcol in aligned:
-                mval = mrow[mcol]
-                wval = wh.at[wi, wcol] if wi < len(wh) and wcol in wh.columns else None
-                is_date = _is_date_col(wcol)
-
-                if is_date:
-                    # Master has any value -> always write; highlight only if logical change
-                    if pd.notna(mval):
-                        if not self._dates_equal(mval, wval):
+                    if is_date:
+                        if pd.notna(mval) and not self._dates_equal(mval, wval):
                             stats["updates"] += 1
                             stats["date_updates"] += 1
                             wh.at[wi, wcol] = mval
@@ -258,31 +218,27 @@ class DataSynchronizerV29:
                                 new_value=mval,
                                 change_type="date_update",
                             )
-                        else:
-                            # equal logically — ensure consistent format but don't log
+                        elif pd.notna(mval):
                             wh.at[wi, wcol] = mval
-                    # if master is NaN: do nothing
-                else:
-                    if ALWAYS_OVERWRITE_NONDATE and pd.notna(mval):
-                        if (wval is None) or (str(mval) != str(wval)):
-                            stats["updates"] += 1
-                            stats["field_updates"] += 1
-                            wh.at[wi, wcol] = mval
-                            self.change_tracker.add_change(
-                                row_index=wi,
-                                column_name=wcol,
-                                old_value=wval,
-                                new_value=mval,
-                                change_type="field_update",
-                            )
+                    else:
+                        if ALWAYS_OVERWRITE_NONDATE and pd.notna(mval):
+                            if (wval is None) or (str(mval) != str(wval)):
+                                stats["updates"] += 1
+                                stats["field_updates"] += 1
+                                wh.at[wi, wcol] = mval
+                                self.change_tracker.add_change(
+                                    row_index=wi,
+                                    column_name=wcol,
+                                    old_value=wval,
+                                    new_value=mval,
+                                    change_type="field_update",
+                                )
 
+        stats["warehouse_duplicate_cases"] = len(dup_cases)
         return wh, stats
 
     def synchronize(
-        self,
-        master_xlsx: str,
-        warehouse_xlsx: str,
-        output_path: Optional[str | Path] = None,
+        self, master_xlsx: str, warehouse_xlsx: str, output_path: Optional[str] = None
     ) -> SyncResult:
         try:
             # Load
@@ -304,18 +260,12 @@ class DataSynchronizerV29:
             updated_w_df, stats = self._apply_updates(m_df, w_df, m_case, w_case)
 
             # Save to output
-            if output_path is None:
-                out_path = resolve_synced_output_path(warehouse_xlsx)
-            else:
-                out_path = Path(output_path)
-                if not out_path.parent.exists():
-                    print(
-                        "INFO: 지정한 출력 디렉터리가 없어 생성합니다: "
-                        f"{out_path.parent}"
-                    )
-                    out_path.parent.mkdir(parents=True, exist_ok=True)
-
-            with pd.ExcelWriter(out_path, engine="openpyxl") as writer:
+            out = output_path or str(
+                Path(warehouse_xlsx).with_name(
+                    Path(warehouse_xlsx).stem + ".synced.xlsx"
+                )
+            )
+            with pd.ExcelWriter(out, engine="openpyxl") as writer:
                 updated_w_df.to_excel(
                     writer, sheet_name=w_xl.sheet_names[0], index=False
                 )
@@ -427,18 +377,13 @@ class DataSynchronizerV29:
                 self.change_tracker, orange_hex=ORANGE, yellow_hex=YELLOW
             )
             fmt.apply_formatting_inplace(
-                out_path, sheet_name=w_xl.sheet_names[0], header_row=1
+                out, sheet_name=w_xl.sheet_names[0], header_row=1
             )
 
-            stats["output_file"] = str(out_path)
-            return SyncResult(True, "Sync & colorize done.", str(out_path), stats)
+            stats["output_file"] = out
+            return SyncResult(True, "Sync & colorize done.", out, stats)
         except Exception as e:
-            error_output = (
-                str(output_path)
-                if output_path is not None
-                else str(warehouse_xlsx)
-            )
-            return SyncResult(False, f"Error: {e}", error_output, {})
+            return SyncResult(False, f"Error: {e}", output_path or warehouse_xlsx, {})
 
 
 if __name__ == "__main__":

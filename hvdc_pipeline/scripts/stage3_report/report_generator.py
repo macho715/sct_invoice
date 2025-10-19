@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
  HVDC 입고 로직 구현 및 집계 시스템 종합 보고서 (v3.0-corrected)
 Samsung C&T · ADNOC · DSV Partnership

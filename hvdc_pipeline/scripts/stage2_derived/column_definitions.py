@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """파생 컬럼 정의 상수 모듈/Derived column definition constants module."""
 
 from __future__ import annotations

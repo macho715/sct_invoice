@@ -23,9 +23,18 @@
 
 ### 기본 실행
 ```bash
-cd hitachi/anomaly_detector
-python anomaly_detector.py --input "../../pipe2/HVDC_입고로직_종합리포트_20251018_224141_v3.0-corrected.xlsx" --sheet "통합_원본데이터_Fixed" --visualize
+# 파이프라인 통합 실행 (권장)
+python hvdc_pipeline/run_pipeline.py --all
+
+# Stage 4만 실행
+python hvdc_pipeline/run_pipeline.py --stage 4
+
+# 직접 실행 (고급 사용자)
+cd hvdc_pipeline/scripts/stage4_anomaly
+python anomaly_detector.py --input "../../data/processed/derived/HVDC WAREHOUSE_HITACHI(HE).xlsx" --sheet "통합_원본데이터_Fixed" --visualize
 ```
+
+**기본 시트**: Stage 4는 기본적으로 `통합_원본데이터_Fixed` 시트를 사용합니다. 이는 Stage 3에서 생성되는 표준 시트명입니다.
 
 ### 도움말
 ```bash

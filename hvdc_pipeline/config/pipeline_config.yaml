@@ -37,8 +37,8 @@ stages:
     description: "이상치 탐지 및 분석"
     enabled: true
     io:
-      input_file: "data/processed/derived/HVDC WAREHOUSE_HITACHI(HE).xlsx"
-      sheet_name: ""
+      input_file: "data/processed/reports/HVDC_입고로직_종합리포트_20251019_165153_v3.0-corrected.xlsx"
+      sheet_name: 0  # First sheet (HITACHI_입고로직_종합리포트_Fixed)
       excel_output: "data/anomaly/HVDC_anomaly_report.xlsx"
       json_output: "data/anomaly/HVDC_anomaly_report.json"
       visualization:

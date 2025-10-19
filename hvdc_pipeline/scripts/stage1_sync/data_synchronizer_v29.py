@@ -145,10 +145,14 @@ class DataSynchronizerV29:
         return None
 
     def _build_index(self, df: pd.DataFrame, case_col: str) -> Dict[str, int]:
-        idx = {}
-        for i, v in enumerate(
-            df[case_col].astype(str).fillna("").str.strip().str.upper().tolist()
-        ):
+        idx: Dict[str, int] = {}
+        import re
+
+        series = df[case_col].fillna("").astype(str).str.strip().str.upper()
+        # 정규식으로 특수문자 제거
+        series = series.apply(lambda x: re.sub(r"[^A-Z0-9]", "", x))
+
+        for i, v in enumerate(series.tolist()):
             if not v:
                 continue
             if v not in idx:
