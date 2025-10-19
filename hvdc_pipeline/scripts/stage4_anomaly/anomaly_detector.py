@@ -48,6 +48,10 @@ try:
 except Exception:
     PYOD_AVAILABLE = False
 
+# ----- Constants ---------------------------------------------------------------
+DEFAULT_STAGE3_SHEET = "통합_원본데이터_Fixed"
+
+
 # ----- Logging ----------------------------------------------------------------
 logger = logging.getLogger("hvdc.anomaly")
 if not logger.handlers:
@@ -644,7 +648,11 @@ def main():
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", required=True, help="Excel/CSV 파일 경로")
-    ap.add_argument("--sheet", default=None, help="Excel 시트명(옵션)")
+    ap.add_argument(
+        "--sheet",
+        default=DEFAULT_STAGE3_SHEET,
+        help="Excel 시트명(기본: Stage 3 산출물 '통합_원본데이터_Fixed')",
+    )
     ap.add_argument("--excel-out", default=None, help="결과 Excel 경로")
     ap.add_argument("--json-out", default=None, help="결과 JSON 경로")
     ap.add_argument("--visualize", action="store_true", help="원본 파일에 색상 표시")
@@ -653,8 +661,24 @@ def main():
     args = ap.parse_args()
 
     p = Path(args.input)
+    sheet_name = args.sheet or DEFAULT_STAGE3_SHEET
     if p.suffix.lower() in (".xlsx", ".xlsm", ".xls"):
-        df = pd.read_excel(p, sheet_name=args.sheet)
+        try:
+            df = pd.read_excel(p, sheet_name=sheet_name)
+        except ValueError:
+            try:
+                available_sheets = pd.ExcelFile(p).sheet_names
+            except Exception:
+                available_sheets = []
+            sheet_list = ", ".join(available_sheets) if available_sheets else "(시트 정보 없음)"
+            logger.error(
+                "❌ 시트 로딩 실패: '%s' 시트를 찾을 수 없습니다. Stage 3에서 생성된 "
+                "'통합_원본데이터_Fixed' 시트를 사용하거나 --sheet 옵션으로 존재하는 시트를 지정하세요. "
+                "사용 가능한 시트: %s",
+                sheet_name,
+                sheet_list,
+            )
+            return
     else:
         df = pd.read_csv(p, encoding="utf-8")
 
@@ -679,16 +703,36 @@ def main():
             logger.info("🎨 원본 파일에 색상 표시 시작...")
             visualizer = AnomalyVisualizer(result["anomalies"])
 
+            if p.suffix.lower() not in (".xlsx", ".xlsm", ".xls"):
+                logger.error("❌ 색상 표시는 Excel 파일에서만 지원됩니다.")
+                return
+
+            try:
+                available_sheets = pd.ExcelFile(args.input).sheet_names
+            except Exception as exc:
+                logger.error(f"❌ Excel 시트 정보를 읽는 중 오류가 발생했습니다: {exc}")
+                return
+
+            if sheet_name not in available_sheets:
+                logger.error(
+                    "❌ '%s' 시트를 찾을 수 없어 색상 표시를 진행할 수 없습니다. Stage 3 산출물의 "
+                    "'통합_원본데이터_Fixed' 시트를 사용하거나 --sheet 옵션으로 존재하는 시트를 지정하세요. "
+                    "사용 가능한 시트: %s",
+                    sheet_name,
+                    ", ".join(available_sheets),
+                )
+                return
+
             viz_result = visualizer.apply_anomaly_colors(
                 excel_file=args.input,
-                sheet_name=args.sheet or "Case List",
+                sheet_name=sheet_name,
                 case_col=args.case_col,
                 create_backup=not args.no_backup,
             )
 
             if viz_result["success"]:
                 # 색상 범례 추가
-                visualizer.add_color_legend(args.input, args.sheet or "Case List")
+                visualizer.add_color_legend(args.input, sheet_name)
                 logger.info("ℹ️ 범례는 '색상 범례' 시트에만 작성되어 데이터 행에는 영향을 주지 않습니다.")
                 logger.info(f"✅ 색상 표시 완료: {viz_result['message']}")
                 logger.info(

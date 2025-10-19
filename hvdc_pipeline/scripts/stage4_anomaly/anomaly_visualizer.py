@@ -9,6 +9,8 @@ import openpyxl
 from openpyxl.styles import PatternFill
 
 # ---- ARGB 정의(불투명: FF alpha). 검증 스크립트 호환 위해 00/FF 모두 허용 ----
+DEFAULT_STAGE3_SHEET = "통합_원본데이터_Fixed"
+
 ARGB = {
     "RED":    ("FFFF0000", {"FFFF0000", "00FF0000"}),
     "ORANGE": ("FFFFC000", {"FFFFC000", "00FFC000"}),
@@ -60,7 +62,7 @@ class AnomalyVisualizer:
     def apply_anomaly_colors(
         self,
         excel_file: Union[str, Path],
-        sheet_name: str = "Case List",
+        sheet_name: str = DEFAULT_STAGE3_SHEET,
         case_col: str = "Case No.",
         create_backup: bool = True,
     ) -> Dict:
@@ -136,7 +138,9 @@ class AnomalyVisualizer:
             "backup_path": str(bak) if create_backup else None,
         }
 
-    def add_color_legend(self, excel_file: Union[str, Path], _: str = "Case List") -> None:
+    def add_color_legend(
+        self, excel_file: Union[str, Path], _: str = DEFAULT_STAGE3_SHEET
+    ) -> None:
         """
         ⚠️ 기존과 달리 '데이터 시트'를 건드리지 않고, 항상 별도 시트('색상 범례')에 작성.
         """
@@ -216,7 +220,7 @@ class AnomalyVisualizer:
     def apply_anomaly_colors(
         self,
         excel_file: Union[str, Path],
-        sheet_name: str = "Case List",
+        sheet_name: str = DEFAULT_STAGE3_SHEET,
         case_col: str = "Case No.",
         create_backup: bool = True,
     ) -> Dict:
@@ -292,7 +296,9 @@ class AnomalyVisualizer:
             "backup_path": str(bak) if create_backup else None,
         }
 
-    def add_color_legend(self, excel_file: Union[str, Path], _: str = "Case List") -> None:
+    def add_color_legend(
+        self, excel_file: Union[str, Path], _: str = DEFAULT_STAGE3_SHEET
+    ) -> None:
         """
         ⚠️ 기존과 달리 '데이터 시트'를 건드리지 않고, 항상 별도 시트('색상 범례')에 작성.
         """
