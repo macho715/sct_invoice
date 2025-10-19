@@ -1,7 +1,7 @@
 # HVDC Invoice Audit System
 **Samsung C&T HVDC Project - Integrated Logistics Management System**
 
-[![GitHub](https://img.shields.io/badge/github-macho715%2Flogi--invoice-blue)]()
+[![GitHub](https://img.shields.io/badge/github-macho715%2Fsct--invoice-blue)]()
 [![Python](https://img.shields.io/badge/python-3.11+-blue)]()
 [![License](https://img.shields.io/badge/license-Private-red)]()
 [![Version](https://img.shields.io/badge/version-v4.2--v2.9--v1.0-green)]()
@@ -272,8 +272,8 @@ report = validator.generate_validation_report('HVDC-ADOPT-SCT-0126', documents)
 
 #### 1. Repository Clone
 ```bash
-git clone https://github.com/macho715/logi_invoice.git
-cd logi_invoice
+git clone https://github.com/macho715/sct_invoice.git
+cd sct_invoice
 ```
 
 #### 2. System-Specific Installation
@@ -328,7 +328,7 @@ python parsers/dsv_pdf_parser.py input/document.pdf -o output/result.json
 ## 📁 Project Structure
 
 ```
-logi_invoice/
+sct_invoice/
 ├── HVDC_Invoice_Audit/              # Main invoice audit system (v4.2)
 │   ├── 01_DSV_SHPT/                 # Shipment processing
 │   │   ├── Core_Systems/            # Core processing engines
