@@ -42,14 +42,14 @@ def load_config() -> dict:
 def print_banner():
     """파이프라인 시작 배너를 출력합니다."""
     print("\n" + "=" * 80)
-    print("🚀 HVDC PIPELINE v2.0 - 통합 실행")
-    print("   Samsung C&T Logistics | ADNOC·DSV Partnership")
+    print("HVDC PIPELINE v2.0 - Integration Execution")
+    print("   Samsung C&T Logistics | ADNOC-DSV Partnership")
     print("=" * 80)
-    print("📋 실행 단계:")
-    print("   Stage 1: 데이터 동기화 (Data Synchronization)")
-    print("   Stage 2: 파생 컬럼 생성 (Derived Columns)")
-    print("   Stage 3: 보고서 생성 (Report Generation)")
-    print("   Stage 4: 이상치 탐지 (Anomaly Detection)")
+    print("Execution Stages:")
+    print("   Stage 1: Data Synchronization")
+    print("   Stage 2: Derived Columns")
+    print("   Stage 3: Report Generation")
+    print("   Stage 4: Anomaly Detection")
     print("=" * 80 + "\n")
 
 
@@ -59,12 +59,12 @@ def run_stage(stage_num: int, config: dict) -> bool:
 
     try:
         if stage_num == 1:
-            print("🔄 Stage 1: 데이터 동기화 실행...")
-            print("INFO: Stage 1은 별도 스크립트로 실행하세요.")
+            print("[Stage 1] Data Synchronization...")
+            print("INFO: Stage 1 requires separate script execution.")
             print("      python scripts/stage1_sync/data_synchronizer.py")
 
         elif stage_num == 2:
-            print("🧮 Stage 2: 파생 컬럼 생성 실행...")
+            print("[Stage 2] Derived Columns Generation...")
             # 설정에서 입력 파일 경로 가져오기
             stage2_config_path = (
                 Path(__file__).parent / "config" / "stage2_derived_config.yaml"
@@ -86,13 +86,13 @@ def run_stage(stage_num: int, config: dict) -> bool:
                 return False
 
         elif stage_num == 3:
-            print("📊 Stage 3: 보고서 생성 실행...")
-            print("INFO: Stage 3은 별도 스크립트로 실행하세요.")
+            print("[Stage 3] Report Generation...")
+            print("INFO: Stage 3 requires separate script execution.")
             print("      python scripts/stage3_report/report_generator.py")
 
         elif stage_num == 4:
-            print("🔍 Stage 4: 이상치 탐지 실행...")
-            print("INFO: Stage 4는 별도 스크립트로 실행하세요.")
+            print("[Stage 4] Anomaly Detection...")
+            print("INFO: Stage 4 requires separate script execution.")
             print("      python scripts/stage4_anomaly/anomaly_detector.py")
 
         else:
@@ -100,11 +100,11 @@ def run_stage(stage_num: int, config: dict) -> bool:
             return False
 
         stage_duration = time.time() - stage_start_time
-        print(f"✅ Stage {stage_num} 완료 (소요시간: {stage_duration:.2f}초)\n")
+        print(f"[OK] Stage {stage_num} completed (Duration: {stage_duration:.2f}s)\n")
         return True
 
     except Exception as e:
-        print(f"❌ Stage {stage_num} 실행 중 오류 발생: {e}")
+        print(f"[ERROR] Stage {stage_num} failed: {e}")
         return False
 
 
@@ -117,31 +117,31 @@ def run_all_stages(config: dict) -> bool:
 
     for stage_num in stages:
         if not run_stage(stage_num, config):
-            print(f"❌ 파이프라인 실패: Stage {stage_num}에서 중단")
+            print(f"[FAILED] Pipeline stopped at Stage {stage_num}")
             return False
 
     total_duration = time.time() - total_start_time
-    print("🎉 전체 파이프라인 실행 완료!")
-    print(f"⏱️  총 소요시간: {total_duration:.2f}초")
-    print("📁 결과 파일들:")
-    print("   - data/processed/synced/: 동기화된 데이터")
-    print("   - data/processed/derived/: 파생 컬럼이 추가된 데이터")
-    print("   - data/processed/reports/: 최종 보고서")
-    print("   - data/anomaly/: 이상치 분석 결과")
+    print("[SUCCESS] All pipeline stages completed!")
+    print(f"Total Duration: {total_duration:.2f}s")
+    print("Output Files:")
+    print("   - data/processed/synced/: Synchronized data")
+    print("   - data/processed/derived/: Data with derived columns")
+    print("   - data/processed/reports/: Final reports")
+    print("   - data/anomaly/: Anomaly analysis results")
 
     return True
 
 
 def run_specific_stages(stage_list: List[int], config: dict) -> bool:
     """지정된 Stage들만 실행합니다."""
-    print(f"🎯 선택된 Stage 실행: {stage_list}")
+    print(f"[INFO] Selected stages: {stage_list}")
 
     for stage_num in stage_list:
         if not run_stage(stage_num, config):
-            print(f"❌ 파이프라인 실패: Stage {stage_num}에서 중단")
+            print(f"[FAILED] Pipeline stopped at Stage {stage_num}")
             return False
 
-    print("✅ 선택된 Stage 실행 완료!")
+    print("[SUCCESS] Selected stages completed!")
     return True
 
 
@@ -197,10 +197,10 @@ def main():
         return 0 if success else 1
 
     except KeyboardInterrupt:
-        print("\n⚠️  사용자에 의해 중단됨")
+        print("\n[WARNING] Interrupted by user")
         return 1
     except Exception as e:
-        print(f"❌ 예상치 못한 오류: {e}")
+        print(f"[ERROR] Unexpected error: {e}")
         return 1
 
 

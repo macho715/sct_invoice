@@ -3,11 +3,11 @@
     "Case_ID": "207721",
     "Anomaly_Type": "데이터 품질",
     "Severity": "보통",
-    "Description": "CASE_NO 중복 106건; HVDC_CODE 형식 오류 5552건",
+    "Description": "CASE_NO 중복 106건; HVDC_CODE 형식 오류 7161건",
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:20.829767",
+    "Timestamp": "2025-10-19T10:59:31.421442",
     "Risk_Score": null
   },
   {
@@ -18,7 +18,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.297748",
+    "Timestamp": "2025-10-19T10:59:32.707819",
     "Risk_Score": null
   },
   {
@@ -29,7 +29,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.297819",
+    "Timestamp": "2025-10-19T10:59:32.707963",
     "Risk_Score": null
   },
   {
@@ -40,7 +40,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.297879",
+    "Timestamp": "2025-10-19T10:59:32.708093",
     "Risk_Score": null
   },
   {
@@ -51,7 +51,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.297936",
+    "Timestamp": "2025-10-19T10:59:32.708220",
     "Risk_Score": null
   },
   {
@@ -62,7 +62,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.297993",
+    "Timestamp": "2025-10-19T10:59:32.708351",
     "Risk_Score": null
   },
   {
@@ -73,7 +73,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298050",
+    "Timestamp": "2025-10-19T10:59:32.708475",
     "Risk_Score": null
   },
   {
@@ -84,7 +84,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298104",
+    "Timestamp": "2025-10-19T10:59:32.708600",
     "Risk_Score": null
   },
   {
@@ -95,7 +95,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298159",
+    "Timestamp": "2025-10-19T10:59:32.708726",
     "Risk_Score": null
   },
   {
@@ -106,7 +106,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298213",
+    "Timestamp": "2025-10-19T10:59:32.708850",
     "Risk_Score": null
   },
   {
@@ -117,7 +117,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298266",
+    "Timestamp": "2025-10-19T10:59:32.708975",
     "Risk_Score": null
   },
   {
@@ -128,7 +128,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298320",
+    "Timestamp": "2025-10-19T10:59:32.709099",
     "Risk_Score": null
   },
   {
@@ -139,7 +139,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298373",
+    "Timestamp": "2025-10-19T10:59:32.709223",
     "Risk_Score": null
   },
   {
@@ -150,7 +150,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298426",
+    "Timestamp": "2025-10-19T10:59:32.709346",
     "Risk_Score": null
   },
   {
@@ -161,7 +161,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298479",
+    "Timestamp": "2025-10-19T10:59:32.709469",
     "Risk_Score": null
   },
   {
@@ -172,7 +172,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298603",
+    "Timestamp": "2025-10-19T10:59:32.709592",
     "Risk_Score": null
   },
   {
@@ -183,7 +183,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298659",
+    "Timestamp": "2025-10-19T10:59:32.709715",
     "Risk_Score": null
   },
   {
@@ -194,7 +194,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298713",
+    "Timestamp": "2025-10-19T10:59:32.709838",
     "Risk_Score": null
   },
   {
@@ -205,7 +205,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298767",
+    "Timestamp": "2025-10-19T10:59:32.709961",
     "Risk_Score": null
   },
   {
@@ -216,7 +216,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298821",
+    "Timestamp": "2025-10-19T10:59:32.710085",
     "Risk_Score": null
   },
   {
@@ -227,7 +227,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298874",
+    "Timestamp": "2025-10-19T10:59:32.710208",
     "Risk_Score": null
   },
   {
@@ -238,7 +238,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298928",
+    "Timestamp": "2025-10-19T10:59:32.710331",
     "Risk_Score": null
   },
   {
@@ -249,7 +249,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.298982",
+    "Timestamp": "2025-10-19T10:59:32.710456",
     "Risk_Score": null
   },
   {
@@ -260,7 +260,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299039",
+    "Timestamp": "2025-10-19T10:59:32.710579",
     "Risk_Score": null
   },
   {
@@ -271,7 +271,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299093",
+    "Timestamp": "2025-10-19T10:59:32.710703",
     "Risk_Score": null
   },
   {
@@ -282,7 +282,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299146",
+    "Timestamp": "2025-10-19T10:59:32.710826",
     "Risk_Score": null
   },
   {
@@ -293,7 +293,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299199",
+    "Timestamp": "2025-10-19T10:59:32.710949",
     "Risk_Score": null
   },
   {
@@ -304,7 +304,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299252",
+    "Timestamp": "2025-10-19T10:59:32.711072",
     "Risk_Score": null
   },
   {
@@ -315,7 +315,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299306",
+    "Timestamp": "2025-10-19T10:59:32.711195",
     "Risk_Score": null
   },
   {
@@ -326,7 +326,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299358",
+    "Timestamp": "2025-10-19T10:59:32.711318",
     "Risk_Score": null
   },
   {
@@ -337,7 +337,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299411",
+    "Timestamp": "2025-10-19T10:59:32.711440",
     "Risk_Score": null
   },
   {
@@ -348,7 +348,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299463",
+    "Timestamp": "2025-10-19T10:59:32.711564",
     "Risk_Score": null
   },
   {
@@ -359,7 +359,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299516",
+    "Timestamp": "2025-10-19T10:59:32.711688",
     "Risk_Score": null
   },
   {
@@ -370,7 +370,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299569",
+    "Timestamp": "2025-10-19T10:59:32.711811",
     "Risk_Score": null
   },
   {
@@ -381,7 +381,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299621",
+    "Timestamp": "2025-10-19T10:59:32.711935",
     "Risk_Score": null
   },
   {
@@ -392,7 +392,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299674",
+    "Timestamp": "2025-10-19T10:59:32.712058",
     "Risk_Score": null
   },
   {
@@ -403,7 +403,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299727",
+    "Timestamp": "2025-10-19T10:59:32.712181",
     "Risk_Score": null
   },
   {
@@ -414,7 +414,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299780",
+    "Timestamp": "2025-10-19T10:59:32.712304",
     "Risk_Score": null
   },
   {
@@ -425,7 +425,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299832",
+    "Timestamp": "2025-10-19T10:59:32.712430",
     "Risk_Score": null
   },
   {
@@ -436,7 +436,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299884",
+    "Timestamp": "2025-10-19T10:59:32.712553",
     "Risk_Score": null
   },
   {
@@ -447,7 +447,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299936",
+    "Timestamp": "2025-10-19T10:59:32.712676",
     "Risk_Score": null
   },
   {
@@ -458,7 +458,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.299988",
+    "Timestamp": "2025-10-19T10:59:32.712800",
     "Risk_Score": null
   },
   {
@@ -469,7 +469,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.300041",
+    "Timestamp": "2025-10-19T10:59:32.712923",
     "Risk_Score": null
   },
   {
@@ -480,7 +480,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.300093",
+    "Timestamp": "2025-10-19T10:59:32.713065",
     "Risk_Score": null
   },
   {
@@ -491,7 +491,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.300146",
+    "Timestamp": "2025-10-19T10:59:32.713189",
     "Risk_Score": null
   },
   {
@@ -502,7 +502,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.300198",
+    "Timestamp": "2025-10-19T10:59:32.713313",
     "Risk_Score": null
   },
   {
@@ -513,7 +513,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.300251",
+    "Timestamp": "2025-10-19T10:59:32.713436",
     "Risk_Score": null
   },
   {
@@ -524,7 +524,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.300302",
+    "Timestamp": "2025-10-19T10:59:32.713559",
     "Risk_Score": null
   },
   {
@@ -535,7 +535,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.300355",
+    "Timestamp": "2025-10-19T10:59:32.713682",
     "Risk_Score": null
   },
   {
@@ -546,7 +546,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.306354",
+    "Timestamp": "2025-10-19T10:59:32.729327",
     "Risk_Score": null
   },
   {
@@ -557,7 +557,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.306419",
+    "Timestamp": "2025-10-19T10:59:32.729461",
     "Risk_Score": null
   },
   {
@@ -568,7 +568,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.306475",
+    "Timestamp": "2025-10-19T10:59:32.729590",
     "Risk_Score": null
   },
   {
@@ -579,7 +579,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.306531",
+    "Timestamp": "2025-10-19T10:59:32.729721",
     "Risk_Score": null
   },
   {
@@ -590,7 +590,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.306587",
+    "Timestamp": "2025-10-19T10:59:32.729847",
     "Risk_Score": null
   },
   {
@@ -601,7 +601,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.306645",
+    "Timestamp": "2025-10-19T10:59:32.729982",
     "Risk_Score": null
   },
   {
@@ -612,7 +612,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.306700",
+    "Timestamp": "2025-10-19T10:59:32.730347",
     "Risk_Score": null
   },
   {
@@ -623,7 +623,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.306754",
+    "Timestamp": "2025-10-19T10:59:32.730635",
     "Risk_Score": null
   },
   {
@@ -634,7 +634,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307466",
+    "Timestamp": "2025-10-19T10:59:32.732830",
     "Risk_Score": null
   },
   {
@@ -645,7 +645,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307521",
+    "Timestamp": "2025-10-19T10:59:32.733015",
     "Risk_Score": null
   },
   {
@@ -656,7 +656,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307581",
+    "Timestamp": "2025-10-19T10:59:32.733147",
     "Risk_Score": null
   },
   {
@@ -667,7 +667,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307635",
+    "Timestamp": "2025-10-19T10:59:32.733274",
     "Risk_Score": null
   },
   {
@@ -678,7 +678,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307688",
+    "Timestamp": "2025-10-19T10:59:32.733400",
     "Risk_Score": null
   },
   {
@@ -689,7 +689,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307742",
+    "Timestamp": "2025-10-19T10:59:32.733525",
     "Risk_Score": null
   },
   {
@@ -700,7 +700,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307795",
+    "Timestamp": "2025-10-19T10:59:32.733651",
     "Risk_Score": null
   },
   {
@@ -711,7 +711,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307850",
+    "Timestamp": "2025-10-19T10:59:32.733775",
     "Risk_Score": null
   },
   {
@@ -722,7 +722,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307903",
+    "Timestamp": "2025-10-19T10:59:32.733901",
     "Risk_Score": null
   },
   {
@@ -733,7 +733,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.307956",
+    "Timestamp": "2025-10-19T10:59:32.734025",
     "Risk_Score": null
   },
   {
@@ -744,7 +744,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.308010",
+    "Timestamp": "2025-10-19T10:59:32.734150",
     "Risk_Score": null
   },
   {
@@ -755,7 +755,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.308063",
+    "Timestamp": "2025-10-19T10:59:32.734274",
     "Risk_Score": null
   },
   {
@@ -766,7 +766,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.308116",
+    "Timestamp": "2025-10-19T10:59:32.734398",
     "Risk_Score": null
   },
   {
@@ -777,7 +777,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.308169",
+    "Timestamp": "2025-10-19T10:59:32.734523",
     "Risk_Score": null
   },
   {
@@ -788,7 +788,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.308223",
+    "Timestamp": "2025-10-19T10:59:32.734650",
     "Risk_Score": null
   },
   {
@@ -799,7 +799,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.309790",
+    "Timestamp": "2025-10-19T10:59:32.738614",
     "Risk_Score": null
   },
   {
@@ -810,7 +810,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.309845",
+    "Timestamp": "2025-10-19T10:59:32.738739",
     "Risk_Score": null
   },
   {
@@ -821,7 +821,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.309898",
+    "Timestamp": "2025-10-19T10:59:32.738862",
     "Risk_Score": null
   },
   {
@@ -832,7 +832,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.309951",
+    "Timestamp": "2025-10-19T10:59:32.738986",
     "Risk_Score": null
   },
   {
@@ -843,7 +843,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310004",
+    "Timestamp": "2025-10-19T10:59:32.739109",
     "Risk_Score": null
   },
   {
@@ -854,7 +854,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310059",
+    "Timestamp": "2025-10-19T10:59:32.739235",
     "Risk_Score": null
   },
   {
@@ -865,7 +865,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310111",
+    "Timestamp": "2025-10-19T10:59:32.739358",
     "Risk_Score": null
   },
   {
@@ -876,7 +876,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310164",
+    "Timestamp": "2025-10-19T10:59:32.739481",
     "Risk_Score": null
   },
   {
@@ -887,7 +887,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310216",
+    "Timestamp": "2025-10-19T10:59:32.739605",
     "Risk_Score": null
   },
   {
@@ -898,7 +898,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310268",
+    "Timestamp": "2025-10-19T10:59:32.739728",
     "Risk_Score": null
   },
   {
@@ -909,7 +909,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310321",
+    "Timestamp": "2025-10-19T10:59:32.739850",
     "Risk_Score": null
   },
   {
@@ -920,7 +920,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310373",
+    "Timestamp": "2025-10-19T10:59:32.739973",
     "Risk_Score": null
   },
   {
@@ -931,7 +931,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310426",
+    "Timestamp": "2025-10-19T10:59:32.740102",
     "Risk_Score": null
   },
   {
@@ -942,7 +942,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310480",
+    "Timestamp": "2025-10-19T10:59:32.740225",
     "Risk_Score": null
   },
   {
@@ -953,7 +953,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310532",
+    "Timestamp": "2025-10-19T10:59:32.740349",
     "Risk_Score": null
   },
   {
@@ -964,7 +964,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310584",
+    "Timestamp": "2025-10-19T10:59:32.740472",
     "Risk_Score": null
   },
   {
@@ -975,7 +975,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310636",
+    "Timestamp": "2025-10-19T10:59:32.740595",
     "Risk_Score": null
   },
   {
@@ -986,7 +986,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310688",
+    "Timestamp": "2025-10-19T10:59:32.740718",
     "Risk_Score": null
   },
   {
@@ -997,7 +997,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310739",
+    "Timestamp": "2025-10-19T10:59:32.740841",
     "Risk_Score": null
   },
   {
@@ -1008,7 +1008,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310792",
+    "Timestamp": "2025-10-19T10:59:32.740964",
     "Risk_Score": null
   },
   {
@@ -1019,7 +1019,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310846",
+    "Timestamp": "2025-10-19T10:59:32.741087",
     "Risk_Score": null
   },
   {
@@ -1030,7 +1030,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310898",
+    "Timestamp": "2025-10-19T10:59:32.741211",
     "Risk_Score": null
   },
   {
@@ -1041,7 +1041,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.310951",
+    "Timestamp": "2025-10-19T10:59:32.741334",
     "Risk_Score": null
   },
   {
@@ -1052,7 +1052,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311004",
+    "Timestamp": "2025-10-19T10:59:32.741457",
     "Risk_Score": null
   },
   {
@@ -1063,7 +1063,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311056",
+    "Timestamp": "2025-10-19T10:59:32.741580",
     "Risk_Score": null
   },
   {
@@ -1074,7 +1074,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311109",
+    "Timestamp": "2025-10-19T10:59:32.741704",
     "Risk_Score": null
   },
   {
@@ -1085,7 +1085,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311161",
+    "Timestamp": "2025-10-19T10:59:32.741827",
     "Risk_Score": null
   },
   {
@@ -1096,7 +1096,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311213",
+    "Timestamp": "2025-10-19T10:59:32.741954",
     "Risk_Score": null
   },
   {
@@ -1107,7 +1107,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311265",
+    "Timestamp": "2025-10-19T10:59:32.742076",
     "Risk_Score": null
   },
   {
@@ -1118,7 +1118,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311320",
+    "Timestamp": "2025-10-19T10:59:32.742199",
     "Risk_Score": null
   },
   {
@@ -1129,7 +1129,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311708",
+    "Timestamp": "2025-10-19T10:59:32.743163",
     "Risk_Score": null
   },
   {
@@ -1140,7 +1140,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311761",
+    "Timestamp": "2025-10-19T10:59:32.743288",
     "Risk_Score": null
   },
   {
@@ -1151,7 +1151,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311816",
+    "Timestamp": "2025-10-19T10:59:32.743412",
     "Risk_Score": null
   },
   {
@@ -1162,7 +1162,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311868",
+    "Timestamp": "2025-10-19T10:59:32.743535",
     "Risk_Score": null
   },
   {
@@ -1173,7 +1173,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311921",
+    "Timestamp": "2025-10-19T10:59:32.743658",
     "Risk_Score": null
   },
   {
@@ -1184,7 +1184,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.311973",
+    "Timestamp": "2025-10-19T10:59:32.743782",
     "Risk_Score": null
   },
   {
@@ -1195,7 +1195,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312026",
+    "Timestamp": "2025-10-19T10:59:32.743908",
     "Risk_Score": null
   },
   {
@@ -1206,7 +1206,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312079",
+    "Timestamp": "2025-10-19T10:59:32.744032",
     "Risk_Score": null
   },
   {
@@ -1217,7 +1217,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312131",
+    "Timestamp": "2025-10-19T10:59:32.744158",
     "Risk_Score": null
   },
   {
@@ -1228,7 +1228,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312185",
+    "Timestamp": "2025-10-19T10:59:32.744282",
     "Risk_Score": null
   },
   {
@@ -1239,7 +1239,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312237",
+    "Timestamp": "2025-10-19T10:59:32.744405",
     "Risk_Score": null
   },
   {
@@ -1250,7 +1250,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312289",
+    "Timestamp": "2025-10-19T10:59:32.744529",
     "Risk_Score": null
   },
   {
@@ -1261,7 +1261,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312341",
+    "Timestamp": "2025-10-19T10:59:32.744653",
     "Risk_Score": null
   },
   {
@@ -1272,7 +1272,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312393",
+    "Timestamp": "2025-10-19T10:59:32.744776",
     "Risk_Score": null
   },
   {
@@ -1283,7 +1283,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312446",
+    "Timestamp": "2025-10-19T10:59:32.744899",
     "Risk_Score": null
   },
   {
@@ -1294,7 +1294,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312498",
+    "Timestamp": "2025-10-19T10:59:32.745021",
     "Risk_Score": null
   },
   {
@@ -1305,7 +1305,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312550",
+    "Timestamp": "2025-10-19T10:59:32.745145",
     "Risk_Score": null
   },
   {
@@ -1316,7 +1316,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312602",
+    "Timestamp": "2025-10-19T10:59:32.745341",
     "Risk_Score": null
   },
   {
@@ -1327,7 +1327,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312654",
+    "Timestamp": "2025-10-19T10:59:32.745466",
     "Risk_Score": null
   },
   {
@@ -1338,7 +1338,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312707",
+    "Timestamp": "2025-10-19T10:59:32.745591",
     "Risk_Score": null
   },
   {
@@ -1349,7 +1349,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.312760",
+    "Timestamp": "2025-10-19T10:59:32.745715",
     "Risk_Score": null
   },
   {
@@ -1360,7 +1360,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.314470",
+    "Timestamp": "2025-10-19T10:59:32.750898",
     "Risk_Score": null
   },
   {
@@ -1371,7 +1371,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.314525",
+    "Timestamp": "2025-10-19T10:59:32.751026",
     "Risk_Score": null
   },
   {
@@ -1382,7 +1382,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.314578",
+    "Timestamp": "2025-10-19T10:59:32.751151",
     "Risk_Score": null
   },
   {
@@ -1393,7 +1393,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.314632",
+    "Timestamp": "2025-10-19T10:59:32.751274",
     "Risk_Score": null
   },
   {
@@ -1404,7 +1404,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315350",
+    "Timestamp": "2025-10-19T10:59:32.753075",
     "Risk_Score": null
   },
   {
@@ -1415,7 +1415,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315404",
+    "Timestamp": "2025-10-19T10:59:32.753200",
     "Risk_Score": null
   },
   {
@@ -1426,7 +1426,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315457",
+    "Timestamp": "2025-10-19T10:59:32.753324",
     "Risk_Score": null
   },
   {
@@ -1437,7 +1437,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315510",
+    "Timestamp": "2025-10-19T10:59:32.753448",
     "Risk_Score": null
   },
   {
@@ -1448,7 +1448,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315562",
+    "Timestamp": "2025-10-19T10:59:32.753572",
     "Risk_Score": null
   },
   {
@@ -1459,7 +1459,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315615",
+    "Timestamp": "2025-10-19T10:59:32.753696",
     "Risk_Score": null
   },
   {
@@ -1470,7 +1470,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315668",
+    "Timestamp": "2025-10-19T10:59:32.753819",
     "Risk_Score": null
   },
   {
@@ -1481,7 +1481,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315720",
+    "Timestamp": "2025-10-19T10:59:32.753942",
     "Risk_Score": null
   },
   {
@@ -1492,7 +1492,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315772",
+    "Timestamp": "2025-10-19T10:59:32.754068",
     "Risk_Score": null
   },
   {
@@ -1503,7 +1503,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315825",
+    "Timestamp": "2025-10-19T10:59:32.754191",
     "Risk_Score": null
   },
   {
@@ -1514,7 +1514,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315877",
+    "Timestamp": "2025-10-19T10:59:32.754314",
     "Risk_Score": null
   },
   {
@@ -1525,7 +1525,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315929",
+    "Timestamp": "2025-10-19T10:59:32.754437",
     "Risk_Score": null
   },
   {
@@ -1536,7 +1536,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.315981",
+    "Timestamp": "2025-10-19T10:59:32.754562",
     "Risk_Score": null
   },
   {
@@ -1547,7 +1547,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316033",
+    "Timestamp": "2025-10-19T10:59:32.754685",
     "Risk_Score": null
   },
   {
@@ -1558,7 +1558,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316085",
+    "Timestamp": "2025-10-19T10:59:32.754808",
     "Risk_Score": null
   },
   {
@@ -1569,7 +1569,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316137",
+    "Timestamp": "2025-10-19T10:59:32.754931",
     "Risk_Score": null
   },
   {
@@ -1580,7 +1580,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316189",
+    "Timestamp": "2025-10-19T10:59:32.755053",
     "Risk_Score": null
   },
   {
@@ -1591,7 +1591,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316240",
+    "Timestamp": "2025-10-19T10:59:32.755176",
     "Risk_Score": null
   },
   {
@@ -1602,7 +1602,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316292",
+    "Timestamp": "2025-10-19T10:59:32.755298",
     "Risk_Score": null
   },
   {
@@ -1613,7 +1613,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316344",
+    "Timestamp": "2025-10-19T10:59:32.755421",
     "Risk_Score": null
   },
   {
@@ -1624,7 +1624,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316397",
+    "Timestamp": "2025-10-19T10:59:32.755543",
     "Risk_Score": null
   },
   {
@@ -1635,7 +1635,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316449",
+    "Timestamp": "2025-10-19T10:59:32.755665",
     "Risk_Score": null
   },
   {
@@ -1646,7 +1646,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316502",
+    "Timestamp": "2025-10-19T10:59:32.755788",
     "Risk_Score": null
   },
   {
@@ -1657,7 +1657,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316554",
+    "Timestamp": "2025-10-19T10:59:32.755911",
     "Risk_Score": null
   },
   {
@@ -1668,7 +1668,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316606",
+    "Timestamp": "2025-10-19T10:59:32.756033",
     "Risk_Score": null
   },
   {
@@ -1679,7 +1679,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316659",
+    "Timestamp": "2025-10-19T10:59:32.756154",
     "Risk_Score": null
   },
   {
@@ -1690,7 +1690,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316711",
+    "Timestamp": "2025-10-19T10:59:32.756281",
     "Risk_Score": null
   },
   {
@@ -1701,7 +1701,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316762",
+    "Timestamp": "2025-10-19T10:59:32.756404",
     "Risk_Score": null
   },
   {
@@ -1712,7 +1712,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316815",
+    "Timestamp": "2025-10-19T10:59:32.756527",
     "Risk_Score": null
   },
   {
@@ -1723,7 +1723,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316868",
+    "Timestamp": "2025-10-19T10:59:32.756650",
     "Risk_Score": null
   },
   {
@@ -1734,7 +1734,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316921",
+    "Timestamp": "2025-10-19T10:59:32.756772",
     "Risk_Score": null
   },
   {
@@ -1745,7 +1745,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.316973",
+    "Timestamp": "2025-10-19T10:59:32.756979",
     "Risk_Score": null
   },
   {
@@ -1756,7 +1756,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317027",
+    "Timestamp": "2025-10-19T10:59:32.757326",
     "Risk_Score": null
   },
   {
@@ -1767,7 +1767,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317080",
+    "Timestamp": "2025-10-19T10:59:32.757507",
     "Risk_Score": null
   },
   {
@@ -1778,7 +1778,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317133",
+    "Timestamp": "2025-10-19T10:59:32.757647",
     "Risk_Score": null
   },
   {
@@ -1789,7 +1789,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317186",
+    "Timestamp": "2025-10-19T10:59:32.757783",
     "Risk_Score": null
   },
   {
@@ -1800,7 +1800,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317238",
+    "Timestamp": "2025-10-19T10:59:32.757918",
     "Risk_Score": null
   },
   {
@@ -1811,7 +1811,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317290",
+    "Timestamp": "2025-10-19T10:59:32.758047",
     "Risk_Score": null
   },
   {
@@ -1822,7 +1822,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317346",
+    "Timestamp": "2025-10-19T10:59:32.758177",
     "Risk_Score": null
   },
   {
@@ -1833,7 +1833,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317398",
+    "Timestamp": "2025-10-19T10:59:32.758305",
     "Risk_Score": null
   },
   {
@@ -1844,7 +1844,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317450",
+    "Timestamp": "2025-10-19T10:59:32.758432",
     "Risk_Score": null
   },
   {
@@ -1855,7 +1855,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317501",
+    "Timestamp": "2025-10-19T10:59:32.758557",
     "Risk_Score": null
   },
   {
@@ -1866,7 +1866,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317553",
+    "Timestamp": "2025-10-19T10:59:32.758684",
     "Risk_Score": null
   },
   {
@@ -1877,7 +1877,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317605",
+    "Timestamp": "2025-10-19T10:59:32.758809",
     "Risk_Score": null
   },
   {
@@ -1888,7 +1888,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317656",
+    "Timestamp": "2025-10-19T10:59:32.758937",
     "Risk_Score": null
   },
   {
@@ -1899,7 +1899,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317709",
+    "Timestamp": "2025-10-19T10:59:32.759062",
     "Risk_Score": null
   },
   {
@@ -1910,7 +1910,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317762",
+    "Timestamp": "2025-10-19T10:59:32.759190",
     "Risk_Score": null
   },
   {
@@ -1921,7 +1921,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317816",
+    "Timestamp": "2025-10-19T10:59:32.759314",
     "Risk_Score": null
   },
   {
@@ -1932,7 +1932,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317869",
+    "Timestamp": "2025-10-19T10:59:32.759439",
     "Risk_Score": null
   },
   {
@@ -1943,7 +1943,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317921",
+    "Timestamp": "2025-10-19T10:59:32.759564",
     "Risk_Score": null
   },
   {
@@ -1954,7 +1954,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.317973",
+    "Timestamp": "2025-10-19T10:59:32.759689",
     "Risk_Score": null
   },
   {
@@ -1965,7 +1965,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.318114",
+    "Timestamp": "2025-10-19T10:59:32.760032",
     "Risk_Score": null
   },
   {
@@ -1976,7 +1976,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.318168",
+    "Timestamp": "2025-10-19T10:59:32.760157",
     "Risk_Score": null
   },
   {
@@ -1987,7 +1987,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.318221",
+    "Timestamp": "2025-10-19T10:59:32.760282",
     "Risk_Score": null
   },
   {
@@ -1998,7 +1998,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.324778",
+    "Timestamp": "2025-10-19T10:59:32.777497",
     "Risk_Score": null
   },
   {
@@ -2009,7 +2009,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.360166",
+    "Timestamp": "2025-10-19T10:59:32.875976",
     "Risk_Score": null
   },
   {
@@ -2020,7 +2020,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.360224",
+    "Timestamp": "2025-10-19T10:59:32.876136",
     "Risk_Score": null
   },
   {
@@ -2031,7 +2031,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.360278",
+    "Timestamp": "2025-10-19T10:59:32.876285",
     "Risk_Score": null
   },
   {
@@ -2042,7 +2042,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.360330",
+    "Timestamp": "2025-10-19T10:59:32.876436",
     "Risk_Score": null
   },
   {
@@ -2053,7 +2053,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.363076",
+    "Timestamp": "2025-10-19T10:59:32.885010",
     "Risk_Score": null
   },
   {
@@ -2064,7 +2064,117 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.363131",
+    "Timestamp": "2025-10-19T10:59:32.885146",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "208066",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:32.965067",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "364226",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.033398",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "364227",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.033540",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "364247",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.035581",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "364268",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.087029",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "364331",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.089800",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "365441",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.106733",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "365458",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.106997",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "364289",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.110710",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "364310",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.113954",
     "Risk_Score": null
   },
   {
@@ -2075,7 +2185,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.518987",
+    "Timestamp": "2025-10-19T10:59:33.428981",
     "Risk_Score": null
   },
   {
@@ -2086,7 +2196,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519049",
+    "Timestamp": "2025-10-19T10:59:33.429322",
     "Risk_Score": null
   },
   {
@@ -2097,7 +2207,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519107",
+    "Timestamp": "2025-10-19T10:59:33.429540",
     "Risk_Score": null
   },
   {
@@ -2108,7 +2218,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519162",
+    "Timestamp": "2025-10-19T10:59:33.429706",
     "Risk_Score": null
   },
   {
@@ -2119,7 +2229,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519217",
+    "Timestamp": "2025-10-19T10:59:33.429961",
     "Risk_Score": null
   },
   {
@@ -2130,7 +2240,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519271",
+    "Timestamp": "2025-10-19T10:59:33.430224",
     "Risk_Score": null
   },
   {
@@ -2141,7 +2251,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519324",
+    "Timestamp": "2025-10-19T10:59:33.430631",
     "Risk_Score": null
   },
   {
@@ -2152,7 +2262,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519377",
+    "Timestamp": "2025-10-19T10:59:33.430971",
     "Risk_Score": null
   },
   {
@@ -2163,7 +2273,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519430",
+    "Timestamp": "2025-10-19T10:59:33.431148",
     "Risk_Score": null
   },
   {
@@ -2174,7 +2284,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519484",
+    "Timestamp": "2025-10-19T10:59:33.431314",
     "Risk_Score": null
   },
   {
@@ -2185,7 +2295,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519536",
+    "Timestamp": "2025-10-19T10:59:33.431482",
     "Risk_Score": null
   },
   {
@@ -2196,7 +2306,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519589",
+    "Timestamp": "2025-10-19T10:59:33.431639",
     "Risk_Score": null
   },
   {
@@ -2207,7 +2317,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519643",
+    "Timestamp": "2025-10-19T10:59:33.431793",
     "Risk_Score": null
   },
   {
@@ -2218,7 +2328,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519699",
+    "Timestamp": "2025-10-19T10:59:33.432286",
     "Risk_Score": null
   },
   {
@@ -2229,7 +2339,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519752",
+    "Timestamp": "2025-10-19T10:59:33.432823",
     "Risk_Score": null
   },
   {
@@ -2240,7 +2350,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519804",
+    "Timestamp": "2025-10-19T10:59:33.433359",
     "Risk_Score": null
   },
   {
@@ -2251,7 +2361,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519857",
+    "Timestamp": "2025-10-19T10:59:33.433688",
     "Risk_Score": null
   },
   {
@@ -2262,7 +2372,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519910",
+    "Timestamp": "2025-10-19T10:59:33.433997",
     "Risk_Score": null
   },
   {
@@ -2273,7 +2383,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.519962",
+    "Timestamp": "2025-10-19T10:59:33.434182",
     "Risk_Score": null
   },
   {
@@ -2284,7 +2394,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.520014",
+    "Timestamp": "2025-10-19T10:59:33.434351",
     "Risk_Score": null
   },
   {
@@ -2295,7 +2405,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.520236",
+    "Timestamp": "2025-10-19T10:59:33.435294",
     "Risk_Score": null
   },
   {
@@ -2306,7 +2416,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.520290",
+    "Timestamp": "2025-10-19T10:59:33.435572",
     "Risk_Score": null
   },
   {
@@ -2317,7 +2427,7 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.520523",
+    "Timestamp": "2025-10-19T10:59:33.435798",
     "Risk_Score": null
   },
   {
@@ -2328,907 +2438,2073 @@
     "Detected_Value": null,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.520630",
+    "Timestamp": "2025-10-19T10:59:33.435977",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "280050",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.504468",
+    "Risk_Score": null
+  },
+  {
+    "Case_ID": "280051",
+    "Anomaly_Type": "시간 역전",
+    "Severity": "높음",
+    "Description": "시간 역전(순서 불일치) 발생",
+    "Detected_Value": null,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:33.504648",
     "Risk_Score": null
   },
   {
     "Case_ID": "207652",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529198",
+    "Timestamp": "2025-10-19T10:59:33.689222",
     "Risk_Score": null
   },
   {
     "Case_ID": "207653",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529211",
+    "Timestamp": "2025-10-19T10:59:33.689246",
     "Risk_Score": null
   },
   {
     "Case_ID": "207654",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529216",
+    "Timestamp": "2025-10-19T10:59:33.689252",
     "Risk_Score": null
   },
   {
     "Case_ID": "207655",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529220",
+    "Timestamp": "2025-10-19T10:59:33.689256",
     "Risk_Score": null
   },
   {
     "Case_ID": "207656",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529223",
+    "Timestamp": "2025-10-19T10:59:33.689260",
     "Risk_Score": null
   },
   {
     "Case_ID": "207657",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 787.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529226",
+    "Timestamp": "2025-10-19T10:59:33.689268",
     "Risk_Score": null
   },
   {
     "Case_ID": "207658",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 809.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529229",
+    "Timestamp": "2025-10-19T10:59:33.689272",
     "Risk_Score": null
   },
   {
     "Case_ID": "207659",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 787.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529231",
+    "Timestamp": "2025-10-19T10:59:33.689275",
     "Risk_Score": null
   },
   {
     "Case_ID": "207660",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 789.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529234",
+    "Timestamp": "2025-10-19T10:59:33.689278",
     "Risk_Score": null
   },
   {
     "Case_ID": "207661",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 789.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529236",
+    "Timestamp": "2025-10-19T10:59:33.689281",
     "Risk_Score": null
   },
   {
     "Case_ID": "207662",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 789.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529239",
+    "Timestamp": "2025-10-19T10:59:33.689284",
     "Risk_Score": null
   },
   {
     "Case_ID": "207663",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 789.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529241",
+    "Timestamp": "2025-10-19T10:59:33.689287",
     "Risk_Score": null
   },
   {
     "Case_ID": "207664",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 789.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529244",
+    "Timestamp": "2025-10-19T10:59:33.689291",
     "Risk_Score": null
   },
   {
     "Case_ID": "207665",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 789.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529246",
+    "Timestamp": "2025-10-19T10:59:33.689294",
     "Risk_Score": null
   },
   {
     "Case_ID": "207666",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 789.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529249",
+    "Timestamp": "2025-10-19T10:59:33.689299",
     "Risk_Score": null
   },
   {
     "Case_ID": "207667",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 789.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529251",
+    "Timestamp": "2025-10-19T10:59:33.689302",
     "Risk_Score": null
   },
   {
     "Case_ID": "207668",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529254",
+    "Timestamp": "2025-10-19T10:59:33.689305",
     "Risk_Score": null
   },
   {
     "Case_ID": "207669",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529257",
+    "Timestamp": "2025-10-19T10:59:33.689309",
     "Risk_Score": null
   },
   {
     "Case_ID": "207670",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 787.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529259",
+    "Timestamp": "2025-10-19T10:59:33.689313",
     "Risk_Score": null
   },
   {
     "Case_ID": "207671",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529262",
+    "Timestamp": "2025-10-19T10:59:33.689316",
     "Risk_Score": null
   },
   {
     "Case_ID": "207672",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 789일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 789.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529264",
+    "Timestamp": "2025-10-19T10:59:33.689319",
     "Risk_Score": null
   },
   {
     "Case_ID": "207673",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529267",
+    "Timestamp": "2025-10-19T10:59:33.689322",
     "Risk_Score": null
   },
   {
     "Case_ID": "207674",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 788일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 788.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529269",
+    "Timestamp": "2025-10-19T10:59:33.689324",
     "Risk_Score": null
   },
   {
     "Case_ID": "207675",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 787.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529271",
+    "Timestamp": "2025-10-19T10:59:33.689327",
     "Risk_Score": null
   },
   {
     "Case_ID": "207676",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 806일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 806일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 806.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529274",
+    "Timestamp": "2025-10-19T10:59:33.689330",
     "Risk_Score": null
   },
   {
     "Case_ID": "207677",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 808일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 808일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 808.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529276",
+    "Timestamp": "2025-10-19T10:59:33.689334",
     "Risk_Score": null
   },
   {
     "Case_ID": "207678",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 808일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 808일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 808.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529279",
+    "Timestamp": "2025-10-19T10:59:33.689337",
     "Risk_Score": null
   },
   {
     "Case_ID": "207679",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 808일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 808일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 808.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529281",
+    "Timestamp": "2025-10-19T10:59:33.689340",
     "Risk_Score": null
   },
   {
     "Case_ID": "207680",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 809.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529284",
+    "Timestamp": "2025-10-19T10:59:33.689343",
     "Risk_Score": null
   },
   {
     "Case_ID": "207681",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 809.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529286",
+    "Timestamp": "2025-10-19T10:59:33.689346",
     "Risk_Score": null
   },
   {
     "Case_ID": "207682",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 810일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 810일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 810.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529289",
+    "Timestamp": "2025-10-19T10:59:33.689349",
     "Risk_Score": null
   },
   {
     "Case_ID": "207683",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 809.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529291",
+    "Timestamp": "2025-10-19T10:59:33.689352",
     "Risk_Score": null
   },
   {
     "Case_ID": "207684",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 810일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 810일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 810.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529294",
+    "Timestamp": "2025-10-19T10:59:33.689355",
     "Risk_Score": null
   },
   {
     "Case_ID": "207685",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 787일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 787.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529296",
+    "Timestamp": "2025-10-19T10:59:33.689359",
     "Risk_Score": null
   },
   {
     "Case_ID": "207686",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 809.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529299",
+    "Timestamp": "2025-10-19T10:59:33.689362",
     "Risk_Score": null
   },
   {
     "Case_ID": "207687",
     "Anomaly_Type": "과도 체류",
     "Severity": "보통",
-    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-411.5~704.5일)",
+    "Description": "DSV_OUTDOOR에서 809일 체류 (정상≈-342.5~581.5일)",
     "Detected_Value": 809.0,
     "Expected_Range": [
-      -411.5,
-      704.5
+      -342.5,
+      581.5
     ],
     "Location": "DSV_OUTDOOR",
-    "Timestamp": "2025-10-18T20:37:21.529301",
+    "Timestamp": "2025-10-19T10:59:33.689365",
     "Risk_Score": null
+  },
+  {
+    "Case_ID": "207714",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.992)",
+    "Detected_Value": 0.9916212819438626,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105794",
+    "Risk_Score": 0.9916
+  },
+  {
+    "Case_ID": "207717",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.992)",
+    "Detected_Value": 0.9916212819438626,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105820",
+    "Risk_Score": 0.9916
+  },
+  {
+    "Case_ID": "207638",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.980)",
+    "Detected_Value": 0.9804496578690127,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105839",
+    "Risk_Score": 0.9804
+  },
+  {
+    "Case_ID": "207712",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.992)",
+    "Detected_Value": 0.9923195084485407,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105844",
+    "Risk_Score": 0.9923
+  },
+  {
+    "Case_ID": "207713",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.992)",
+    "Detected_Value": 0.9923195084485407,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105848",
+    "Risk_Score": 0.9923
+  },
+  {
+    "Case_ID": "207715",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.992)",
+    "Detected_Value": 0.9923195084485407,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105852",
+    "Risk_Score": 0.9923
+  },
+  {
+    "Case_ID": "207716",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.992)",
+    "Detected_Value": 0.9923195084485407,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105855",
+    "Risk_Score": 0.9923
+  },
+  {
+    "Case_ID": "208260",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.990)",
+    "Detected_Value": 0.9903644742354419,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105889",
+    "Risk_Score": 0.9904
+  },
+  {
+    "Case_ID": "208261",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.990)",
+    "Detected_Value": 0.9903644742354419,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105892",
+    "Risk_Score": 0.9904
+  },
+  {
+    "Case_ID": "208262",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.990)",
+    "Detected_Value": 0.9903644742354419,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105894",
+    "Risk_Score": 0.9904
+  },
+  {
+    "Case_ID": "190363",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.981)",
+    "Detected_Value": 0.9808685937718196,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105901",
+    "Risk_Score": 0.9809
+  },
+  {
+    "Case_ID": "190365",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.981)",
+    "Detected_Value": 0.9808685937718196,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105904",
+    "Risk_Score": 0.9809
+  },
+  {
+    "Case_ID": "190402",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.981)",
+    "Detected_Value": 0.9808685937718196,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105909",
+    "Risk_Score": 0.9809
+  },
+  {
+    "Case_ID": "208458",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.989)",
+    "Detected_Value": 0.9886887306242145,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105914",
+    "Risk_Score": 0.9887
+  },
+  {
+    "Case_ID": "208459",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.989)",
+    "Detected_Value": 0.9886887306242145,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105917",
+    "Risk_Score": 0.9887
+  },
+  {
+    "Case_ID": "208460",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.989)",
+    "Detected_Value": 0.9886887306242145,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105919",
+    "Risk_Score": 0.9887
+  },
+  {
+    "Case_ID": "208461",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.989)",
+    "Detected_Value": 0.9886887306242145,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105922",
+    "Risk_Score": 0.9887
+  },
+  {
+    "Case_ID": "208463",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.989)",
+    "Detected_Value": 0.9886887306242145,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105924",
+    "Risk_Score": 0.9887
+  },
+  {
+    "Case_ID": "208466",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.993)",
+    "Detected_Value": 0.9928780896522832,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105927",
+    "Risk_Score": 0.9929
+  },
+  {
+    "Case_ID": "208467",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.993)",
+    "Detected_Value": 0.9928780896522832,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105930",
+    "Risk_Score": 0.9929
+  },
+  {
+    "Case_ID": "208468",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.993)",
+    "Detected_Value": 0.9928780896522832,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105932",
+    "Risk_Score": 0.9929
+  },
+  {
+    "Case_ID": "208469",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.993)",
+    "Detected_Value": 0.9928780896522832,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105935",
+    "Risk_Score": 0.9929
+  },
+  {
+    "Case_ID": "208470",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.993)",
+    "Detected_Value": 0.9928780896522832,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105940",
+    "Risk_Score": 0.9929
+  },
+  {
+    "Case_ID": "208471",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.993)",
+    "Detected_Value": 0.9928780896522832,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105943",
+    "Risk_Score": 0.9929
+  },
+  {
+    "Case_ID": "208473",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.993)",
+    "Detected_Value": 0.9928780896522832,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105945",
+    "Risk_Score": 0.9929
+  },
+  {
+    "Case_ID": "279985",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.994)",
+    "Detected_Value": 0.9939952520597682,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105948",
+    "Risk_Score": 0.994
+  },
+  {
+    "Case_ID": "279986",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.994)",
+    "Detected_Value": 0.9939952520597682,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105951",
+    "Risk_Score": 0.994
+  },
+  {
+    "Case_ID": "279987",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.994)",
+    "Detected_Value": 0.9939952520597682,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105953",
+    "Risk_Score": 0.994
+  },
+  {
+    "Case_ID": "279988",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.994)",
+    "Detected_Value": 0.9939952520597682,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105956",
+    "Risk_Score": 0.994
+  },
+  {
+    "Case_ID": "279990",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.994)",
+    "Detected_Value": 0.9939952520597682,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105959",
+    "Risk_Score": 0.994
+  },
+  {
+    "Case_ID": "279991",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.994)",
+    "Detected_Value": 0.9939952520597682,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105962",
+    "Risk_Score": 0.994
+  },
+  {
+    "Case_ID": "279982",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.994)",
+    "Detected_Value": 0.9939952520597682,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105966",
+    "Risk_Score": 0.994
+  },
+  {
+    "Case_ID": "191061",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.994)",
+    "Detected_Value": 0.9938556067588326,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105971",
+    "Risk_Score": 0.9939
+  },
+  {
+    "Case_ID": "207593",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.989)",
+    "Detected_Value": 0.9893869571288926,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105975",
+    "Risk_Score": 0.9894
+  },
+  {
+    "Case_ID": "207594",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.989)",
+    "Detected_Value": 0.9893869571288926,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105977",
+    "Risk_Score": 0.9894
+  },
+  {
+    "Case_ID": "207595",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.989)",
+    "Detected_Value": 0.9893869571288926,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105980",
+    "Risk_Score": 0.9894
+  },
+  {
+    "Case_ID": "207601",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.992)",
+    "Detected_Value": 0.9919005725457338,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105984",
+    "Risk_Score": 0.9919
+  },
+  {
+    "Case_ID": "207602",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.992)",
+    "Detected_Value": 0.9919005725457338,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105988",
+    "Risk_Score": 0.9919
+  },
+  {
+    "Case_ID": "207690",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.991)",
+    "Detected_Value": 0.9907834101382489,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105993",
+    "Risk_Score": 0.9908
+  },
+  {
+    "Case_ID": "207691",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.991)",
+    "Detected_Value": 0.9907834101382489,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.105995",
+    "Risk_Score": 0.9908
+  },
+  {
+    "Case_ID": "207692",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.991)",
+    "Detected_Value": 0.9907834101382489,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106001",
+    "Risk_Score": 0.9908
+  },
+  {
+    "Case_ID": "207693",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.991)",
+    "Detected_Value": 0.9907834101382489,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106004",
+    "Risk_Score": 0.9908
+  },
+  {
+    "Case_ID": "207694",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.991)",
+    "Detected_Value": 0.9907834101382489,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106006",
+    "Risk_Score": 0.9908
+  },
+  {
+    "Case_ID": "207695",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.991)",
+    "Detected_Value": 0.9907834101382489,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106009",
+    "Risk_Score": 0.9908
+  },
+  {
+    "Case_ID": "207703",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.990)",
+    "Detected_Value": 0.9900851836335707,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106012",
+    "Risk_Score": 0.9901
+  },
+  {
+    "Case_ID": "207704",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.990)",
+    "Detected_Value": 0.9900851836335707,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106015",
+    "Risk_Score": 0.9901
+  },
+  {
+    "Case_ID": "207719",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.992)",
+    "Detected_Value": 0.9919005725457338,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106018",
+    "Risk_Score": 0.9919
+  },
+  {
+    "Case_ID": "207816",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.990)",
+    "Detected_Value": 0.9898058930316995,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106027",
+    "Risk_Score": 0.9898
+  },
+  {
+    "Case_ID": "207817",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.990)",
+    "Detected_Value": 0.9899455383326351,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106030",
+    "Risk_Score": 0.9899
   },
   {
     "Case_ID": "207652",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874563",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106035",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207653",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874591",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106040",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207654",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874603",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106042",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207655",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874609",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106045",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207656",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874613",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106047",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207657",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.995)",
-    "Detected_Value": 0.9953170028818443,
+    "Description": "ML 이상치(위험도 0.996)",
+    "Detected_Value": 0.9963692221756738,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874616",
-    "Risk_Score": 0.9953
+    "Timestamp": "2025-10-19T10:59:34.106050",
+    "Risk_Score": 0.9964
   },
   {
     "Case_ID": "207658",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.999)",
-    "Detected_Value": 0.9985590778097982,
+    "Description": "ML 이상치(위험도 0.998)",
+    "Detected_Value": 0.9983242563887725,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874619",
-    "Risk_Score": 0.9986
+    "Timestamp": "2025-10-19T10:59:34.106053",
+    "Risk_Score": 0.9983
   },
   {
     "Case_ID": "207659",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.995)",
-    "Detected_Value": 0.9953170028818443,
+    "Description": "ML 이상치(위험도 0.996)",
+    "Detected_Value": 0.9963692221756738,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874622",
-    "Risk_Score": 0.9953
+    "Timestamp": "2025-10-19T10:59:34.106056",
+    "Risk_Score": 0.9964
   },
   {
     "Case_ID": "207660",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.996)",
-    "Detected_Value": 0.9962175792507204,
+    "Description": "ML 이상치(위험도 0.997)",
+    "Detected_Value": 0.9970674486803519,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874624",
-    "Risk_Score": 0.9962
+    "Timestamp": "2025-10-19T10:59:34.106058",
+    "Risk_Score": 0.9971
   },
   {
     "Case_ID": "207661",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.996)",
-    "Detected_Value": 0.9962175792507204,
+    "Description": "ML 이상치(위험도 0.997)",
+    "Detected_Value": 0.9970674486803519,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874627",
-    "Risk_Score": 0.9962
+    "Timestamp": "2025-10-19T10:59:34.106061",
+    "Risk_Score": 0.9971
   },
   {
     "Case_ID": "207662",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.996)",
-    "Detected_Value": 0.9962175792507204,
+    "Description": "ML 이상치(위험도 0.997)",
+    "Detected_Value": 0.9970674486803519,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874629",
-    "Risk_Score": 0.9962
+    "Timestamp": "2025-10-19T10:59:34.106063",
+    "Risk_Score": 0.9971
   },
   {
     "Case_ID": "207663",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.996)",
-    "Detected_Value": 0.9962175792507204,
+    "Description": "ML 이상치(위험도 0.997)",
+    "Detected_Value": 0.9970674486803519,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874632",
-    "Risk_Score": 0.9962
+    "Timestamp": "2025-10-19T10:59:34.106065",
+    "Risk_Score": 0.9971
   },
   {
     "Case_ID": "207664",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.996)",
-    "Detected_Value": 0.9962175792507204,
+    "Description": "ML 이상치(위험도 0.997)",
+    "Detected_Value": 0.9970674486803519,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874634",
-    "Risk_Score": 0.9962
+    "Timestamp": "2025-10-19T10:59:34.106068",
+    "Risk_Score": 0.9971
   },
   {
     "Case_ID": "207665",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.996)",
-    "Detected_Value": 0.9962175792507204,
+    "Description": "ML 이상치(위험도 0.997)",
+    "Detected_Value": 0.9970674486803519,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874637",
-    "Risk_Score": 0.9962
+    "Timestamp": "2025-10-19T10:59:34.106070",
+    "Risk_Score": 0.9971
   },
   {
     "Case_ID": "207666",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.996)",
-    "Detected_Value": 0.9962175792507204,
+    "Description": "ML 이상치(위험도 0.997)",
+    "Detected_Value": 0.9970674486803519,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874639",
-    "Risk_Score": 0.9962
+    "Timestamp": "2025-10-19T10:59:34.106073",
+    "Risk_Score": 0.9971
   },
   {
     "Case_ID": "207667",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.996)",
-    "Detected_Value": 0.9962175792507204,
+    "Description": "ML 이상치(위험도 0.997)",
+    "Detected_Value": 0.9970674486803519,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874642",
-    "Risk_Score": 0.9962
+    "Timestamp": "2025-10-19T10:59:34.106075",
+    "Risk_Score": 0.9971
   },
   {
     "Case_ID": "207668",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874644",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106078",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207669",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874647",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106080",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207670",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.995)",
-    "Detected_Value": 0.9953170028818443,
+    "Description": "ML 이상치(위험도 0.996)",
+    "Detected_Value": 0.9963692221756738,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874649",
-    "Risk_Score": 0.9953
+    "Timestamp": "2025-10-19T10:59:34.106083",
+    "Risk_Score": 0.9964
   },
   {
     "Case_ID": "207671",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874651",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106085",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207672",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.996)",
-    "Detected_Value": 0.9962175792507204,
+    "Description": "ML 이상치(위험도 0.997)",
+    "Detected_Value": 0.9970674486803519,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874654",
-    "Risk_Score": 0.9962
+    "Timestamp": "2025-10-19T10:59:34.106087",
+    "Risk_Score": 0.9971
   },
   {
     "Case_ID": "207673",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874656",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106090",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207674",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.994)",
-    "Detected_Value": 0.9935158501440923,
+    "Description": "ML 이상치(위험도 0.995)",
+    "Detected_Value": 0.9949727691663176,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874659",
-    "Risk_Score": 0.9935
+    "Timestamp": "2025-10-19T10:59:34.106092",
+    "Risk_Score": 0.995
   },
   {
     "Case_ID": "207675",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.995)",
-    "Detected_Value": 0.9953170028818443,
+    "Description": "ML 이상치(위험도 0.996)",
+    "Detected_Value": 0.9963692221756738,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874661",
-    "Risk_Score": 0.9953
+    "Timestamp": "2025-10-19T10:59:34.106095",
+    "Risk_Score": 0.9964
   },
   {
     "Case_ID": "207676",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
     "Description": "ML 이상치(위험도 0.998)",
-    "Detected_Value": 0.9978386167146974,
+    "Detected_Value": 0.9983242563887725,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874664",
-    "Risk_Score": 0.9978
+    "Timestamp": "2025-10-19T10:59:34.106097",
+    "Risk_Score": 0.9983
   },
   {
     "Case_ID": "207677",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.998)",
-    "Detected_Value": 0.9980187319884726,
+    "Description": "ML 이상치(위험도 1.000)",
+    "Detected_Value": 0.9995810640971932,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874667",
-    "Risk_Score": 0.998
+    "Timestamp": "2025-10-19T10:59:34.106101",
+    "Risk_Score": 0.9996
   },
   {
     "Case_ID": "207678",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.998)",
-    "Detected_Value": 0.9980187319884726,
+    "Description": "ML 이상치(위험도 1.000)",
+    "Detected_Value": 0.9995810640971932,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874669",
-    "Risk_Score": 0.998
+    "Timestamp": "2025-10-19T10:59:34.106103",
+    "Risk_Score": 0.9996
   },
   {
     "Case_ID": "207679",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.998)",
-    "Detected_Value": 0.9980187319884726,
+    "Description": "ML 이상치(위험도 1.000)",
+    "Detected_Value": 0.9995810640971932,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874672",
-    "Risk_Score": 0.998
+    "Timestamp": "2025-10-19T10:59:34.106106",
+    "Risk_Score": 0.9996
   },
   {
     "Case_ID": "207680",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.999)",
-    "Detected_Value": 0.9985590778097982,
+    "Description": "ML 이상치(위험도 0.998)",
+    "Detected_Value": 0.9983242563887725,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874674",
-    "Risk_Score": 0.9986
+    "Timestamp": "2025-10-19T10:59:34.106108",
+    "Risk_Score": 0.9983
   },
   {
     "Case_ID": "207681",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.999)",
-    "Detected_Value": 0.9985590778097982,
+    "Description": "ML 이상치(위험도 0.998)",
+    "Detected_Value": 0.9983242563887725,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874677",
-    "Risk_Score": 0.9986
+    "Timestamp": "2025-10-19T10:59:34.106111",
+    "Risk_Score": 0.9983
   },
   {
     "Case_ID": "207682",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.999)",
-    "Detected_Value": 0.9985590778097982,
+    "Description": "ML 이상치(위험도 0.998)",
+    "Detected_Value": 0.9983242563887725,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874680",
-    "Risk_Score": 0.9986
+    "Timestamp": "2025-10-19T10:59:34.106113",
+    "Risk_Score": 0.9983
   },
   {
     "Case_ID": "207683",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.999)",
-    "Detected_Value": 0.9985590778097982,
+    "Description": "ML 이상치(위험도 0.998)",
+    "Detected_Value": 0.9983242563887725,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874682",
-    "Risk_Score": 0.9986
+    "Timestamp": "2025-10-19T10:59:34.106117",
+    "Risk_Score": 0.9983
   },
   {
     "Case_ID": "207684",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.999)",
-    "Detected_Value": 0.9985590778097982,
+    "Description": "ML 이상치(위험도 0.998)",
+    "Detected_Value": 0.9983242563887725,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874684",
-    "Risk_Score": 0.9986
+    "Timestamp": "2025-10-19T10:59:34.106121",
+    "Risk_Score": 0.9983
   },
   {
     "Case_ID": "207685",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.995)",
-    "Detected_Value": 0.9953170028818443,
+    "Description": "ML 이상치(위험도 0.996)",
+    "Detected_Value": 0.9963692221756738,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874687",
-    "Risk_Score": 0.9953
+    "Timestamp": "2025-10-19T10:59:34.106123",
+    "Risk_Score": 0.9964
   },
   {
     "Case_ID": "207686",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.999)",
-    "Detected_Value": 0.9985590778097982,
+    "Description": "ML 이상치(위험도 0.998)",
+    "Detected_Value": 0.9983242563887725,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874689",
-    "Risk_Score": 0.9986
+    "Timestamp": "2025-10-19T10:59:34.106126",
+    "Risk_Score": 0.9983
   },
   {
     "Case_ID": "207687",
     "Anomaly_Type": "머신러닝 이상치",
     "Severity": "치명적",
-    "Description": "ML 이상치(위험도 0.999)",
-    "Detected_Value": 0.9985590778097982,
+    "Description": "ML 이상치(위험도 0.998)",
+    "Detected_Value": 0.9983242563887725,
     "Expected_Range": null,
     "Location": null,
-    "Timestamp": "2025-10-18T20:37:21.874692",
-    "Risk_Score": 0.9986
+    "Timestamp": "2025-10-19T10:59:34.106128",
+    "Risk_Score": 0.9983
+  },
+  {
+    "Case_ID": "207645",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9819857561793046,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106135",
+    "Risk_Score": 0.982
+  },
+  {
+    "Case_ID": "207646",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9819857561793046,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106138",
+    "Risk_Score": 0.982
+  },
+  {
+    "Case_ID": "207647",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9819857561793046,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106140",
+    "Risk_Score": 0.982
+  },
+  {
+    "Case_ID": "207807",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9819857561793046,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106152",
+    "Risk_Score": 0.982
+  },
+  {
+    "Case_ID": "207808",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9819857561793046,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106155",
+    "Risk_Score": 0.982
+  },
+  {
+    "Case_ID": "207809",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9819857561793046,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106157",
+    "Risk_Score": 0.982
+  },
+  {
+    "Case_ID": "207810",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9819857561793046,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106160",
+    "Risk_Score": 0.982
+  },
+  {
+    "Case_ID": "190541",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.986)",
+    "Detected_Value": 0.9856165340036308,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106173",
+    "Risk_Score": 0.9856
+  },
+  {
+    "Case_ID": "190542",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.986)",
+    "Detected_Value": 0.9856165340036308,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106176",
+    "Risk_Score": 0.9856
+  },
+  {
+    "Case_ID": "190543",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.986)",
+    "Detected_Value": 0.9856165340036308,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106178",
+    "Risk_Score": 0.9856
+  },
+  {
+    "Case_ID": "190544",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.986)",
+    "Detected_Value": 0.9856165340036308,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106181",
+    "Risk_Score": 0.9856
+  },
+  {
+    "Case_ID": "190548",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.986)",
+    "Detected_Value": 0.9856165340036308,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106183",
+    "Risk_Score": 0.9856
+  },
+  {
+    "Case_ID": "190549",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.986)",
+    "Detected_Value": 0.9856165340036308,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106186",
+    "Risk_Score": 0.9856
+  },
+  {
+    "Case_ID": "190767",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.986)",
+    "Detected_Value": 0.9856165340036308,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106189",
+    "Risk_Score": 0.9856
+  },
+  {
+    "Case_ID": "190768",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.986)",
+    "Detected_Value": 0.9856165340036308,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106192",
+    "Risk_Score": 0.9856
+  },
+  {
+    "Case_ID": "190557",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.981)",
+    "Detected_Value": 0.9812875296746264,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106201",
+    "Risk_Score": 0.9813
+  },
+  {
+    "Case_ID": "190558",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.981)",
+    "Detected_Value": 0.9812875296746264,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106203",
+    "Risk_Score": 0.9813
+  },
+  {
+    "Case_ID": "190539",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.988)",
+    "Detected_Value": 0.9875715682167295,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106229",
+    "Risk_Score": 0.9876
+  },
+  {
+    "Case_ID": "190540",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.988)",
+    "Detected_Value": 0.9875715682167295,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106231",
+    "Risk_Score": 0.9876
+  },
+  {
+    "Case_ID": "190545",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.988)",
+    "Detected_Value": 0.9875715682167295,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106234",
+    "Risk_Score": 0.9876
+  },
+  {
+    "Case_ID": "190546",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.988)",
+    "Detected_Value": 0.9875715682167295,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106237",
+    "Risk_Score": 0.9876
+  },
+  {
+    "Case_ID": "190547",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.988)",
+    "Detected_Value": 0.9875715682167295,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106239",
+    "Risk_Score": 0.9876
+  },
+  {
+    "Case_ID": "190550",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.988)",
+    "Detected_Value": 0.9875715682167295,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106242",
+    "Risk_Score": 0.9876
+  },
+  {
+    "Case_ID": "190551",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.988)",
+    "Detected_Value": 0.9875715682167295,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106244",
+    "Risk_Score": 0.9876
+  },
+  {
+    "Case_ID": "190552",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.988)",
+    "Detected_Value": 0.9875715682167295,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106246",
+    "Risk_Score": 0.9876
+  },
+  {
+    "Case_ID": "190553",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.983)",
+    "Detected_Value": 0.982963273285854,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106292",
+    "Risk_Score": 0.983
+  },
+  {
+    "Case_ID": "190554",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.983)",
+    "Detected_Value": 0.982963273285854,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106294",
+    "Risk_Score": 0.983
+  },
+  {
+    "Case_ID": "190555",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.983)",
+    "Detected_Value": 0.982963273285854,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106296",
+    "Risk_Score": 0.983
+  },
+  {
+    "Case_ID": "190556",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.983)",
+    "Detected_Value": 0.982963273285854,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106299",
+    "Risk_Score": 0.983
+  },
+  {
+    "Case_ID": "190764",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.987)",
+    "Detected_Value": 0.9874319229157938,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106301",
+    "Risk_Score": 0.9874
+  },
+  {
+    "Case_ID": "208512",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.981)",
+    "Detected_Value": 0.9805893031699483,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106622",
+    "Risk_Score": 0.9806
+  },
+  {
+    "Case_ID": "208511",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.981)",
+    "Detected_Value": 0.9805893031699483,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.106641",
+    "Risk_Score": 0.9806
+  },
+  {
+    "Case_ID": "208689",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.984)",
+    "Detected_Value": 0.9835218544895964,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107109",
+    "Risk_Score": 0.9835
+  },
+  {
+    "Case_ID": "208690",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.984)",
+    "Detected_Value": 0.9835218544895964,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107149",
+    "Risk_Score": 0.9835
+  },
+  {
+    "Case_ID": "208374",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.984)",
+    "Detected_Value": 0.9835218544895964,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107260",
+    "Risk_Score": 0.9835
+  },
+  {
+    "Case_ID": "208382",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.984)",
+    "Detected_Value": 0.9835218544895964,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107266",
+    "Risk_Score": 0.9835
+  },
+  {
+    "Case_ID": "208383",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.984)",
+    "Detected_Value": 0.9835218544895964,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107270",
+    "Risk_Score": 0.9835
+  },
+  {
+    "Case_ID": "209167",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.987)",
+    "Detected_Value": 0.9867336964111157,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107284",
+    "Risk_Score": 0.9867
+  },
+  {
+    "Case_ID": "209168",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.987)",
+    "Detected_Value": 0.9867336964111157,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107288",
+    "Risk_Score": 0.9867
+  },
+  {
+    "Case_ID": "209169",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.987)",
+    "Detected_Value": 0.9867336964111157,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107291",
+    "Risk_Score": 0.9867
+  },
+  {
+    "Case_ID": "208281",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.987)",
+    "Detected_Value": 0.9867336964111157,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107294",
+    "Risk_Score": 0.9867
+  },
+  {
+    "Case_ID": "208282",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.987)",
+    "Detected_Value": 0.9867336964111157,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107297",
+    "Risk_Score": 0.9867
+  },
+  {
+    "Case_ID": "208371",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.984)",
+    "Detected_Value": 0.9842200809942745,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107321",
+    "Risk_Score": 0.9842
+  },
+  {
+    "Case_ID": "208372",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.984)",
+    "Detected_Value": 0.9842200809942745,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107324",
+    "Risk_Score": 0.9842
+  },
+  {
+    "Case_ID": "208373",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.984)",
+    "Detected_Value": 0.9842200809942745,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107333",
+    "Risk_Score": 0.9842
+  },
+  {
+    "Case_ID": "209270",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.985)",
+    "Detected_Value": 0.9846390168970814,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107527",
+    "Risk_Score": 0.9846
+  },
+  {
+    "Case_ID": "209271",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.985)",
+    "Detected_Value": 0.9846390168970814,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107557",
+    "Risk_Score": 0.9846
+  },
+  {
+    "Case_ID": "209272",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.985)",
+    "Detected_Value": 0.9846390168970814,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107561",
+    "Risk_Score": 0.9846
+  },
+  {
+    "Case_ID": "209273",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.985)",
+    "Detected_Value": 0.9846390168970814,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107564",
+    "Risk_Score": 0.9846
+  },
+  {
+    "Case_ID": "209274",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.985)",
+    "Detected_Value": 0.9846390168970814,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107567",
+    "Risk_Score": 0.9846
+  },
+  {
+    "Case_ID": "209275",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.985)",
+    "Detected_Value": 0.9846390168970814,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107570",
+    "Risk_Score": 0.9846
+  },
+  {
+    "Case_ID": "209276",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.985)",
+    "Detected_Value": 0.9846390168970814,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107573",
+    "Risk_Score": 0.9846
+  },
+  {
+    "Case_ID": "208339",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9815668202764977,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107575",
+    "Risk_Score": 0.9816
+  },
+  {
+    "Case_ID": "208338",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9817064655774334,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107578",
+    "Risk_Score": 0.9817
+  },
+  {
+    "Case_ID": "209189",
+    "Anomaly_Type": "머신러닝 이상치",
+    "Severity": "치명적",
+    "Description": "ML 이상치(위험도 0.982)",
+    "Detected_Value": 0.9817064655774334,
+    "Expected_Range": null,
+    "Location": null,
+    "Timestamp": "2025-10-19T10:59:34.107580",
+    "Risk_Score": 0.9817
   }
 ]
