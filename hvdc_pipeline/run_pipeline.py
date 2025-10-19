@@ -25,6 +25,10 @@ PIPELINE_ROOT = Path(__file__).resolve().parent
 REPO_ROOT = PIPELINE_ROOT.parent
 sys.path.append(str(PIPELINE_ROOT))
 
+PROJECT_ROOT = Path(__file__).parent
+PIPELINE_CONFIG_PATH = PROJECT_ROOT / "config" / "pipeline_config.yaml"
+STAGE2_CONFIG_PATH = PROJECT_ROOT / "config" / "stage2_derived_config.yaml"
+
 # 각 Stage 임포트
 def resolve_repo_path(path_value: str | Path) -> Path:
     """저장소 기준 절대 경로를 반환합니다. / Resolve repository-relative paths."""
@@ -129,13 +133,9 @@ def run_stage(
                     "Stage 1 동기화 모듈을 불러오지 못했습니다."
                 ) from import_error
             stage1_cfg = (
-<<<<<<< HEAD
-                pipeline_config.get("stages", {}).get("stage1", {}).get("io", {})
-=======
                 pipeline_config.get("stages", {})
                 .get("stage1", {})
                 .get("io", {})
->>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
             )
             if not stage1_cfg:
                 raise ValueError("Stage 1 IO 설정이 비어 있습니다.")
@@ -165,58 +165,33 @@ def run_stage(
 
             stage_outputs.append(Path(sync_result.output_path).resolve())
             logger.info("Stage 1 동기화 통계: %s", sync_result.stats)
+            print(f"INFO: Stage 1 produced synced file: {sync_result.output_path}")
 
         elif stage_num == 2:
             print("[Stage 2] Derived Columns Generation...")
             try:
                 from scripts.stage2_derived.derived_columns_processor import (
                     process_derived_columns,
+                    resolve_synced_input_path as resolve_stage2_synced_input_path,
                 )
             except ImportError as import_error:  # pragma: no cover - import guard
                 raise ImportError(
                     "Stage 2 파생 컬럼 모듈을 불러오지 못했습니다."
                 ) from import_error
-            stage2_input_cfg = stage2_config.get("input", {})
-            stage2_output_cfg = stage2_config.get("output", {})
+            shared_synced_path = resolve_stage2_synced_input_path(
+                pipeline_config_path=PIPELINE_CONFIG_PATH,
+                stage2_config_path=STAGE2_CONFIG_PATH,
+                project_root=PROJECT_ROOT,
+            )
+            print(f"INFO: Stage 2 uses synced file: {shared_synced_path}")
 
-            input_file = stage2_input_cfg.get("synced_file")
-            if not input_file:
-                raise ValueError("Stage 2 입력 파일 설정이 누락되었습니다.")
-            input_path = resolve_repo_path(input_file)
-
-            if not input_path.exists():
-                raise FileNotFoundError(
-                    f"Stage 2 입력 파일을 찾을 수 없습니다: {input_path}"
-                )
-
-            success = process_derived_columns(str(input_path))
+            success = process_derived_columns(
+                pipeline_config_path=PIPELINE_CONFIG_PATH,
+                stage2_config_path=STAGE2_CONFIG_PATH,
+                project_root=PROJECT_ROOT,
+            )
             if not success:
                 return False
-
-            default_output = Path.cwd() / "HVDC WAREHOUSE_HITACHI(HE).xlsx"
-            if not default_output.exists():
-                raise FileNotFoundError(
-<<<<<<< HEAD
-                    "Stage 2 결과 파일을 찾을 수 없습니다: " f"{default_output}"
-=======
-                    "Stage 2 결과 파일을 찾을 수 없습니다: "
-                    f"{default_output}"
->>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
-                )
-
-            target_file = stage2_output_cfg.get("derived_file")
-            target_path = (
-                resolve_repo_path(target_file)
-                if target_file
-                else default_output.resolve()
-            )
-            target_path.parent.mkdir(parents=True, exist_ok=True)
-
-            if default_output.resolve() != target_path.resolve():
-                if target_path.exists():
-                    target_path.unlink()
-                shutil.move(str(default_output), str(target_path))
-            stage_outputs.append(target_path.resolve())
 
         elif stage_num == 3:
             print("[Stage 3] Report Generation...")
@@ -229,13 +204,9 @@ def run_stage(
                     "Stage 3 보고서 생성 모듈을 불러오지 못했습니다."
                 ) from import_error
             stage3_cfg = (
-<<<<<<< HEAD
-                pipeline_config.get("stages", {}).get("stage3", {}).get("io", {})
-=======
                 pipeline_config.get("stages", {})
                 .get("stage3", {})
                 .get("io", {})
->>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
             )
             if not stage3_cfg:
                 raise ValueError("Stage 3 IO 설정이 비어 있습니다.")
@@ -324,13 +295,9 @@ def run_stage(
                     "Stage 4 이상치 탐지 모듈을 불러오지 못했습니다."
                 ) from import_error
             stage4_cfg = (
-<<<<<<< HEAD
-                pipeline_config.get("stages", {}).get("stage4", {}).get("io", {})
-=======
                 pipeline_config.get("stages", {})
                 .get("stage4", {})
                 .get("io", {})
->>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
             )
             if not stage4_cfg:
                 raise ValueError("Stage 4 IO 설정이 비어 있습니다.")
@@ -392,13 +359,9 @@ def run_stage(
             visualize = (
                 True
                 if visualize_flag
-<<<<<<< HEAD
-                else False if visualize_off_flag else visualize_default
-=======
                 else False
                 if visualize_off_flag
                 else visualize_default
->>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
             )
 
             if visualize:
