@@ -148,36 +148,6 @@ python validate_domestic_with_pdf.py
 # PASS: 55 (53.9%), FAIL: 5 (4.9%)
 ```
 
-### 1.5 HVDC Pipeline v2.0 (Unified Pipeline)
-
-**Last Updated**: 2025-10-19
-**Status**: Production Ready (Migration Completed)
-
-#### 주요 기능
-- **🔄 통합 파이프라인**: 4-Stage 자동화 프로세스
-- **📊 파생 컬럼 처리**: 13개 컬럼 자동 계산 (Post-AGI → Derived Columns)
-- **⚙️ 설정 관리**: YAML 기반 설정
-- **📁 구조 통합**: 분산된 폴더를 하나로 통합
-- **🗂️ 안전한 보관**: 원본 파일 archive 보존
-
-#### 아키텍처
-```
-Raw Data (Excel) → Stage 1: Sync → Stage 2: Derived Columns →
-Stage 3: Report → Stage 4: Anomaly Detection → Final Output
-```
-
-#### 실제 사용 예시
-```bash
-# 전체 파이프라인 실행
-cd hvdc_pipeline
-python run_pipeline.py --all
-
-# 특정 Stage만 실행
-python run_pipeline.py --stage 2
-
-# 결과: 4-Stage 자동 실행, 통합 보고서 생성
-```
-
 ### 2. Hitachi Warehouse Sync System (v2.9)
 
 **Last Updated**: 2025-10-18
@@ -360,28 +330,13 @@ pip install -r requirements.txt
 python parsers/dsv_pdf_parser.py input/document.pdf -o output/result.json
 ```
 
-**HVDC Pipeline v2.0 (Unified Pipeline):**
-```bash
-cd hvdc_pipeline
-pip install -r requirements.txt
-
-# 전체 파이프라인 실행
-python run_pipeline.py --all
-
-# 특정 Stage만 실행
-python run_pipeline.py --stage 2
-
-# 결과: 4-Stage 자동 실행, 통합 보고서 생성
-```
-
 ### Quick Reference Guides
 For detailed step-by-step instructions, see:
 - [5-Minute Quick Start](./QUICK_START_GUIDE.md) - Fastest way to get started
-- [HVDC Pipeline v2.0 Guide](./hvdc_pipeline/README.md) - 통합 파이프라인
-- [Complete Pipeline Guide](./hvdc_pipeline/docs/PIPELINE_OVERVIEW.md)
-- [Data Sync Guide](./hvdc_pipeline/docs/STAGE1_SYNC_GUIDE.md)
-- [Derived Columns Guide](./hvdc_pipeline/docs/STAGE2_DERIVED_GUIDE.md)
-- [Anomaly Detection Guide](./hvdc_pipeline/docs/STAGE4_ANOMALY_GUIDE.md)
+- [Complete Pipeline Guide](./pipe2/PIPELINE_USER_GUIDE.md) - Full pipeline walkthrough
+- [Data Sync Guide](./pipe1/DATA_SYNCHRONIZER_GUIDE.md) - Data synchronization details
+- [Post-AGI Column Guide](./pipe1/POST_AGI_COLUMN_GUIDE.md) - AGI column processing
+- [Anomaly Detection Guide](./hitachi/anomaly_detector/ANOMALY_DETECTION_GUIDE.md) - Anomaly detection system
 
 ---
 
@@ -415,33 +370,30 @@ sct_invoice/
 │   ├── QUICK_START.md               # Quick start guide
 │   ├── README_WSL2_SETUP.md         # WSL2 setup guide
 │   └── requirements_hybrid.txt      # Dependencies
-├── hvdc_pipeline/                   # Unified Pipeline v2.0 (통합 파이프라인)
-│   ├── scripts/
-│   │   ├── stage1_sync/             # Data synchronization
-│   │   ├── stage2_derived/          # Derived columns (파생 컬럼)
-│   │   ├── stage3_report/           # Report generation
-│   │   └── stage4_anomaly/          # Anomaly detection
-│   ├── docs/                        # Documentation
-│   ├── tests/                       # Test files
-│   ├── config/                      # Configuration files
-│   ├── archive/                     # Original files preserved
-│   │   ├── original_pipe1/
-│   │   ├── original_pipe2/
-│   │   └── original_hitachi_anomaly_detector/
-│   ├── run_pipeline.py              # Unified execution script
-│   ├── requirements.txt
-│   └── README.md
 ├── hitachi/                         # Hitachi warehouse sync system (v2.9)
 │   ├── data_synchronizer_v29.py     # Main sync engine (397 lines)
 │   ├── pipeline.md                  # Pipeline workflow documentation
 │   ├── patchcolor.md                # Color patch documentation
+│   ├── anomaly_detector/            # Anomaly detection system
+│   │   ├── anomaly_detector.py
+│   │   ├── anomaly_visualizer.py
+│   │   ├── ANOMALY_DETECTION_GUIDE.md
+│   │   └── VISUALIZATION_GUIDE.md
 │   ├── docs/                        # Documentation
 │   │   ├── V29_IMPLEMENTATION_GUIDE.md
 │   │   ├── SYSTEM_WORKFLOW_VERIFICATION.md
 │   │   └── system_workflow_diagram.mmd
 │   └── README.md
-├── pipe1/                           # [DEPRECATED - see hvdc_pipeline/]
-├── pipe2/                           # [DEPRECATED - see hvdc_pipeline/]
+├── pipe1/                           # Pipeline Stage 1 - Data Sync & Post-AGI
+│   ├── data_synchronizer_v29.py     # Master-Warehouse sync
+│   ├── post_agi_column_processor.py # AGI column calculation
+│   ├── DATA_SYNCHRONIZER_GUIDE.md   # Sync system guide
+│   ├── POST_AGI_COLUMN_GUIDE.md     # Post-AGI processing guide
+│   └── README.md                    # Stage 1 documentation
+├── pipe2/                           # Pipeline Stage 2 - Report & Anomaly
+│   ├── PIPELINE_USER_GUIDE.md       # Complete pipeline guide
+│   ├── PIPELINE_EXECUTION_REPORT_20251018.md
+│   └── README.md                    # Stage 2 documentation
 ├── ML/                              # Machine learning optimization (v1.0)
 │   ├── unified_ml_pipeline.py       # Main ML pipeline
 │   ├── logi_costguard_ml_v2/        # Cost guard ML system
@@ -775,21 +727,13 @@ python data_synchronizer_v29.py \
 - [System Architecture](./hitachi/docs/SYSTEM_ARCHITECTURE.md) - Technical architecture
 - [Date Update Color Fix Report](./hitachi/docs/DATE_UPDATE_COLOR_FIX_REPORT.md) - Bug fix documentation
 
-### Pipeline v2.0 Documentation (New)
-- [HVDC Pipeline v2.0](./hvdc_pipeline/README.md) - 통합 파이프라인 가이드
-- [Pipeline Overview](./hvdc_pipeline/docs/PIPELINE_OVERVIEW.md) - 시스템 개요
-- [Stage 1: Data Sync](./hvdc_pipeline/docs/STAGE1_SYNC_GUIDE.md) - 데이터 동기화
-- [Stage 2: Derived Columns](./hvdc_pipeline/docs/STAGE2_DERIVED_GUIDE.md) - 파생 컬럼 처리 ⭐ 변경
-- [Stage 4: Anomaly Detection](./hvdc_pipeline/docs/STAGE4_ANOMALY_GUIDE.md) - 이상치 탐지
-- [Migration Report](./hvdc_pipeline/MIGRATION_COMPLETION_REPORT.md) - v2.0 마이그레이션 보고서
-
-### Legacy Pipeline Guides (Archived)
-- [Data Synchronizer Guide](./pipe1/DATA_SYNCHRONIZER_GUIDE.md) - [ARCHIVED]
-- [Post-AGI Column Guide](./pipe1/POST_AGI_COLUMN_GUIDE.md) - [ARCHIVED → Derived Columns]
-- [Anomaly Detection Guide](./hitachi/anomaly_detector/ANOMALY_DETECTION_GUIDE.md) - [ARCHIVED]
-- [Pipeline Execution Report](./pipe2/PIPELINE_EXECUTION_REPORT_20251018.md) - [ARCHIVED]
-- [pipe1 Module](./pipe1/README.md) - [ARCHIVED]
-- [pipe2 Module](./pipe2/README.md) - [ARCHIVED]
+### Pipeline Processing Guides (v3.7)
+- [Data Synchronizer Guide](./pipe1/DATA_SYNCHRONIZER_GUIDE.md) - Master-Warehouse synchronization
+- [Post-AGI Column Guide](./pipe1/POST_AGI_COLUMN_GUIDE.md) - AGI column processing details
+- [Anomaly Detection Guide](./hitachi/anomaly_detector/ANOMALY_DETECTION_GUIDE.md) - Anomaly detection system
+- [Pipeline Execution Report](./pipe2/PIPELINE_EXECUTION_REPORT_20251018.md) - Actual execution results
+- [pipe1 Module](./pipe1/README.md) - Stage 1 documentation
+- [pipe2 Module](./pipe2/README.md) - Stage 2 documentation
 
 ### System Analysis & Visualization
 - [HVDC System Detailed Analysis - Part 1](./hitachi/docs/HVDC_SYSTEM_DETAILED_ANALYSIS.md) - Executive Summary & Architecture
@@ -877,20 +821,6 @@ This project contains proprietary information and is intended solely for interna
 ---
 
 ## 🔄 Update Log
-
-### v2.0-PIPELINE-MIGRATION (2025-10-19)
-- **Major Migration**: 파이프라인 통합 및 구조 개선
-- **Terminology Update**: Post-AGI → Derived Columns (파생 컬럼)
-- **Structure Consolidation**: 4개 분산 폴더 → 1개 통합 폴더 (hvdc_pipeline/)
-- **Key Changes**:
-  - ✅ 통합 실행 스크립트 (`run_pipeline.py`)
-  - ✅ YAML 기반 설정 시스템
-  - ✅ 4-Stage 명확한 구조 (stage1_sync, stage2_derived, stage3_report, stage4_anomaly)
-  - ✅ 원본 파일 안전 보관 (`hvdc_pipeline/archive/`)
-  - ✅ 모든 문서 용어 통일 (Post-AGI → Derived Columns)
-- **Files**: 55 files changed, 7,228 insertions
-- **Archive**: pipe1/, pipe2/, hitachi/Pipe1/, hitachi/anomaly_detector/ → hvdc_pipeline/archive/
-- **Documentation**: 완전히 업데이트된 가이드 및 마이그레이션 보고서
 
 ### v3.7-DOCUMENTATION (2025-10-18)
 - **Comprehensive Documentation Suite**: 8개 상세 가이드 문서 생성
