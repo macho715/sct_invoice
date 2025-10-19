@@ -25,7 +25,6 @@ PIPELINE_ROOT = Path(__file__).resolve().parent
 REPO_ROOT = PIPELINE_ROOT.parent
 sys.path.append(str(PIPELINE_ROOT))
 
-
 # 각 Stage 임포트
 def resolve_repo_path(path_value: str | Path) -> Path:
     """저장소 기준 절대 경로를 반환합니다. / Resolve repository-relative paths."""
@@ -130,7 +129,13 @@ def run_stage(
                     "Stage 1 동기화 모듈을 불러오지 못했습니다."
                 ) from import_error
             stage1_cfg = (
+<<<<<<< HEAD
                 pipeline_config.get("stages", {}).get("stage1", {}).get("io", {})
+=======
+                pipeline_config.get("stages", {})
+                .get("stage1", {})
+                .get("io", {})
+>>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
             )
             if not stage1_cfg:
                 raise ValueError("Stage 1 IO 설정이 비어 있습니다.")
@@ -191,7 +196,12 @@ def run_stage(
             default_output = Path.cwd() / "HVDC WAREHOUSE_HITACHI(HE).xlsx"
             if not default_output.exists():
                 raise FileNotFoundError(
+<<<<<<< HEAD
                     "Stage 2 결과 파일을 찾을 수 없습니다: " f"{default_output}"
+=======
+                    "Stage 2 결과 파일을 찾을 수 없습니다: "
+                    f"{default_output}"
+>>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
                 )
 
             target_file = stage2_output_cfg.get("derived_file")
@@ -219,7 +229,13 @@ def run_stage(
                     "Stage 3 보고서 생성 모듈을 불러오지 못했습니다."
                 ) from import_error
             stage3_cfg = (
+<<<<<<< HEAD
                 pipeline_config.get("stages", {}).get("stage3", {}).get("io", {})
+=======
+                pipeline_config.get("stages", {})
+                .get("stage3", {})
+                .get("io", {})
+>>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
             )
             if not stage3_cfg:
                 raise ValueError("Stage 3 IO 설정이 비어 있습니다.")
@@ -308,7 +324,13 @@ def run_stage(
                     "Stage 4 이상치 탐지 모듈을 불러오지 못했습니다."
                 ) from import_error
             stage4_cfg = (
+<<<<<<< HEAD
                 pipeline_config.get("stages", {}).get("stage4", {}).get("io", {})
+=======
+                pipeline_config.get("stages", {})
+                .get("stage4", {})
+                .get("io", {})
+>>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
             )
             if not stage4_cfg:
                 raise ValueError("Stage 4 IO 설정이 비어 있습니다.")
@@ -370,7 +392,13 @@ def run_stage(
             visualize = (
                 True
                 if visualize_flag
+<<<<<<< HEAD
                 else False if visualize_off_flag else visualize_default
+=======
+                else False
+                if visualize_off_flag
+                else visualize_default
+>>>>>>> 088aa4a4a8b037f643801bb043b87e17816de7ac
             )
 
             if visualize:
