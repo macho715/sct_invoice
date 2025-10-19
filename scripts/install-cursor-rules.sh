@@ -281,3 +281,4 @@ echo ""
 if [[ "$DRY_RUN" == true ]]; then
     log_warning "이것은 DRY-RUN이었습니다. 실제 설치를 원하면 --dry-run 없이 다시 실행하세요."
 fi
+

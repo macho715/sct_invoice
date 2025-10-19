@@ -22,7 +22,7 @@ from typing import Iterable, Tuple
 
 import pandas as pd  # type: ignore[import-untyped]
 
-from agi_columns import (
+from .agi_columns import (
     DERIVED_COLUMNS,
     FINAL_HANDLING_COLUMN,
     MINUS_COLUMN,
@@ -198,7 +198,7 @@ def apply_post_agi_calculations(df: pd.DataFrame) -> pd.DataFrame:
         working_df[SQM_COLUMN] = (working_df["규격"] * working_df["수량"]) / 10000
     else:
         working_df[SQM_COLUMN] = ""
-        print("WARNING: '규격' 또는 '수량' 컬럼이 없어 SQM 계산을 건너뜁니다.")
+        print("⚠️ '규격' 또는 '수량' 컬럼이 없어 SQM 계산을 건너뜁니다.")
 
     working_df[STACK_STATUS_COLUMN] = ""
 
@@ -229,14 +229,14 @@ def process_post_agi_columns(
     print(f"Site 컬럼: {len(st_cols)}개 - {st_cols}")
 
     print(
-        "SUCCESS: Post-AGI 컬럼 %s개 계산 완료 (행: %s, 컬럼: %s)"
+        "✅ Post-AGI 컬럼 %s개 계산 완료 (행: %s, 컬럼: %s)"
         % (len(DERIVED_COLUMNS), len(df), len(df.columns))
     )
 
     # 결과 저장
     output_file = "HVDC WAREHOUSE_HITACHI(HE).xlsx"
     df.to_excel(output_file, index=False)
-    print(f"SUCCESS: 파일 저장 완료: {output_file}")
+    print(f"✅ 파일 저장 완료: {output_file}")
 
     return True
 
@@ -247,15 +247,15 @@ def main() -> int:
         success = process_post_agi_columns()
         if success:
             print("\n" + "=" * 60)
-            print("SUCCESS: Post-AGI 컬럼 처리 완료!")
-            print("FILE: 결과 파일: HVDC WAREHOUSE_HITACHI(HE).xlsx")
-            print("INFO: 색상은 Step 1에서 이미 적용되었습니다.")
+            print("✅ Post-AGI 컬럼 처리 완료!")
+            print("📁 결과 파일: HVDC WAREHOUSE_HITACHI(HE).xlsx")
+            print("💡 색상은 Step 1에서 이미 적용되었습니다.")
             print("=" * 60)
         else:
-            print("ERROR: 처리 실패")
+            print("❌ 처리 실패")
             return 1
     except Exception as e:
-        print(f"ERROR: 오류 발생: {e}")
+        print(f"❌ 오류 발생: {e}")
         return 1
 
     return 0
